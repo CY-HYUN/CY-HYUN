@@ -40,7 +40,7 @@ Data Science master's student (M2) at **Télécom SudParis (Institut Polytechniq
 
 <div align="center">
 
-<img src="https://github-readme-stats.vercel.app/api?username=CY-HYUN&show_icons=true&theme=tokyonight&count_private=true&hide_border=true&title_color=58A6FF&icon_color=1F6FEB&text_color=C9D1D9&bg_color=0D1117&include_all_commits=true" alt="GitHub Stats" />
+[![GitHub Stats](https://github-readme-stats.vercel.app/api?username=CY-HYUN&show_icons=true&theme=tokyonight&count_private=true&hide_border=true&title_color=58A6FF&icon_color=1F6FEB&text_color=C9D1D9&bg_color=0D1117&include_all_commits=true)](https://github.com/CY-HYUN)
 
 </div>
 
@@ -50,7 +50,7 @@ Data Science master's student (M2) at **Télécom SudParis (Institut Polytechniq
 
 <div align="center">
 
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=CY-HYUN&layout=compact&theme=tokyonight&langs_count=8&hide_border=true&title_color=58A6FF&text_color=C9D1D9&bg_color=0D1117&hide=html,css,jupyter%20notebook&card_width=495" alt="Top Languages" />
+[![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=CY-HYUN&layout=compact&theme=tokyonight&langs_count=8&hide_border=true&title_color=58A6FF&text_color=C9D1D9&bg_color=0D1117&card_width=495)](https://github.com/CY-HYUN)
 
 </div>
 
@@ -60,7 +60,7 @@ Data Science master's student (M2) at **Télécom SudParis (Institut Polytechniq
 
 <div align="center">
 
-<img src="https://streak-stats.demolab.com/?user=CY-HYUN&theme=tokyonight&hide_border=true&background=0D1117&ring=58A6FF&fire=58A6FF&currStreakLabel=58A6FF" alt="GitHub Streak" />
+[![GitHub Streak](https://streak-stats.demolab.com/?user=CY-HYUN&theme=tokyonight&hide_border=true&background=0D1117&ring=58A6FF&fire=58A6FF&currStreakLabel=58A6FF)](https://github.com/CY-HYUN)
 
 </div>
 
