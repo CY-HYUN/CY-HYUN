@@ -335,186 +335,95 @@ Data Science master's student (M2) at **Télécom SudParis (Institut Polytechniq
 
 ---
 
-## 💼 Work Experience
-
-### Big Data Intern
-**Hanwha Aerospace** - South Korea (6 months)
-
-**Key Responsibilities:**
-- Developed **machine learning and deep learning models** for defense analytics
-- Conducted comprehensive **data preprocessing, exploratory analysis, and feature engineering** on large-scale datasets
-- Built **predictive modeling solutions** for defense export analysis and agricultural price forecasting
-- Performed **large-scale data integration** (77,400+ data points across 172 countries)
-
-**Projects:**
-- **Global Defense Export Model**: ML-based scoring system analyzing economic, political, and conflict indicators
-- **Defense Agri-Price Forecasting**: LSTM/GRU models for market price prediction with real-time data crawling
-
-**Achievement:** 🎖️ **Best Performance Award** for outstanding contributions to data-driven decision-making
-
-### IT System Administrator
-**S-Tec System** - South Korea (6 months)
-
-**Key Responsibilities:**
-- Managed **access control system** for enterprise security
-- Performed **data analysis and reporting** to support business decision-making
-- Developed **automated data processing workflows** to improve operational efficiency
-- Maintained system infrastructure and ensured 99.9% uptime
-
-**Technical Skills Applied:**
-- Database management, SQL queries
-- Automation scripting (Python)
-- Business intelligence reporting
-
----
-
 ## 🛠️ Technical Skills
 
-### 🤖 LLM & Advanced NLP
-**LLM Fine-tuning & Alignment:**
-- LoRA (Low-Rank Adaptation), DPO (Direct Preference Optimization), PEFT (Parameter-Efficient Fine-Tuning)
-- Quantization (4-bit, 8-bit), Mixed Precision Training
-- Prompt Engineering, Magpie Prompting, Synthetic Data Generation
-- RAG (Retrieval-Augmented Generation), Model Context Protocol (MCP)
+### 🤖 LLM & NLP (Production Experience)
+**LLM Fine-tuning** *(Synthetic-Instruction-Tuner project)*
+- LoRA, DPO, PEFT - Achieved 57.5% on MMLU/HellaSwag/ARC/TruthfulQA
+- 4-bit Quantization - Trained 12.16M params (0.15% of total)
+- Magpie Prompting - Generated 1,500 synthetic samples with 83.9% quality pass rate
 
-**Transformer Architectures:**
-- RoBERTa, BERT, GPT families
-- Hugging Face Transformers ecosystem
-- Custom attention mechanisms, Multi-head attention
+**Transformers** *(SemEval 2026 project - 721-line pipeline)*
+- RoBERTa, BERT fine-tuning - CCC 0.6833 (Top rank)
+- BiLSTM ensembles - 3-model weighted averaging
+- Mixed Precision Training (fp16) - Multi-seed experiments (42, 123, 777)
 
-**NLP Techniques:**
-- Sentiment Analysis, Text Classification, Emotion Prediction
-- BiLSTM, GRU for sequential modeling
-- Ensemble Methods (weighted averaging, stacking)
+**NLP** *(8 projects)*
+- Emotion Prediction, Sentiment Analysis - SemEval 2026
+- Bilingual Text Processing (Korean/English) - YouTube Analytics (50,000+ videos)
 
-**Frameworks & Tools:**
-- PyTorch, TensorFlow, TensorFlow Serving
-- Hugging Face PEFT, Transformers
-- LangChain, WandB (experiment tracking), MLflow
+**Tools**
+- PyTorch, Hugging Face Transformers, WandB (experiment tracking)
 
 ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat&logo=pytorch&logoColor=white)
-![TensorFlow](https://img.shields.io/badge/TensorFlow-FF6F00?style=flat&logo=tensorflow&logoColor=white)
 ![Transformers](https://img.shields.io/badge/🤗_Transformers-FFD43B?style=flat&logoColor=black)
-![LangChain](https://img.shields.io/badge/🦜_LangChain-121212?style=flat&logoColor=white)
+![WandB](https://img.shields.io/badge/WandB-FFBE00?style=flat&logo=weightsandbiases&logoColor=black)
 
-### 📊 Machine Learning & Deep Learning
-**Classical ML:**
-- Scikit-learn, XGBoost, Random Forest, SVM
-- Ensemble Methods (bagging, boosting, stacking)
-- Feature Engineering, Dimensionality Reduction
+### 📊 Machine Learning & Data Science
+**ML Algorithms** *(QoE Prediction - 81.9% accuracy)*
+- Random Forest, SVM, XGBoost, KNN - 6-model comparison
+- Ensemble Methods - Weighted averaging, stacking
 
-**Deep Learning:**
-- LSTM, GRU, BiLSTM for time series
-- Custom loss functions (CCC, MSE, dual-task optimization)
-- Gradient clipping, Learning rate scheduling
+**Time Series** *(Agri Forecasting - 52-week predictions)*
+- SARIMAX, LSTM, GRU - Hybrid ensemble approach
+- Seasonal Decomposition - Real-time data processing with Streamlit
 
-**Time Series Analysis:**
-- SARIMAX, LSTM/GRU ensembles
-- Seasonal Decomposition, Forecasting (52-week ahead)
-- Real-time data processing
+**Data Engineering** *(DEFT project - 77,400+ data points)*
+- ETL Pipelines - World Bank API, SIPRI, UCDP integration
+- Feature Engineering - 39-100+ features per project
+- K-Means Clustering, OLS Regression - 172 countries analysis
 
-**Data Science:**
-- Pandas, NumPy for data manipulation
-- EDA (Exploratory Data Analysis), Statistical Testing
-- Feature Engineering (100+ features per project)
+**Core Tools**
+- Python: Pandas, NumPy, Scikit-learn
+- TensorFlow (LSTM/GRU models)
+- Statistical Testing, EDA
 
 ![Scikit-learn](https://img.shields.io/badge/Scikit--learn-F7931E?style=flat&logo=scikitlearn&logoColor=white)
 ![Pandas](https://img.shields.io/badge/Pandas-150458?style=flat&logo=pandas&logoColor=white)
 ![NumPy](https://img.shields.io/badge/NumPy-013243?style=flat&logo=numpy&logoColor=white)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-FF6F00?style=flat&logo=tensorflow&logoColor=white)
 
-### 💻 Programming Languages
-**Expert Level:**
-- Python (Advanced - Production ML pipelines, 721-line modular code)
-- SQL (Advanced - Complex queries, database optimization)
+### 💻 Programming & Databases
+**Primary Languages**
+- **Python** (Advanced) - 8 production projects, 721-line modular pipeline
+- **SQL** (Advanced) - SQLD Certified, Oracle DB, PostgreSQL
 
-**Proficient:**
-- R (Statistical analysis, data visualization)
-- C (System programming, performance optimization)
-
-**Working Knowledge:**
-- TypeScript, JavaScript (Full-stack web development)
-- Java (Service-oriented architecture, enterprise systems)
+**Databases** *(Hanwha Aerospace internship)*
+- Oracle DB - Enterprise data management
+- PostgreSQL - Movie Trip full-stack app
+- Hadoop - Big data processing
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
 ![SQL](https://img.shields.io/badge/SQL-4479A1?style=flat&logo=mysql&logoColor=white)
-![R](https://img.shields.io/badge/R-276DC3?style=flat&logo=r&logoColor=white)
-![C](https://img.shields.io/badge/C-A8B9CC?style=flat&logo=c&logoColor=black)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
-![Java](https://img.shields.io/badge/Java-007396?style=flat&logo=openjdk&logoColor=white)
-
-### 🗄️ Data Engineering & Big Data
-**ETL & Pipelines:**
-- Multi-source data integration (World Bank API, SIPRI, UCDP)
-- Data warehousing (26.54 MB structured databases)
-- Automated data processing workflows
-
-**Big Data:**
-- Hadoop ecosystem
-- Large-scale data analysis (77,400+ data points, 172 countries)
-
-**Databases:**
-- Oracle DB (enterprise-grade database management)
-- PostgreSQL, MongoDB, Redis
-- Prisma ORM
-
+![Oracle](https://img.shields.io/badge/Oracle-F80000?style=flat&logo=oracle&logoColor=white)
 ![Hadoop](https://img.shields.io/badge/Hadoop-66CCFF?style=flat&logo=apachehadoop&logoColor=black)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=flat&logo=postgresql&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat&logo=mongodb&logoColor=white)
 
-### 🚀 MLOps & DevOps
-**Experiment Tracking:**
-- WandB (multi-seed experiments, ablation studies)
-- MLflow (model versioning, tracking)
+### 🚀 MLOps & Production
+**Experiment Tracking** *(SemEval 2026)*
+- WandB - Multi-seed experiments, ablation studies
+- Version Control - Git, GitHub (8 public repositories)
 
-**Containerization & Orchestration:**
-- Docker (reproducible ML environments)
-- Kubernetes (scalable deployments)
-
-**CI/CD & Version Control:**
-- Git, GitHub Actions
-- Automated testing, deployment pipelines
-
-**Cloud & Infrastructure:**
-- AWS (cloud infrastructure)
-- Linux (production environment management)
+**Deployment** *(Agri Forecasting)*
+- Docker - Containerized ML environments
+- Flask - API serving for price predictions
+- Streamlit - Real-time interactive dashboards
 
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white)
-![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=flat&logo=kubernetes&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-F05032?style=flat&logo=git&logoColor=white)
-![AWS](https://img.shields.io/badge/AWS-232F3E?style=flat&logo=amazonaws&logoColor=white)
-
-### 📊 Data Visualization & BI
-**Business Intelligence:**
-- Tableau (interactive dashboards)
-- Power BI (business reporting)
-
-**Python Visualization:**
-- Matplotlib, Seaborn (statistical plots)
-- Plotly (interactive visualizations)
-- Streamlit (real-time dashboards)
-
-![Tableau](https://img.shields.io/badge/Tableau-E97627?style=flat&logo=tableau&logoColor=white)
-![Power BI](https://img.shields.io/badge/Power_BI-F2C811?style=flat&logo=powerbi&logoColor=black)
+![Flask](https://img.shields.io/badge/Flask-000000?style=flat&logo=flask&logoColor=white)
 ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=flat&logo=streamlit&logoColor=white)
 
-### 🌐 Web Development & APIs
-**Backend Frameworks:**
-- FastAPI (REST APIs, real-time inference)
-- Flask (ML model serving, web applications)
-- TensorFlow Serving (production model deployment)
+### 📊 Visualization & BI Tools
+**Business Intelligence** *(Hanwha Aerospace internship)*
+- Power BI - Defense analytics dashboards
+- Tableau - Interactive business reports
 
-**Frontend:**
-- Next.js 14, React (modern web applications)
-- Recoil (state management), Tailwind CSS
+**Python Visualization** *(All projects)*
+- Matplotlib, Seaborn - Statistical plots (200+ visualizations)
+- Plotly - Interactive charts
 
-**APIs & Integration:**
-- REST APIs, GraphQL
-- JWT, OAuth (authentication)
-
-![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat&logo=fastapi&logoColor=white)
-![Flask](https://img.shields.io/badge/Flask-000000?style=flat&logo=flask&logoColor=white)
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat&logo=nextdotjs&logoColor=white)
-![React](https://img.shields.io/badge/React-61DAFB?style=flat&logo=react&logoColor=black)
+![Power BI](https://img.shields.io/badge/Power_BI-F2C811?style=flat&logo=powerbi&logoColor=black)
+![Tableau](https://img.shields.io/badge/Tableau-E97627?style=flat&logo=tableau&logoColor=white)
 
 ---
 
@@ -553,7 +462,6 @@ Data Science master's student (M2) at **Télécom SudParis (Institut Polytechniq
 ### 🥇 Competitions & Awards
 - **SemEval 2026 Task 2** - Top rank (CCC 0.6833) - International NLP competition with 100+ teams
 - **Best Performance Award** - Hanwha Aerospace (Big Data Internship)
-- **Fast Learner Award** - Completed LLM fine-tuning project 4× faster than timeline (7 days vs 28 days)
 
 ### 📜 Professional Certifications
 - **SQLD** - SQL Developer Certification (Korea Data Agency)
