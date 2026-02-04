@@ -481,11 +481,26 @@ I'm actively seeking **LLM Engineer / ML Engineer / Data Scientist internship** 
 
 ### 🎯 What I'm Looking For
 
-**Ideal Role:**
-- LLM fine-tuning, RLHF/DPO alignment, prompt engineering
-- Production ML systems and MLOps infrastructure
-- NLP research and applications (sentiment, classification, generation)
-- Generative AI and agent-based systems
+**LLM Engineer:**
+- LLM fine-tuning (LoRA, DPO, RLHF), model alignment, prompt engineering
+- Generative AI systems, retrieval-augmented generation (RAG)
+- Production-scale inference optimization and deployment
+
+**ML Engineer:**
+- End-to-end ML pipeline development (data → training → deployment)
+- MLOps infrastructure (experiment tracking, model versioning, CI/CD)
+- Real-time prediction systems and API serving
+
+**Data Scientist:**
+- Large-scale data engineering and ETL pipeline design
+- Predictive modeling and statistical analysis
+- Business intelligence and data-driven decision making
+- Time series forecasting and anomaly detection
+
+**Research Interests:**
+- NLP applications (sentiment analysis, emotion prediction, text classification)
+- Deep learning architectures (Transformers, LSTM, ensemble methods)
+- Synthetic data generation and self-supervised learning
 
 ### 📧 Contact Me
 
@@ -507,9 +522,13 @@ I'm actively seeking **LLM Engineer / ML Engineer / Data Scientist internship** 
 
 ---
 
-**⚡ "Code with purpose, ship with confidence"**
+### 💡 Let's Build Something Impactful Together
 
-*Open to 6-month internship opportunities starting before July 2026*
+**"From research to production, I turn ML ideas into scalable systems that solve real problems."**
+
+I bring **proven track record** (Top rank SemEval 2026), **fast execution** (4× faster delivery), and **end-to-end ownership** (research → deployment). Ready to contribute from day one with production-quality code and data-driven mindset.
+
+📩 **Open to 6-month internship opportunities starting before July 2026** | Response within 24 hours
 
 </div>
 
