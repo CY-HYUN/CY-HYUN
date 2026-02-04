@@ -36,36 +36,6 @@ Data Science master's student (M2) at **Télécom SudParis (Institut Polytechniq
 
 ---
 
-## 📊 GitHub Statistics
-
-<div align="center">
-
-[![GitHub Stats](https://github-readme-stats.vercel.app/api?username=CY-HYUN&show_icons=true&theme=tokyonight&count_private=true&hide_border=true&title_color=58A6FF&icon_color=1F6FEB&text_color=C9D1D9&bg_color=0D1117&include_all_commits=true)](https://github.com/CY-HYUN)
-
-</div>
-
----
-
-## 💻 Most Used Languages
-
-<div align="center">
-
-[![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=CY-HYUN&layout=compact&theme=tokyonight&langs_count=8&hide_border=true&title_color=58A6FF&text_color=C9D1D9&bg_color=0D1117&card_width=495)](https://github.com/CY-HYUN)
-
-</div>
-
----
-
-## 📈 Contribution Activity
-
-<div align="center">
-
-[![GitHub Streak](https://streak-stats.demolab.com/?user=CY-HYUN&theme=tokyonight&hide_border=true&background=0D1117&ring=58A6FF&fire=58A6FF&currStreakLabel=58A6FF)](https://github.com/CY-HYUN)
-
-</div>
-
----
-
 ## 🌟 Featured Projects
 
 ### 🏆 1. SemEval 2026: Deep Learning NLP Competition (Oct 2025 - Jan 2026)
