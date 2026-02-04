@@ -34,15 +34,13 @@ Data Science master's student (M2) at **Télécom SudParis (Institut Polytechniq
 - 📊 **50,000+ video analysis** with bilingual NLP (Korean/English) for actionable business insights
 - 🎖️ **Best Performance Award** at Hanwha Aerospace (Big Data Internship)
 
-**Target Companies:** Mistral AI, Hugging Face, Criteo, OpenAI, Anthropic, Google DeepMind
-
 ---
 
 ## 📊 GitHub Statistics
 
 <div align="center">
 
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=CY-HYUN&show_icons=true&theme=tokyonight&count_private=true&hide_border=true&title_color=58A6FF&icon_color=1F6FEB&text_color=C9D1D9&bg_color=0D1117&include_all_commits=true)
+<img src="https://github-readme-stats.vercel.app/api?username=CY-HYUN&show_icons=true&theme=tokyonight&count_private=true&hide_border=true&title_color=58A6FF&icon_color=1F6FEB&text_color=C9D1D9&bg_color=0D1117&include_all_commits=true" alt="GitHub Stats" />
 
 </div>
 
@@ -52,7 +50,7 @@ Data Science master's student (M2) at **Télécom SudParis (Institut Polytechniq
 
 <div align="center">
 
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=CY-HYUN&layout=compact&theme=tokyonight&langs_count=8&hide_border=true&title_color=58A6FF&text_color=C9D1D9&bg_color=0D1117&hide=html,css,jupyter%20notebook&card_width=495)
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=CY-HYUN&layout=compact&theme=tokyonight&langs_count=8&hide_border=true&title_color=58A6FF&text_color=C9D1D9&bg_color=0D1117&hide=html,css,jupyter%20notebook&card_width=495" alt="Top Languages" />
 
 </div>
 
@@ -62,7 +60,7 @@ Data Science master's student (M2) at **Télécom SudParis (Institut Polytechniq
 
 <div align="center">
 
-![GitHub Streak](https://streak-stats.demolab.com/?user=CY-HYUN&theme=tokyonight&hide_border=true&background=0D1117&ring=58A6FF&fire=58A6FF&currStreakLabel=58A6FF)
+<img src="https://streak-stats.demolab.com/?user=CY-HYUN&theme=tokyonight&hide_border=true&background=0D1117&ring=58A6FF&fire=58A6FF&currStreakLabel=58A6FF" alt="GitHub Streak" />
 
 </div>
 
@@ -341,12 +339,14 @@ Data Science master's student (M2) at **Télécom SudParis (Institut Polytechniq
 **LLM Fine-tuning** *(Synthetic-Instruction-Tuner project)*
 - LoRA, DPO, PEFT - Achieved 57.5% on MMLU/HellaSwag/ARC/TruthfulQA
 - 4-bit Quantization - Trained 12.16M params (0.15% of total)
-- Magpie Prompting - Generated 1,500 synthetic samples with 83.9% quality pass rate
+- Magpie Prompting, Prompt Engineering - Generated 1,500 synthetic samples with 83.9% quality pass rate
+- Synthetic Data Generation - Zero-cost automated pipeline
 
 **Transformers** *(SemEval 2026 project - 721-line pipeline)*
 - RoBERTa, BERT fine-tuning - CCC 0.6833 (Top rank)
 - BiLSTM ensembles - 3-model weighted averaging
-- Mixed Precision Training (fp16) - Multi-seed experiments (42, 123, 777)
+- Ensemble Learning - Multi-model orchestration for robust predictions
+- Mixed Precision Training (fp16), Model Optimization - Multi-seed experiments (42, 123, 777)
 
 **NLP** *(8 projects)*
 - Emotion Prediction, Sentiment Analysis - SemEval 2026
@@ -369,14 +369,14 @@ Data Science master's student (M2) at **Télécom SudParis (Institut Polytechniq
 - Seasonal Decomposition - Real-time data processing with Streamlit
 
 **Data Engineering** *(DEFT project - 77,400+ data points)*
-- ETL Pipelines - World Bank API, SIPRI, UCDP integration
+- ETL Pipelines, REST API - World Bank API, SIPRI, UCDP integration
 - Feature Engineering - 39-100+ features per project
 - K-Means Clustering, OLS Regression - 172 countries analysis
 
 **Core Tools**
 - Python: Pandas, NumPy, Scikit-learn
 - TensorFlow (LSTM/GRU models)
-- Statistical Testing, EDA
+- Statistical Testing, EDA, Data Visualization
 
 ![Scikit-learn](https://img.shields.io/badge/Scikit--learn-F7931E?style=flat&logo=scikitlearn&logoColor=white)
 ![Pandas](https://img.shields.io/badge/Pandas-150458?style=flat&logo=pandas&logoColor=white)
@@ -387,6 +387,12 @@ Data Science master's student (M2) at **Télécom SudParis (Institut Polytechniq
 **Primary Languages**
 - **Python** (Advanced) - 8 production projects, 721-line modular pipeline
 - **SQL** (Advanced) - SQLD Certified, Oracle DB, PostgreSQL
+- **R** - Statistical analysis, data visualization
+- **C** - System programming, performance optimization
+
+**Web Development** *(Movie Trip project)*
+- React.js, Next.js 14 - Full-stack web application
+- TypeScript, JavaScript - Modern frontend development
 
 **Databases** *(Hanwha Aerospace internship)*
 - Oracle DB - Enterprise data management
@@ -395,6 +401,10 @@ Data Science master's student (M2) at **Télécom SudParis (Institut Polytechniq
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
 ![SQL](https://img.shields.io/badge/SQL-4479A1?style=flat&logo=mysql&logoColor=white)
+![R](https://img.shields.io/badge/R-276DC3?style=flat&logo=r&logoColor=white)
+![C](https://img.shields.io/badge/C-A8B9CC?style=flat&logo=c&logoColor=black)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat&logo=next.js&logoColor=white)
+![React](https://img.shields.io/badge/React-61DAFB?style=flat&logo=react&logoColor=black)
 ![Oracle](https://img.shields.io/badge/Oracle-F80000?style=flat&logo=oracle&logoColor=white)
 ![Hadoop](https://img.shields.io/badge/Hadoop-66CCFF?style=flat&logo=apachehadoop&logoColor=black)
 
@@ -404,13 +414,18 @@ Data Science master's student (M2) at **Télécom SudParis (Institut Polytechniq
 - Version Control - Git, GitHub (8 public repositories)
 
 **Deployment** *(Agri Forecasting)*
-- Docker - Containerized ML environments
-- Flask - API serving for price predictions
+- Docker, Kubernetes - Containerized ML environments and orchestration
+- Flask, FastAPI - API serving for price predictions
 - Streamlit - Real-time interactive dashboards
+- AWS, Linux - Cloud infrastructure and system administration
 
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=flat&logo=kubernetes&logoColor=white)
+![AWS](https://img.shields.io/badge/AWS-FF9900?style=flat&logo=amazonaws&logoColor=white)
+![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat&logo=linux&logoColor=black)
 ![Git](https://img.shields.io/badge/Git-F05032?style=flat&logo=git&logoColor=white)
 ![Flask](https://img.shields.io/badge/Flask-000000?style=flat&logo=flask&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat&logo=fastapi&logoColor=white)
 ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=flat&logo=streamlit&logoColor=white)
 
 ### 📊 Visualization & BI Tools
@@ -433,16 +448,6 @@ Data Science master's student (M2) at **Télécom SudParis (Institut Polytechniq
 **Télécom SudParis (Institut Polytechnique de Paris)** - Paris, France (2025-2026)
 
 **Specialization:** Large Language Models, NLP, Deep Learning, Data Engineering
-
-**Notable Coursework:**
-- Advanced Machine Learning & Deep Learning
-- Large Language Model Architectures & Fine-tuning
-- Natural Language Processing
-- Data Engineering & Big Data (Hadoop ecosystem)
-- Cloud Computing & Distributed Systems
-- MLOps & Production ML Systems
-
-**GPA:** 3.8/4.0
 
 ### Bachelor's Degrees
 
@@ -511,11 +516,6 @@ I'm actively seeking **LLM Engineer / ML Engineer / Data Scientist internship** 
 - Production ML systems and MLOps infrastructure
 - NLP research and applications (sentiment, classification, generation)
 - Generative AI and agent-based systems
-
-**Target Companies:**
-- **Tier 1 Dream**: Mistral AI, Hugging Face, Criteo
-- **Tier 2 Aspirational**: OpenAI, Anthropic, Google DeepMind, Cohere
-- **Tier 3 Strong Fit**: AI startups, research labs, ML-focused teams
 
 ### 📧 Contact Me
 
