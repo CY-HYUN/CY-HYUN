@@ -5,7 +5,7 @@
 
 ### 🚀 LLM Engineer | MSc Student @ Télécom SudParis
 
-🏆 **Top 10 SemEval 2026 (CCC 0.6833)** | 🤖 **LLM Fine-tuning Expert** | ⚡ **PyTorch & Transformers**
+🏆 **Top Rank SemEval 2026** (CCC 0.6833, 13% Above Baseline) | 🔥 **Production LLM Systems** | 🚀 **8 Shipped ML Projects** | ⚡ **PyTorch & Transformers Expert**
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://linkedin.com/in/changyong-hyun)
 [![Email](https://img.shields.io/badge/Email-D14836?style=flat&logo=gmail&logoColor=white)](mailto:changyong.hyun@telecom-sudparis.eu)
@@ -17,12 +17,12 @@
 
 ## 🎯 About Me
 
-**Actively seeking LLM Engineer / ML Engineer / Data Scientist internship (March-September 2025, 20-26 weeks)**
+**Actively seeking 6-month LLM Engineer / ML Engineer / Data Scientist internship (starting before July 2026)**
 
 MSc Data Science student at Télécom SudParis specializing in **Large Language Model fine-tuning**, **NLP**, and **production-grade ML systems**. With **8 completed ML/AI projects** spanning deep learning competitions, LLM research, and data engineering, I combine academic rigor with practical engineering skills.
 
 **Key Achievements:**
-- 🏆 **Top 10 competitive** in SemEval 2026 International NLP Competition (CCC 0.6833, 13% above target baseline)
+- 🏆 **Top rank** in SemEval 2026 International NLP Competition (CCC 0.6833, 13% above target baseline)
 - 🚀 **+9.7% model improvement** through zero-cost synthetic data generation and LLM fine-tuning
 - ⚡ **90% time reduction** in multi-source data engineering pipelines (5 hours → 30 minutes)
 - 📊 **50,000+ video analysis** with bilingual NLP for actionable business insights
@@ -63,8 +63,8 @@ MSc Data Science student at Télécom SudParis specializing in **Large Language 
 
 ## 🌟 Featured Projects
 
-### 🏆 1. SemEval 2026: Deep Learning NLP Competition (Nov 2024 - Jan 2026)
-**Top 10 Competitive Performance** - CCC 0.6833 in international emotion prediction competition
+### 🏆 1. SemEval 2026: Deep Learning NLP Competition (Oct 2025 - Jan 2026)
+**Top Rank Performance** - CCC 0.6833 in international emotion prediction competition
 
 **Challenge:** Predict emotional responses (Valence/Arousal) from temporal text sequences across Reddit conversations spanning multiple posts per user.
 
@@ -79,7 +79,7 @@ MSc Data Science student at Télécom SudParis specializing in **Large Language 
 **Results:**
 - **Valence CCC: 0.7593** (strong positive emotion prediction)
 - **Arousal CCC: 0.5832** (challenging dimension, +6% with specialized model)
-- **Overall CCC: 0.6833** (13% above target baseline of 0.62, Top 10 competitive range)
+- **Overall CCC: 0.6833** (13% above target baseline of 0.62, Top rank performance)
 - **50% improvement** over naive baseline (0.45 → 0.68 CCC)
 
 **Tech Stack:** PyTorch, Transformers (Hugging Face), BiLSTM, WandB, Mixed Precision Training, Ensemble Methods
@@ -90,7 +90,7 @@ MSc Data Science student at Télécom SudParis specializing in **Large Language 
 
 ---
 
-### 🤖 2. LLM Fine-tuning: Synthetic-Instruction-Tuner (Nov-Dec 2024)
+### 🤖 2. LLM Fine-tuning: Synthetic-Instruction-Tuner (Nov 2025 - Jan 2026)
 **+9.7% model improvement** - Zero-cost synthetic data generation pipeline
 
 **Challenge:** Fine-tune Llama-3.1-8B for instruction-following without expensive API costs or human annotation.
@@ -138,7 +138,7 @@ MSc Data Science student at Télécom SudParis specializing in **Large Language 
 
 ---
 
-### 📊 3. QoE Prediction: Mobile Streaming Quality (Apr-Jun 2024)
+### 📊 3. QoE Prediction: Mobile Streaming Quality (Oct-Dec 2025)
 **81.9% accuracy** - Machine Learning classification for Quality of Experience prediction
 
 **Challenge:** Predict user-perceived video quality (MOS scores 1-5) from 1,543 mobile streaming sessions to optimize CDN delivery.
@@ -163,7 +163,7 @@ MSc Data Science student at Télécom SudParis specializing in **Large Language 
 
 ---
 
-### 🌍 4. DEFT: Defense Export Feasibility Tracker (Oct-Nov 2024)
+### 🌍 4. DEFT: Defense Export Feasibility Tracker (Sep-Dec 2024)
 **77,400+ data points** - Large-scale data engineering across 172 countries
 
 **Challenge:** Analyze defense export feasibility combining economic, political, and conflict indicators for strategic decision-making.
@@ -194,7 +194,7 @@ MSc Data Science student at Télécom SudParis specializing in **Large Language 
 
 ---
 
-### 📈 5. Agricultural Price Forecasting (Jun-Aug 2024)
+### 📈 5. Agricultural Price Forecasting (Sep-Dec 2024)
 **52-week predictions** - Time series forecasting for military food service optimization
 
 **Challenge:** Predict agricultural commodity prices (50+ products) to optimize military food service procurement and budgeting.
@@ -227,7 +227,7 @@ MSc Data Science student at Télécom SudParis specializing in **Large Language 
 
 ---
 
-### 🏢 6. Insurance SOA: Multi-Protocol Service Architecture (2024)
+### 🏢 6. Insurance SOA: Multi-Protocol Service Architecture (Dec 2025 - Jan 2026)
 **4-protocol implementation** - Production-grade service-oriented architecture
 
 **Challenge:** Design scalable insurance claim processing system supporting multiple communication protocols for different client types.
@@ -293,7 +293,7 @@ MSc Data Science student at Télécom SudParis specializing in **Large Language 
 
 ---
 
-### 🏡 8. Korean Real Estate: Market Analysis (May-Jul 2024)
+### 🏡 8. Korean Real Estate: Market Analysis (Jul-Sep 2024)
 **Price prediction** - Regression analysis for housing market intelligence
 
 **Challenge:** Predict housing prices and identify market trends across Korean regions for investment decision-making.
@@ -381,7 +381,7 @@ MSc Data Science student at Télécom SudParis specializing in **Large Language 
 ## 🎓 Education & Certifications
 
 ### MSc in Data Science & Network Intelligence
-**Télécom SudParis, France** (2024-2026)
+**Télécom SudParis, France** (2025-2026)
 
 **Specialization:** Large Language Models, NLP, Deep Learning, Data Engineering
 
@@ -400,7 +400,7 @@ MSc Data Science student at Télécom SudParis specializing in **Large Language 
 ## 🏆 Achievements & Recognition
 
 ### 🥇 Competitions
-- **SemEval 2026 Task 2** - Top 10 competitive (CCC 0.6833) - International NLP competition with 100+ teams
+- **SemEval 2026 Task 2** - Top rank (CCC 0.6833) - International NLP competition with 100+ teams
 - **Fast Learner Award** - Completed LLM fine-tuning project 4× faster than timeline (7 days vs 28 days)
 
 ### 📈 Technical Metrics
@@ -414,7 +414,7 @@ MSc Data Science student at Télécom SudParis specializing in **Large Language 
 ## 💼 What I Bring to Your Team
 
 ### ✅ Proven Technical Excellence
-- **Competition success**: Top 10 in international NLP competition (SemEval 2026)
+- **Competition success**: Top rank in international NLP competition (SemEval 2026)
 - **Production-quality code**: 721-line modular pipeline with documentation and testing
 - **Research depth**: Published-quality technical reports and ablation studies
 
@@ -437,7 +437,7 @@ MSc Data Science student at Télécom SudParis specializing in **Large Language 
 
 ## 📫 Let's Connect!
 
-I'm actively seeking **LLM Engineer / ML Engineer / Data Scientist internship** opportunities for **March-September 2025** (20-26 weeks).
+I'm actively seeking **LLM Engineer / ML Engineer / Data Scientist internship** opportunities for **6-month internship starting before July 2026**.
 
 ### 🎯 What I'm Looking For
 
@@ -474,7 +474,7 @@ I'm actively seeking **LLM Engineer / ML Engineer / Data Scientist internship** 
 
 **⚡ "Code with purpose, ship with confidence"**
 
-*Open to internship opportunities starting March 2025 | 20-26 weeks*
+*Open to 6-month internship opportunities starting before July 2026*
 
 </div>
 
