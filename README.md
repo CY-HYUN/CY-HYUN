@@ -19,12 +19,12 @@
 
 **Graduating October 2026 · Open to LLM / ML Engineer roles in Paris and Europe · Work-authorised via the French post-graduation permit**
 
-AI/ML engineer finishing an MSc in Data Science & Network Intelligence at **Télécom SudParis (Institut Polytechnique de Paris)**, currently completing a six-month industry internship at a CAD-AI startup in France.
+AI/ML engineer finishing an MSc in Data Science & Network Intelligence at **Télécom SudParis (Institut Polytechnique de Paris)**, with six months of industry experience building and evaluating a production multi-agent LLM system.
 
-I build LLM and multi-agent systems, and I specialise in the part most teams skip: **deciding whether the thing actually works.** On my internship the hard problem was never generation — it was that the score we graded outputs with couldn't detect several ways a result can be wrong. A part built mirrored scored about the same as the correct one. So most of my work became evaluation design: build the instrument first, then let it decide what to change.
+I build LLM and multi-agent systems, and I specialise in the part most teams skip: **deciding whether the thing actually works.** The hard problem is rarely generation — it's that the metric you're grading outputs with is usually blind to some of the ways they can be wrong. Several visibly incorrect outputs scored the same as correct ones on the system I worked on. So most of my work became evaluation design: build the instrument first, then let it decide what to change.
 
 **Core Expertise:**
-- 🔬 **Evaluation design for generative systems** — rubrics against expert-built ground truth, reference labels derived from geometry rather than written by hand, pre-registered acceptance criteria
+- 🔬 **Evaluation design for generative systems** — rubrics against expert-built ground truth, machine-derived reference labels instead of hand-written ones, pre-registered acceptance criteria
 - 🤖 **LLM fine-tuning** — LoRA, DPO, PEFT (12.16M trainable parameters, +9.7% over base, zero API cost)
 - 🕸️ **Agentic & multi-agent systems** — LangChain, LangGraph, orchestrator/sub-agent architectures against a live external application
 - 📈 **Observability** — MLflow run tracking, Arize Phoenix tracing, reading agent behaviour span by span
@@ -38,54 +38,30 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 ---
 
-## 💼 Current Role
+## 💼 Industry Experience
 
-### 🔧 AI Engineer Intern — CAD-AI startup, France (May – Oct 2026)
+### 🔧 AI Engineer — AI startup, France (6 months, 2026)
 
-**The system:** reads mechanical engineering drawings and rebuilds the part in CAD automatically — vision models for reading, a multi-agent system for code generation, executed against a live external application rather than a simulator.
+Built and evaluated a **production multi-agent LLM system**: a pipeline where vision models read a technical document, a planner turns it into a structured specification, and a multi-agent system generates and executes code against a live external application — not a sandbox, not a simulator.
 
-**My lane:** evaluation and experiment design — the layer that decides whether a change actually helped.
+I owned the **evaluation and experimentation layer** — the part that decides whether any change was actually an improvement.
 
-- 🎯 **Designed the evaluation for the drawing-reading stage** against ten reference parts built by hand by the company's CAD expert, so no model ever graded another model's output. Built the rubric, chose the sample, and wrote a scorer that reproduces every number from saved files with **no model call**.
-- 🔍 **Showed the benchmark score was blind to whole classes of error** — a mirrored part, a rotated part, and an imitated fold all scored about the same as correct ones. Built deterministic checks that could see each, and those checks became the basis for everything after.
-- 🧪 **Ran controlled experiments with acceptance criteria registered before the run.** Reported two pre-registered negative results as negatives — including one where my own proposed improvement didn't survive its control.
-- 🪞 **Caught my own reference labels being wrong** when three models disagreed with them. From then on every label came from geometry, not from my hands.
-- 🤝 **Worked the team's review process throughout** — pull requests, trace-referenced technical reports, and adversarial verification of my own claims before sending them.
+- 🎯 **Designed an evaluation from scratch for a generative stage that had none.** Built the rubric, selected the sample, and anchored it on expert-built reference data so that no model ever graded another model's output. The scorer reproduces every number from saved artefacts with **zero model calls** — which is why it still runs today, after the pipeline around it was rebuilt twice.
+- 🔍 **Proved the team's headline metric was blind to entire classes of failure.** Several distinct wrong outputs scored the same as correct ones. I built deterministic checks that could detect each class, and those checks redirected the team's engineering priorities.
+- 🧪 **Ran controlled A/B experiments with acceptance criteria registered before each run.** Shuffled controls killed four of my own proposed fixes. I published two pre-registered negative results at the same length as positive ones — including one where my own improvement lost.
+- 🪞 **Caught my own ground-truth labels being wrong** when three models disagreed with them. Rebuilt every label from a machine-derived source instead of by hand, and wrote up why.
+- 📊 **Instrumented long-horizon agent runs end to end** — MLflow for run tracking, distributed tracing for span-level behaviour analysis across multi-hour agent sessions.
+- 🤝 **Shipped inside a senior team's process** — pull requests, code review, trace-referenced technical reports, and adversarial verification of my own claims before they left my desk.
 
-**Tech:** Python · C# · LangChain / LangGraph · MLflow · Arize Phoenix · vision-language models · pytest
+**Stack:** Python · C# · LangChain / LangGraph · MLflow · Arize Phoenix · vision-language models · pytest
 
-> *The company's results are covered by a confidentiality agreement, so this section describes method and role rather than internal numbers. Happy to go deeper in conversation.*
+> *Under a confidentiality agreement, so this describes method and ownership rather than the company's internal figures. I can go much deeper on the engineering in conversation.*
 
 ---
 
 ## 🌟 Featured Projects
 
-### 🏅 1. SemEval 2026 Task 2 — Emotion Prediction (Oct 2025 – Jan 2026)
-**CCC 0.6554** — international NLP competition, against a 0.62 target
-
-**Challenge:** Predict emotional response (valence and arousal) from temporal sequences of a user's posts, where a single post carries little signal without the user's history.
-
-**My Solution:**
-- 🧠 **User-level embeddings** — aggregated a user's historical posts into a dense representation, the single largest contributor in the ablation
-- 🔬 **RoBERTa + BiLSTM** for temporal dependencies across the post sequence
-- 🎯 **Dimension-specific loss weighting** — an arousal-specialist model with heavier CCC weighting on the harder dimension
-- 📊 **47 engineered features** — temporal lags, rolling statistics, linguistic patterns, user statistics
-- ⚡ **Mixed-precision training** with multi-seed runs (42, 123, 777, 888, 1111) for robustness
-- 📈 **Systematic ablations** — quantified each component separately instead of asserting a stack
-
-**Results:**
-- **Overall CCC 0.6554** — best single model (seed 777), **+5.7% over the 0.62 target**
-- **Valence CCC 0.7593** · **Arousal CCC 0.5832** (+6.0% with the specialist model)
-- **The 2-model ensemble beat the 3- and 5-model ones** — more models was the wrong lever
-- **Dimension-specific optimisation beat multi-task learning** — the finding I'd defend in an interview
-
-**Tech Stack:** PyTorch · Hugging Face Transformers · BiLSTM · WandB · Mixed Precision · Ensemble Methods
-
-[![GitHub](https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/CY-HYUN/Deep-Learning-project-SemEval-2026-Task-2)
-
----
-
-### 🤖 2. Synthetic-Instruction-Tuner — Zero-Cost LLM Fine-Tuning (Nov 2025 – Jan 2026)
+### 🤖 1. Synthetic-Instruction-Tuner — Zero-Cost LLM Fine-Tuning (Nov 2025 – Jan 2026)
 **+9.7% over base** — no seed data, no paid API, at any stage
 
 **Challenge:** Fine-tune an instruction-following model without API costs or human annotation — and show the result is real rather than an artefact of an easy benchmark.
@@ -107,6 +83,31 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 **Tech Stack:** Hugging Face PEFT · LoRA · DPO · 4-bit quantisation · Magpie prompting
 
 [![GitHub](https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/CY-HYUN/Synthetic-Instruction-Tuner)
+
+---
+
+### 🏅 2. SemEval 2026 Task 2 — Emotion Prediction (Oct 2025 – Jan 2026)
+**CCC 0.6554** — international NLP competition, against a 0.62 target
+
+**Challenge:** Predict emotional response (valence and arousal) from temporal sequences of a user's posts, where a single post carries little signal without the user's history.
+
+**My Solution:**
+- 🧠 **User-level embeddings** — aggregated a user's historical posts into a dense representation, the single largest contributor in the ablation
+- 🔬 **RoBERTa + BiLSTM** for temporal dependencies across the post sequence
+- 🎯 **Dimension-specific loss weighting** — an arousal-specialist model with heavier CCC weighting on the harder dimension
+- 📊 **47 engineered features** — temporal lags, rolling statistics, linguistic patterns, user statistics
+- ⚡ **Mixed-precision training** with multi-seed runs (42, 123, 777, 888, 1111) for robustness
+- 📈 **Systematic ablations** — quantified each component separately instead of asserting a stack
+
+**Results:**
+- **Overall CCC 0.6554** — best single model (seed 777), **+5.7% over the 0.62 target**
+- **Valence CCC 0.7593** · **Arousal CCC 0.5832** (+6.0% with the specialist model)
+- **The 2-model ensemble beat the 3- and 5-model ones** — more models was the wrong lever
+- **Dimension-specific optimisation beat multi-task learning** — the finding I'd defend in an interview
+
+**Tech Stack:** PyTorch · Hugging Face Transformers · BiLSTM · WandB · Mixed Precision · Ensemble Methods
+
+[![GitHub](https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/CY-HYUN/Deep-Learning-project-SemEval-2026-Task-2)
 
 ---
 
@@ -155,24 +156,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 ---
 
-### 📈 5. Agricultural Price Forecasting (Sep – Dec 2024)
-**52-week horizon** — SARIMAX + LSTM for procurement planning
-
-**Challenge:** Forecast commodity prices far enough ahead to change purchasing decisions, across commodities with very different seasonality.
-
-**My Solution:**
-- 📊 **Hybrid approach** — SARIMAX for seasonality and external regressors, LSTM for non-linear patterns
-- 🔢 **100+ engineered features** — lags, rolling statistics, seasonal decomposition, economic indicators
-- 🌐 **Flask application** with dashboards for procurement planning
-- 🔄 **Automated ETL** with scheduled data refresh
-
-**Tech Stack:** Python · SARIMAX · LSTM · TensorFlow · Flask · Streamlit · Power BI
-
-[![GitHub](https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/CY-HYUN/Defense-Agri-Price-Forecasting-main)
-
----
-
-### 🏢 6. Insurance SOA — Multi-Protocol Service Architecture (Dec 2025 – Jan 2026)
+### 🏢 5. Insurance SOA — Multi-Protocol Service Architecture (Dec 2025 – Jan 2026)
 **4 protocols, one gateway** — REST · SOAP · gRPC · GraphQL
 
 **Challenge:** Serve insurance claim processing to clients that each speak a different protocol, without four separate backends.
@@ -187,6 +171,23 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 **Tech Stack:** Java 11 · Maven · Jersey · JAX-WS · gRPC · GraphQL · Tomcat
 
 [![GitHub](https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/CY-HYUN/Insurance-Claim-Processing-SOA)
+
+---
+
+### 📈 6. Agricultural Price Forecasting (Sep – Dec 2024)
+**52-week horizon** — SARIMAX + LSTM for procurement planning
+
+**Challenge:** Forecast commodity prices far enough ahead to change purchasing decisions, across commodities with very different seasonality.
+
+**My Solution:**
+- 📊 **Hybrid approach** — SARIMAX for seasonality and external regressors, LSTM for non-linear patterns
+- 🔢 **100+ engineered features** — lags, rolling statistics, seasonal decomposition, economic indicators
+- 🌐 **Flask application** with dashboards for procurement planning
+- 🔄 **Automated ETL** with scheduled data refresh
+
+**Tech Stack:** Python · SARIMAX · LSTM · TensorFlow · Flask · Streamlit · Power BI
+
+[![GitHub](https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/CY-HYUN/Defense-Agri-Price-Forecasting-main)
 
 ---
 
