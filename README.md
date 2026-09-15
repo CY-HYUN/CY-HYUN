@@ -25,7 +25,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 **Core Expertise:**
 - 🔬 **Evaluation design for generative systems** — rubrics against expert-built ground truth, machine-derived reference labels instead of hand-written ones, pre-registered acceptance criteria, shuffled controls
-- 🤖 **LLM fine-tuning** — LoRA, DPO, PEFT (12.16M trainable parameters, +9.7% over base, zero API cost)
+- 🤖 **LLM fine-tuning** — LoRA, DPO, PEFT (12.16M trainable parameters, 5.5× lower validation loss than the prompt-tuning control, zero API cost)
 - 🕸️ **Agentic & multi-agent systems** — LangChain, LangGraph, orchestrator/sub-agent architectures executing against a live external application
 - 📈 **Observability** — MLflow run tracking, Arize Phoenix tracing, span-level analysis of multi-hour agent sessions
 - 🧪 **Controlled experiments** — one variable at a time, negative results reported at the same length as positive ones
@@ -76,46 +76,45 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 ## 🌟 Featured Projects
 
 ### 🤖 1. Synthetic-Instruction-Tuner — Zero-Cost LLM Fine-Tuning (Nov 2025 – Jan 2026)
-**+9.7% over base** — no seed data, no paid API, no human labelling at any stage
+**LoRA reached 5.5× lower validation loss than Prompt Tuning on identical data** — no seed dataset, no paid API, no human labelling at any stage
 
-**Challenge:** Fine-tune an instruction-following model without API costs or human annotation, and build the pipeline so that each stage's contribution is separately measurable rather than asserted as a stack.
+**Challenge:** Fine-tune an instruction-following model without API costs or human annotation — and build it so each method's contribution is separately *measured* rather than asserted as a stack.
 
-**My Solution — a 6-stage pipeline:**
+**My Solution — a 6-stage pipeline, every stage's output committed:**
 
 1. **Magpie Prompting** *(synthetic data generation)*:
-   - Template-only prompting with Llama-3.1-8B-Instruct
-   - Generated **1,500 instruction-response pairs**
-   - No seed dataset required — the chat template alone elicits the instructions
-   - 4-bit quantisation for efficient generation
-2. **Quality Filtering**:
-   - 6-dimension scoring: relevance, coherence, informativeness, safety, diversity, instruction-following
-   - **83.9% pass rate** (1,259 of 1,500 kept)
-   - Fully automated, no human annotation
+   - Template-only prompting with Llama-3.1-8B-Instruct in 4-bit
+   - Generated **1,500 instruction-response pairs** with no seed dataset — the chat template alone elicits the instructions
+   - Checkpointed every 100 samples to survive Colab disconnects
+2. **Quality Filtering** — six interpretable rule-based checks (length, language, repetition, format, toxicity, content quality), weighted to a single score:
+   - **1,258 of 1,500 passed (83.9%)**, mean quality score 0.88; top **1,000** kept, split 900/100
+   - Dominant failure was phrase repetition (**156 of 242**), not toxicity (5) — the useful finding, since it says what synthetic data actually gets wrong
 3. **Preference-Pair Generation**:
-   - **600 chosen/rejected pairs** via multi-temperature sampling
-   - Systematic degradation strategies for the rejected side
-4. **LoRA Fine-Tuning**:
-   - **12.16M trainable parameters — 0.67% of the base model**
-   - 4-bit quantisation, rank-16 adapters on attention layers
-   - Fine-tuning target: Llama-3.2-3B
-5. **Prompt Tuning** *(alternative method, evaluated head to head)*:
-   - 61,440 trainable parameters — **197× fewer than LoRA**
-6. **DPO Alignment**:
-   - Direct preference optimisation on the generated pairs
-   - Converged in about 2 minutes at ~4.7 GB
+   - **600 chosen/rejected pairs** via multi-temperature sampling, scored by a reward model (OpenAssistant DeBERTa-v3)
+   - Every pair clears a 0.5 margin gate (mean margin 1.78, min 0.53)
+4. **LoRA Fine-Tuning** — **12,156,928 trainable parameters (0.67% of base)**, r=8, alpha=16, all seven linear projections, on Llama-3.2-3B in 4-bit
+5. **Prompt Tuning** *(head-to-head control, same data and hardware)* — 20 virtual tokens, **61,440 parameters: a 198× smaller adapter budget**
+6. **DPO Alignment** — beta=0.1, single epoch on the 540/60 preference split, frozen SFT model as reference
 
-**Results:**
-- **+9.7% improvement** over the zero-shot baseline
-- **Zero cost** — no API fees, no human labelling
-- **Consumer-GPU trainable** — 4-bit quantisation kept the whole run inside a single commodity GPU
+**Results — measured, from committed training configs:**
+
+| Method | Trainable params | Val loss | Peak VRAM | Wall time |
+|---|---|---|---|---|
+| **LoRA SFT** (r=8) | 12,156,928 (0.67%) | **0.54** | 5.3 GB | 8.2 min |
+| Prompt Tuning (20 tokens) | 61,440 (0.003%) | 2.98 | 5.9 GB | 18.8 min |
+| **DPO** (on top of SFT) | 12,156,928 (0.67%) | 0.55 | **4.7 GB** | **2.2 min** |
+
+- **Adapter capacity dominated at 3B scale** — Prompt Tuning's 61K parameters could not fit the instruction distribution despite training more than twice as long. The 198× larger budget was worth it.
+- **Preference alignment was nearly free** — single-epoch DPO in ~2 minutes at 4.7 GB peak, holding validation loss at SFT level
+- **Fine-tuning changed style measurably on held-out probes** even with 1,000 samples: **+21% response length, +67% unique words, −36% sentence count** for DPO against base
+- **Zero cost** — no API fees, no human labelling, ~200 Colab compute units end to end
 - **4× faster than planned** — 7 days against a 28-day schedule
-- **Honest artefact note in the repo** — the committed benchmark figures are a demo fallback, and the repository says so explicitly rather than implying a full evaluation run
 
-**Tech Stack:** Hugging Face PEFT, LoRA, DPO, 4-bit Quantisation, Magpie Prompting, Llama-3.1-8B / Llama-3.2-3B
+**Tech Stack:** Hugging Face PEFT, LoRA, DPO, TRL, 4-bit Quantisation, Magpie Prompting, Llama-3.1-8B / Llama-3.2-3B
 
-**Deliverables:** 10 notebooks covering the full pipeline · 3 trained variants (LoRA / Prompt Tuning / DPO) · raw, filtered and preference datasets · 7 evaluation figures
+**Deliverables:** 10 notebooks covering the full pipeline · 3 trained variants (LoRA / Prompt Tuning / DPO, adapters committed) · raw, filtered and preference datasets · 7 evaluation figures · a claim-by-claim data-provenance table
 
-**Key Innovation:** A fully automated, zero-cost path to instruction tuning — and a repository that documents which of its own numbers are measured and which are not.
+**What I'd point an interviewer at:** the repo's corrections log. An earlier version of it quoted MMLU/HellaSwag/ARC/TruthfulQA scores; a source audit found they were hardcoded demo values that no notebook ever produced, so they were removed and the removal documented. The numbers above are the ones that survived.
 
 [![GitHub](https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/CY-HYUN/Synthetic-Instruction-Tuner)
 
@@ -136,16 +135,24 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 - 📈 **Differential learning rates**: 1e-5 for the encoder against 8e-5 for the custom heads
 - 🧪 **Systematic ablations**: quantified each component separately — user embeddings > engineered features > BiLSTM
 
-**Results:**
-- **Overall CCC 0.6554** — best single model (seed 777), **+5.7% above the 0.62 target**
-- **Valence CCC 0.7593** · **Arousal CCC 0.5832** — improved from 0.5516, **+6.0%** with the specialist model
-- **The 2-model ensemble beat the 3- and 5-model ones** — more models was the wrong lever
-- **Dimension-specific optimisation beat multi-task learning** — the finding I would defend in an interview
+**Results — measured on the validation split:**
+
+| Model | CCC | Valence | Arousal | |
+|---|---|---|---|---|
+| **seed777** | **0.6554** | 0.7593 | 0.5516 | Best single model |
+| arousal_specialist (seed 1111) | 0.6512 | 0.7192 | **0.5832** | Dimension-specialised |
+| seed42 | 0.5053 | 0.6532 | 0.3574 | Dropped from the pool |
+
+- **Best single-model CCC 0.6554** (seed 777), **+5.7% above the 0.62 target**
+- **Dimension specialisation worked**: weighting the loss 90% toward arousal lifted arousal CCC **0.5516 → 0.5832 (+0.0316)** at a small cost to valence — beating multi-task learning on the harder dimension, which is the finding I would defend in an interview
+- **Seed variance turned out to be the bigger story**: the same architecture scored **CCC 0.5053–0.6554** across random seeds. Any single-run comparison on this task is mostly measuring the seed, which is why I report the best single model and its spread rather than one number.
 - **46 users, 1,266 test predictions**
 
-**Tech Stack:** PyTorch 2.0+, Hugging Face Transformers, BiLSTM, WandB, Mixed Precision Training, Ensemble Methods
+**On the submitted ensemble — stated precisely:** the final submission weighted the two best models by validation CCC (seed777 50.16% + arousal_specialist 49.84%). Its combined score was a **projection** — the CCC-weighted average of the two measured models plus an assumed ensemble boost — and was **never re-scored on held-out data**. So the number I quote is the measured 0.6554, not the projected ensemble figure. Being able to tell those two apart is the point.
 
-**Deliverables:** Joint slide deck (my part: subtask 2a) · technical report · demo notebook with a worked single-user case study
+**Tech Stack:** PyTorch 2.0+, Hugging Face Transformers, RoBERTa, BiLSTM, WandB, Mixed Precision Training
+
+**Deliverables:** Joint slide deck (my part: subtask 2a) · technical report · fully reproducible pipeline (preprocessing, training, evaluation, prediction) · Codabench submission
 
 [![GitHub](https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/CY-HYUN/Deep-Learning-project-SemEval-2026-Task-2)
 
@@ -189,20 +196,21 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
   - UCDP: armed-conflict databases
   - WGI: governance indicators (effectiveness, rule of law), 1991–2020
 - 🧹 **Entity reconciliation**: mapped **210+ country-name variations** onto a single canonical set — the unglamorous step that made the join possible at all
-- 📐 **Weighted three-dimensional scoring**: 9 economic variables, 6 political indicators, and conflict casualty data
-- 📊 **K-Means clustering** for A/B/C country classification (optimal k=3)
-- 📈 **OLS regression** (**R² = 0.366**), with economic score the strongest predictor (β = 23,170, p < 0.001)
-- 🌐 **Interactive platform**: Oracle DB (26.54 MB), Leaflet map visualisation, 200+ Chart.js charts, DataTables for real-time querying
+- 📐 **Weighted three-dimensional scoring**: 9 economic variables, 6 governance indicators, and conflict casualty data (UCDP battle deaths, log-transformed and reverse-scaled)
+- 📊 **K-Means clustering** for A/B/C country grading (k=3, elbow-validated)
+- 📈 **OLS regression** to test whether the score explains anything — **R² = 0.366 on train, 0.461 on the held-out 20% test set**
+- 🌐 **Interactive static platform**: Leaflet world map with a generated page per country, 200+ Chart.js charts, DataTables for real-time querying, ~54 MB of committed JSON
 
 **Results:**
-- **102,321 records · 170 countries** integrated into one queryable warehouse
+- **102,321 records · 170 countries** integrated into one queryable dataset (13 committed JSON files, 1991–2020)
+- **Economic capacity was the only strong predictor of arms imports** — economic score **+23,170 TIV per standard deviation, p < 0.001**. Governance scored **p = 0.791: no measurable effect**, and conflict intensity was marginal (p = 0.093). That negative result mattered more than the positive one, because governance indicators were the axis the model was expected to lean on.
+- **R² = 0.366 means ~63% of import variation sits outside these indicators** — alliances, political decisions, offset deals — which is the honest bound on how far indicator-only screening can go
+- **South Korea's import mix**, mapped onto the US ITAR/USML 22-category taxonomy across 509 import entries (1991–2020): missiles 34.8%, aircraft 20.6%, military electronics 11.0%
 - **Country analysis time cut from 5 hours to 30 minutes** (90% reduction)
-- **Proposal preparation time reduced by 70%**
-- **Three country clusters** with an actionable feasibility score per country
 
-**Tech Stack:** Python, Pandas, NumPy, scikit-learn, Oracle DB, Hadoop, Leaflet, Chart.js, REST APIs
+**Tech Stack:** Python, Pandas, NumPy, scikit-learn, statsmodels, Leaflet, Chart.js, DataTables, REST APIs (World Bank, SIPRI, UCDP, WGI)
 
-**Impact:** A strategic screening tool for defense-industry market entry decisions.
+**Impact:** A strategic screening tool for defense-industry market entry — and a quantified statement of where indicator-based screening stops working.
 
 [![GitHub](https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/CY-HYUN/Global-Defense-Export-Analysis-Project)
 
@@ -238,33 +246,29 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 ---
 
-### 📈 6. Agricultural Price Forecasting (Sep – Dec 2024)
-**52-week horizon** — hybrid SARIMAX + LSTM for procurement planning
+### 📈 6. Agricultural Price Forecasting (Nov – Dec 2024)
+**65,120 daily price rows · 17 commodities · 52-week horizon** — price forecasting for military food procurement
 
-**Challenge:** Forecast commodity prices far enough ahead to change purchasing decisions, across commodities with very different seasonality.
+**Challenge:** Forecast Korean agricultural retail prices far enough ahead to change purchasing decisions, across commodities whose seasonality has almost nothing in common. 7-person team, 8 weeks.
 
-**My Solution:**
-- 📊 **Hybrid SARIMAX + LSTM ensemble**:
-  - SARIMAX: seasonality, trends, external regressors
-  - LSTM: 3 hidden layers with a 60-day lookback for non-linear patterns
-  - Ensemble: weighted average for robustness
-- 🔢 **100+ engineered features**:
-  - Lag features (1–52 weeks)
-  - Rolling statistics (mean, std, min, max)
-  - Seasonal decomposition components
-  - External economic indicators (inflation, exchange rates)
-- 🌐 **Flask web application** with specialised dashboards for procurement planning
-- 📊 **Power BI reports** for stakeholder-facing summaries
-- 🔄 **Automated ETL**: scheduled data refresh and model retraining
+**My Solution — two model families, trained separately and compared, not blended:**
+- 📊 **Per-commodity LSTM** (Keras/TensorFlow), univariate price series:
+  - **6 stacked LSTM layers** (200-100-50-50-100-200 units, tanh), dropout 0.2 and L2(0.01) on every layer, Dense(1) output
+  - Adam with a per-commodity tuned learning rate (0.0005–0.0029), custom RMSE loss, EarlyStopping (patience 10, best-weights restore), seed 42
+  - **One model per commodity** — 17 in total, because a single pooled model washes out the seasonality that makes each crop different
+- 📉 **Seasonal ARIMA** (statsmodels `SARIMAX`, order (5,1,0), seasonal (1,1,1,52)) for the long horizon — **52-week-ahead weekly forecasts per commodity**
+- 🗄️ **Data integration**: daily Garak Market retail prices merged with weather (KMA stations), GDP, fuel, and minimum-wage series; cleaning, gap handling and weekly resampling
+- 🌐 **Flask dashboard** — 6 pages, all verified serving HTTP 200 — with embedded Power BI reports for stakeholders
 
 **Results:**
-- **52-week ahead forecasting** with confidence intervals
-- **10 years of historical data** (2014–2024) across 15+ commodities
+- **65,120 daily retail-price rows across 17 commodities**, 2014-01-02 → 2024-12-05 (11 years)
+- **17 per-commodity LSTM models**, best-epoch validation **MAE 0.022–0.094 on min-max-scaled prices** (median 0.044) — roughly **2–9% of each commodity's 11-year price range**
+- **52-week-ahead forecasts** saved per commodity (napa cabbage, cabbage, carrot, cucumber, radish, garlic, onion, pepper, potato, rice, spinach, green onion)
 - **Procurement timing recommendations** derived from the forecast curve rather than from last year's price
 
-**Tech Stack:** Python, SARIMAX, LSTM, TensorFlow, Flask, Streamlit, Power BI, Pandas, Time Series Analysis
+**Tech Stack:** Python, TensorFlow/Keras, statsmodels (SARIMAX), Flask, Power BI, Pandas, Time Series Analysis
 
-**Business Value:** Proactive budgeting and procurement timing rather than reactive purchasing.
+**Note on scope:** an earlier version of the project README quoted test MAPE, R² and accuracy percentages whose evaluation runs were not preserved. The repository now reports only what can be re-derived from committed notebook outputs and data files — which is what the numbers above are.
 
 [![GitHub](https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/CY-HYUN/Defense-Agri-Price-Forecasting-main)
 
@@ -306,24 +310,22 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 ### 🏡 8. Korean Real Estate — Market Analysis (Jul – Sep 2024)
 **Geospatial price modelling** across Korean regions
 
-**Challenge:** Explain regional price differences with something more rigorous than "location matters".
+**Challenge:** Assemble a picture of the Seoul market that holds together — listings, macro indicators and city open data all come from different places, in different shapes, with Korean column names that don't match across sources.
 
-**My Solution:**
-- 🏠 **Multi-feature regression**:
-  - Location features (district, proximity to subway and schools)
-  - Property characteristics (size, age, floor level, parking)
-  - Market indicators (transaction volume, interest rates)
-  - Temporal trends (seasonal patterns, year-over-year change)
-- 🗺️ **Geospatial analysis**:
-  - Choropleth maps for regional price heatmaps
-  - Folium interactive maps with cluster analysis
-  - GeoPandas spatial statistics
-- 📊 **Temporal trend analysis**: price trajectories by region, correlation against infrastructure development
-- 💼 **Investment framing**: growth-potential scoring by district
+**My Solution — collection and integration, which is where the actual work was:**
+- 🕸️ **Zigbang API scrapers** across 4 endpoints — **177,794 listing IDs polled**, yielding **123,570 committed listing and transaction rows** across 8 datasets (one-room, apartment sales, commercial)
+- 🧩 **Nested-JSON expansion**: transaction records arrive as JSON strings inside a column, unpacked into proper rows before anything can be joined
+- 🗄️ **Multi-source integration**: listings merged with 11 years of Korean macro indicators (GDP, base rate, CPI, KRW/USD) and Seoul open data — **45 Excel datasets, 34 MB, 2013–2023**
+- 🗺️ **Folium choropleth maps** and matplotlib charts by district — the interactive maps are the most polished artefact in the repo
 
-**Tech Stack:** Python, scikit-learn, GeoPandas, Folium, Regression Analysis, Spatial Statistics
+**Results:**
+- **Seoul lost residents to domestic migration in every single year from 2013 to 2023** — cumulative net **−961,881 people**, computed from the city's own migration dataset. A decade-long one-directional trend is a stronger finding than any single-year price correlation.
+- **Apartment-sale listing concentration by district**: Eunpyeong-gu **403**, Gangseo-gu 388, Gangnam-gu 351
+- **Macro series charted against the market period**: CPI inflation, CPI index and exchange rate across 2013–2023
 
-**Application:** Market intelligence for regional investment screening.
+**Tech Stack:** Python, Pandas, Requests, Folium, Matplotlib, openpyxl
+
+**Scope, stated honestly:** this is a data collection, integration and visualisation project — there is no regression or forecasting model in it, and the repository says so rather than implying one. It is here because the collection and reconciliation work is real and the migration finding stands on its own.
 
 [![GitHub](https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/CY-HYUN/Korean-Real-Estate-Project)
 
@@ -402,8 +404,9 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 - Ensemble methods — weighted averaging, stacking
 - Class-balanced evaluation, macro F1 and kappa over raw accuracy
 
-**Time Series** *(Agri Forecasting — 52-week horizon)*
-- SARIMAX, LSTM, GRU — hybrid ensemble approach
+**Time Series** *(Agri Forecasting — 17 per-commodity models)*
+- Seasonal ARIMA (statsmodels SARIMAX) for the 52-week horizon; stacked LSTM (Keras) per commodity
+- Per-series tuning, EarlyStopping with best-weight restore, custom RMSE loss
 - Seasonal decomposition, lag and rolling-window feature construction
 
 **Data Engineering** *(DEFT — 102,321 records)*
@@ -420,7 +423,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 **Primary Languages**
 - **Python** (advanced) — 9 projects, 721-line modular pipeline
 - **C#** — SolidWorks API automation, helper libraries with live self-checks
-- **SQL** (advanced) — SQLD certified, Oracle DB, PostgreSQL
+- **SQL** (advanced) — SQLD certified; PostgreSQL, and SQL against the company's CAD dataset for test-set selection
 - **Java 11** — Insurance SOA, 1,927 lines across 17 files
 - **TypeScript / JavaScript** — Movie Trip full-stack
 - **R** — statistical analysis and visualisation
@@ -430,7 +433,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 - Flask, FastAPI, Streamlit for model serving and dashboards
 
 **Databases**
-- PostgreSQL, Oracle DB, Hadoop
+- PostgreSQL (Prisma ORM), SQLite, structured JSON data stores
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
 ![C#](https://img.shields.io/badge/C%23-239120?style=flat&logo=csharp&logoColor=white)
@@ -470,7 +473,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 **Python Visualisation** *(all projects)*
 - Matplotlib, Seaborn — statistical plots
-- Folium, GeoPandas — geospatial mapping
+- Folium, Leaflet — choropleth and interactive geospatial maps
 - Chart.js, Leaflet — web-facing interactive charts
 
 ![Power BI](https://img.shields.io/badge/Power_BI-F2C811?style=flat&logo=powerbi&logoColor=black)
@@ -509,7 +512,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 ### 📈 Technical Highlights
 - **721-line production pipeline** — SemEval competition, modular and documented
-- **+9.7% model improvement** — LLM fine-tuning at zero API cost
+- **5.5× lower validation loss than the control** — LoRA against prompt tuning on identical data, at zero API cost
 - **33.3-point leakage gap quantified** — and the lower number published
 - **90% time reduction** — DEFT country analysis, 5 hours to 30 minutes
 - **83.9% quality pass rate** — synthetic data filtering pipeline
