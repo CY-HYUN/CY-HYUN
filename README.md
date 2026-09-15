@@ -144,7 +144,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 | seed42 | 0.5053 | 0.6532 | 0.3574 | Dropped from the pool |
 
 - **Best single-model CCC 0.6554** (seed 777), **+5.7% above the 0.62 target**
-- **Dimension specialisation worked**: weighting the loss 90% toward arousal lifted arousal CCC **0.5516 → 0.5832 (+0.0316)** at a small cost to valence — beating multi-task learning on the harder dimension, which is the finding I would defend in an interview
+- **Arousal was the bottleneck, and specialisation paid for itself**: arousal CCC ranged 0.357–0.552 across seeds while valence reached 0.759. Weighting the loss 90% toward arousal lifted arousal CCC **0.5516 → 0.5832 (+0.0316)** while trading only **−0.0042 overall CCC**, and trained in ~24 minutes against ~2 hours for a full run. Naming what a gain costs is the part I would defend in an interview.
 - **Seed variance turned out to be the bigger story**: the same architecture scored **CCC 0.5053–0.6554** across random seeds. Any single-run comparison on this task is mostly measuring the seed, which is why I report the best single model and its spread rather than one number.
 - **46 users, 1,266 test predictions**
 
