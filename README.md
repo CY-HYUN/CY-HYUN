@@ -206,7 +206,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 - **Economic capacity was the only strong predictor of arms imports** — economic score **+23,170 TIV per standard deviation, p < 0.001**. Governance scored **p = 0.791: no measurable effect**, and conflict intensity was marginal (p = 0.093). That negative result mattered more than the positive one, because governance indicators were the axis the model was expected to lean on.
 - **R² = 0.366 means ~63% of import variation sits outside these indicators** — alliances, political decisions, offset deals — which is the honest bound on how far indicator-only screening can go
 - **South Korea's import mix**, mapped onto the US ITAR/USML 22-category taxonomy across 509 import entries (1991–2020): missiles 34.8%, aircraft 20.6%, military electronics 11.0%
-- **Country analysis time cut from 5 hours to 30 minutes** (90% reduction)
+- **210+ raw country-name variants reconciled** into one canonical set — the unglamorous step that made the four-source join possible at all
 
 **Tech Stack:** Python, Pandas, NumPy, scikit-learn, statsmodels, Leaflet, Chart.js, DataTables, REST APIs (World Bank, SIPRI, UCDP, WGI)
 
@@ -514,7 +514,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 - **721-line production pipeline** — SemEval competition, modular and documented
 - **5.5× lower validation loss than the control** — LoRA against prompt tuning on identical data, at zero API cost
 - **33.3-point leakage gap quantified** — and the lower number published
-- **90% time reduction** — DEFT country analysis, 5 hours to 30 minutes
+- **210+ country-name variants reconciled** — DEFT, the step that made a four-source join possible
 - **83.9% quality pass rate** — synthetic data filtering pipeline
 
 ---
