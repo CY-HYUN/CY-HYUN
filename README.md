@@ -404,10 +404,10 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 ![WandB](https://img.shields.io/badge/WandB-FFBE00?style=flat&logo=weightsandbiases&logoColor=black)
 
 ### 📊 Machine Learning & Data Science
-**ML Algorithms** *(QoE Prediction — 6-model comparison)*
-- Random Forest, SVM, XGBoost, KNN, Gradient Boosting, Logistic Regression
-- Ensemble methods — weighted averaging, stacking
-- Class-balanced evaluation, macro F1 and kappa over raw accuracy
+**ML Algorithms** *(QoE Prediction — 4 classifiers, both feature sets each)*
+- Logistic Regression, Decision Tree, Random Forest, Gradient Boosting — every model trained on both variants so the leakage gap was measured, not inferred
+- Class-balanced evaluation: macro F1 and Cohen's kappa over raw accuracy, stratified splitting
+- Also used elsewhere: SVM, XGBoost, K-Means clustering (DEFT country grading)
 
 **Time Series** *(Agri Forecasting — 17 per-commodity models)*
 - Seasonal ARIMA (statsmodels SARIMAX) for the 52-week horizon; stacked LSTM (Keras) per commodity
