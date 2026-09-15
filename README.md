@@ -126,7 +126,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 **Challenge:** Predict emotional response (valence and arousal) from temporal sequences of a user's posts, where any single post carries little signal without the user's history.
 
 **My Solution:**
-- 🔥 **721-line production pipeline** with modular architecture (data, features, models, training, evaluation)
+- 🔥 **Modular pipeline** with training, prediction, evaluation and demo stages separated into their own modules
 - 🧠 **User-level embeddings**: aggregated a user's historical posts into a dense representation — the single largest contributor in the ablation
 - 🔬 **RoBERTa + BiLSTM (256 hidden, 2 layers) + 8-head attention**, dual-head output for the two dimensions
 - 🎯 **Arousal-specialist model**: 90% CCC loss weighting on the harder dimension
@@ -380,7 +380,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 - Magpie prompting — 1,500 synthetic samples at an 83.9% quality pass rate
 - Synthetic data generation — zero-cost automated pipeline
 
-**Transformers** *(SemEval 2026 — 721-line pipeline)*
+**Transformers** *(SemEval 2026 — modular training/prediction pipeline)*
 - RoBERTa fine-tuning — CCC 0.6554 against a 0.62 target
 - BiLSTM ensembles, multi-head attention, dual-head output
 - Mixed-precision training (fp16), multi-seed experiments for robustness
@@ -421,7 +421,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 ### 💻 Programming & Databases
 **Primary Languages**
-- **Python** (advanced) — 9 projects, 721-line modular pipeline
+- **Python** (advanced) — 9 shipped projects, from notebook analysis to modular training pipelines
 - **C#** — SolidWorks API automation, helper libraries with live self-checks
 - **SQL** (advanced) — SQLD certified; PostgreSQL, and SQL against the company's CAD dataset for test-set selection
 - **Java 11** — Insurance SOA, 1,927 lines across 17 files
@@ -511,7 +511,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 - **SMAT** — Service Management Aptitude Test
 
 ### 📈 Technical Highlights
-- **721-line production pipeline** — SemEval competition, modular and documented
+- **Seed variance quantified** — the same SemEval architecture scored CCC 0.5053–0.6554 across seeds, which bounds what any single run proves
 - **5.5× lower validation loss than the control** — LoRA against prompt tuning on identical data, at zero API cost
 - **33.3-point leakage gap quantified** — and the lower number published
 - **210+ country-name variants reconciled** — DEFT, the step that made a four-source join possible
