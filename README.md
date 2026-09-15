@@ -160,23 +160,27 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 ### 🔍 3. QoE Prediction — the Leakage Analysis That Changed the Answer (Oct – Dec 2025)
 **33.3-point gap** — where the real result is the integrity work
+*Télécom SudParis (IP Paris) MSc coursework · supervised project*
 
 **Challenge:** Predict user-perceived mobile-streaming quality (MOS 1–5) from 1,543 sessions. The obvious model looked excellent. It wasn't.
 
+**Data:** the PoQeMoN crowdsourcing dataset (LiSSi laboratory, Paris Est Créteil University) — 181 testers rating video sessions over four live French mobile networks on nine Android devices, with VLC-side metrics logged alongside each rating.
+
 **My Solution:**
 - 🚩 **Found the leak**: the strong model leaned on features only available *after* a session ends — information a deployed system would never have at prediction time
-- ✂️ **Rebuilt the experiment** restricted to objectively-available features (network metrics, device characteristics, temporal patterns), with class balancing
-- 📊 **Systematic model comparison**: Random Forest, SVM, XGBoost, KNN, Decision Tree, Logistic Regression
+- ✂️ **Rebuilt the experiment** restricted to objectively-available features (network metrics, device characteristics, temporal patterns), with balanced class weights
+- 📊 **Four classifiers, both feature sets each**: Logistic Regression, Decision Tree, Random Forest and Gradient Boosting — every model trained on both variants so the leakage gap is measured, not inferred
 - 📈 **Reported both numbers side by side** and led with the lower one
 - 🔁 **Made it reproducible**: the experiment script is committed and was re-run twice, byte-identical
 
 **Results:**
 - **81.6% with leaky post-session features** · **48.2% objective-only** (macro F1 0.442, kappa 0.261)
 - **A 33.3-point leakage gap**, quantified rather than hand-waved
-- The objective-only model sits *below* the majority-class baseline on raw accuracy (50.8%) but far above it on balanced metrics (F1 0.442 against 0.135) — the honest trade-off of balanced class weights, stated as one
-- **Feature importance**: bitrate variability and packet loss as the top objective predictors
+- The objective-only model sits *below* the majority-class baseline on raw accuracy (50.8%) but far above it on balanced metrics (F1 0.442 against 0.135). Balanced weights move the errors rather than raising the ceiling: **Bad-session recall reaches 84.2%** where a majority-class predictor detects nothing at all.
+- **The gap replicates across all four model families** (+29.1 to +34.6 points), so it is a property of the feature set rather than of one lucky model
+- **The classifier barely mattered** — test accuracy spanned only 45.0–48.2% across all four. The objective feature set, not the model family, was the binding constraint.
 
-**Tech Stack:** scikit-learn, Random Forest, Gradient Boosting, XGBoost, SVM, Pandas, class-balanced evaluation
+**Tech Stack:** scikit-learn (Logistic Regression, Decision Tree, Random Forest, Gradient Boosting), Pandas, class-balanced evaluation, stratified splitting
 
 **Why it matters:** This is the project I bring up when someone asks how I know a metric is trustworthy. The headline number went *down* and the work got better.
 
@@ -218,6 +222,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 ### 🏢 5. Insurance SOA — Multi-Protocol Service Architecture (Dec 2025 – Jan 2026)
 **4 protocols, one gateway** — REST · SOAP · gRPC · GraphQL
+*Télécom SudParis (IP Paris) MSc coursework · service-oriented architecture module*
 
 **Challenge:** Serve insurance claim processing to client types that each speak a different protocol, without maintaining four separate backends.
 
