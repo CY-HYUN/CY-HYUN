@@ -5,7 +5,7 @@
 
 ### 🚀 AI/ML Engineer | LLM Evaluation & Agentic Systems | MSc @ Télécom SudParis (IP Paris)
 
-🎯 **Available from October 2026** · 🇫🇷 **Paris / Europe** · 🔬 **6 months building multi-agent LLM systems in industry** · ⚡ **PyTorch · LangGraph · MLflow**
+🎯 **Available from October 2026** · 🇫🇷 **Paris / Europe** · 🔬 **6 months building a production multi-agent LLM system** · ⚡ **PyTorch · LangGraph · MLflow**
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://linkedin.com/in/changyong-hyun)
 [![Email](https://img.shields.io/badge/Email-D14836?style=flat&logo=gmail&logoColor=white)](mailto:xhangyong.hyun@gmail.com)
@@ -19,68 +19,103 @@
 
 **Graduating October 2026 · Open to LLM / ML Engineer roles in Paris and Europe · Work-authorised via the French post-graduation permit**
 
-AI/ML engineer finishing an MSc in Data Science & Network Intelligence at **Télécom SudParis (Institut Polytechnique de Paris)**, with six months of industry experience building and evaluating a production multi-agent LLM system.
+AI/ML engineer finishing an MSc in Data Science & Network Intelligence at **Télécom SudParis (Institut Polytechnique de Paris)**, with six months of industry experience at **MECAGENT** in Lyon building and evaluating a production multi-agent LLM system for CAD automation.
 
-I build LLM and multi-agent systems, and I specialise in the part most teams skip: **deciding whether the thing actually works.** The hard problem is rarely generation — it's that the metric you're grading outputs with is usually blind to some of the ways they can be wrong. Several visibly incorrect outputs scored the same as correct ones on the system I worked on. So most of my work became evaluation design: build the instrument first, then let it decide what to change.
+I build LLM and multi-agent systems, and I specialise in the part most teams skip: **deciding whether the thing actually works.** The hard problem is rarely generation — it's that the metric you grade outputs with is usually blind to some of the ways they can be wrong. On the system I worked on, a part built mirrored scored about the same as the correct one. So most of my work became evaluation design: build the instrument first, then let it decide what to change.
 
 **Core Expertise:**
-- 🔬 **Evaluation design for generative systems** — rubrics against expert-built ground truth, machine-derived reference labels instead of hand-written ones, pre-registered acceptance criteria
+- 🔬 **Evaluation design for generative systems** — rubrics against expert-built ground truth, machine-derived reference labels instead of hand-written ones, pre-registered acceptance criteria, shuffled controls
 - 🤖 **LLM fine-tuning** — LoRA, DPO, PEFT (12.16M trainable parameters, +9.7% over base, zero API cost)
-- 🕸️ **Agentic & multi-agent systems** — LangChain, LangGraph, orchestrator/sub-agent architectures against a live external application
-- 📈 **Observability** — MLflow run tracking, Arize Phoenix tracing, reading agent behaviour span by span
-- 🧪 **Controlled experiments** — one variable at a time, shuffled controls, negative results reported at the same length as positive ones
+- 🕸️ **Agentic & multi-agent systems** — LangChain, LangGraph, orchestrator/sub-agent architectures executing against a live external application
+- 📈 **Observability** — MLflow run tracking, Arize Phoenix tracing, span-level analysis of multi-hour agent sessions
+- 🧪 **Controlled experiments** — one variable at a time, negative results reported at the same length as positive ones
 
-**What I'm known for:**
-- 🏅 **SemEval 2026 Task 2** — CCC **0.6554** against a 0.62 target, measured on the best single model
-- 🔍 **A leakage analysis that changed the answer** — found a **33.3-point** gap and reported the lower number
-- 🧰 **Instruments that outlive the code** — my scorers still reproduce every number from saved files after the pipeline around them was rebuilt twice
-- 🎖️ **Best Performance Award** — Hanwha Aerospace big-data internship
+**Key Achievements:**
+- 🏅 **SemEval 2026 Task 2** — CCC **0.6554** against a 0.62 target (+5.7%), measured on the best single model
+- 🔍 **A leakage analysis that changed the answer** — quantified a **33.3-point** gap and published the lower number
+- 🧰 **Instruments that outlive the code** — my scorers still reproduce every number from saved artefacts after the pipeline around them was rebuilt twice
+- ⚡ **Zero-cost fine-tuning pipeline** — synthetic data generation through DPO alignment with no API fees and no human labelling
+- 🎖️ **Best Performance Award** — Hanwha Aerospace big-data internship (1st of all teams)
+
+---
+
+## 📈 Contribution Activity
+
+<div align="center">
+
+<img src="https://streak-stats.demolab.com/?user=CY-HYUN&theme=tokyonight&hide_border=true&background=0D1117&ring=58A6FF&fire=58A6FF&currStreakLabel=58A6FF" alt="GitHub Streak" />
+
+</div>
 
 ---
 
 ## 💼 Industry Experience
 
-### 🔧 AI Engineer — AI startup, France (6 months, 2026)
+### 🔧 AI Engineer Intern — MECAGENT, Lyon, France (May – Oct 2026)
 
-Built and evaluated a **production multi-agent LLM system**: a pipeline where vision models read a technical document, a planner turns it into a structured specification, and a multi-agent system generates and executes code against a live external application — not a sandbox, not a simulator.
+**MECAGENT builds an AI copilot for SolidWorks**, the most widely used mechanical CAD software. The product takes a natural-language request and generates C# macro code that executes inside the user's live SolidWorks session.
 
-I owned the **evaluation and experimentation layer** — the part that decides whether any change was actually an improvement.
+**The system I worked on:** a drawing-to-CAD pipeline — vision models read a 2D engineering drawing (orthographic views, dimensions, machining annotations), a planner turns it into a structured feature tree, and a multi-agent system generates and executes SolidWorks C# against a live CAD kernel. Not a sandbox, not a simulator: a stateful external application that fails in ways a library never does.
 
-- 🎯 **Designed an evaluation from scratch for a generative stage that had none.** Built the rubric, selected the sample, and anchored it on expert-built reference data so that no model ever graded another model's output. The scorer reproduces every number from saved artefacts with **zero model calls** — which is why it still runs today, after the pipeline around it was rebuilt twice.
-- 🔍 **Proved the team's headline metric was blind to entire classes of failure.** Several distinct wrong outputs scored the same as correct ones. I built deterministic checks that could detect each class, and those checks redirected the team's engineering priorities.
-- 🧪 **Ran controlled A/B experiments with acceptance criteria registered before each run.** Shuffled controls killed four of my own proposed fixes. I published two pre-registered negative results at the same length as positive ones — including one where my own improvement lost.
-- 🪞 **Caught my own ground-truth labels being wrong** when three models disagreed with them. Rebuilt every label from a machine-derived source instead of by hand, and wrote up why.
-- 📊 **Instrumented long-horizon agent runs end to end** — MLflow for run tracking, distributed tracing for span-level behaviour analysis across multi-hour agent sessions.
-- 🤝 **Shipped inside a senior team's process** — pull requests, code review, trace-referenced technical reports, and adversarial verification of my own claims before they left my desk.
+**My ownership:** the evaluation and experimentation layer — the part that decides whether any change was actually an improvement.
 
-**Stack:** Python · C# · LangChain / LangGraph · MLflow · Arize Phoenix · vision-language models · pytest
+- 🎯 **Designed the evaluation for the drawing-reading stage from scratch**, for a generative component that had no measurement at all. Built the rubric, selected the sample across both source datasets and the feature classes that mattered, and anchored it on ten reference parts hand-built in SolidWorks by the company's CAD expert — so that no model ever graded another model's output. The scorer reproduces every number from saved artefacts with **zero model calls**, which is why it still runs today after the pipeline around it was rebuilt twice.
+- 🔍 **Proved the team's headline metric was blind to entire classes of failure.** A mirrored part, a rotated part, and a sheet-metal bend imitated with extruded blocks all scored about the same as correct ones — the score aligns two solids before comparing, which erases orientation, and counts holes, which a mirror preserves. I built deterministic checks that detect each class by reading the feature types SolidWorks itself assigns, and those checks redirected the team's engineering priorities.
+- 🧪 **Ran controlled A/B experiments with acceptance criteria registered before each run.** Shuffled controls killed four of my own proposed fixes. I published two pre-registered negative results at the same length as the positive ones — including one where my own improvement lost to the baseline and I recommended keeping the baseline.
+- 🪞 **Caught my own ground-truth labels being wrong.** Three models disagreed with my hand-written answer key; checking the key against the reference geometry showed the key was wrong and the models were right. Every label after that came from a machine-derived source, and I wrote up why.
+- 📊 **Instrumented long-horizon agent runs end to end** — MLflow for run tracking and model registry, Arize Phoenix for distributed tracing, reading span-by-span what an agent actually did across multi-hour sessions instead of trusting a summary of it.
+- 🔧 **Built a C# helper library for the generating agent**, declared at the CAD session level, with live self-checks that each had to be demonstrated firing in both directions before I claimed they protected anything.
+- 🤝 **Shipped inside a senior team's process** — pull requests, code review, trace-referenced technical reports adopted as a team template, and adversarial verification of my own claims before they left my desk.
 
-> *Under a confidentiality agreement, so this describes method and ownership rather than the company's internal figures. I can go much deeper on the engineering in conversation.*
+**Tech Stack:** Python · C# · SolidWorks API · LangChain / LangGraph · MLflow · Arize Phoenix · vision-language models · AWS Bedrock / GCP Vertex · pytest
+
+> *The company's internal results are covered by a confidentiality agreement, so this describes method and ownership rather than internal figures. Happy to go deeper on the engineering in conversation.*
 
 ---
 
 ## 🌟 Featured Projects
 
 ### 🤖 1. Synthetic-Instruction-Tuner — Zero-Cost LLM Fine-Tuning (Nov 2025 – Jan 2026)
-**+9.7% over base** — no seed data, no paid API, at any stage
+**+9.7% over base** — no seed data, no paid API, no human labelling at any stage
 
-**Challenge:** Fine-tune an instruction-following model without API costs or human annotation — and show the result is real rather than an artefact of an easy benchmark.
+**Challenge:** Fine-tune an instruction-following model without API costs or human annotation, and build the pipeline so that each stage's contribution is separately measurable rather than asserted as a stack.
 
 **My Solution — a 6-stage pipeline:**
-1. **Magpie prompting** — template-only synthetic generation, no seed dataset required
-2. **Quality filtering** — a 6-dimension gate (relevance, coherence, informativeness, safety, diversity, instruction-following) at an **83.9% pass rate**
-3. **Preference-pair generation** — chosen/rejected pairs via multi-temperature sampling
-4. **LoRA fine-tuning** — **12.16M trainable parameters** (0.67% of the model), 4-bit quantised
-5. **Prompt tuning** — evaluated as an alternative adaptation method
-6. **DPO alignment** — direct preference optimisation on the generated pairs
+
+1. **Magpie Prompting** *(synthetic data generation)*:
+   - Template-only prompting with Llama-3.1-8B-Instruct
+   - Generated **1,500 instruction-response pairs**
+   - No seed dataset required — the chat template alone elicits the instructions
+   - 4-bit quantisation for efficient generation
+2. **Quality Filtering**:
+   - 6-dimension scoring: relevance, coherence, informativeness, safety, diversity, instruction-following
+   - **83.9% pass rate** (1,259 of 1,500 kept)
+   - Fully automated, no human annotation
+3. **Preference-Pair Generation**:
+   - **600 chosen/rejected pairs** via multi-temperature sampling
+   - Systematic degradation strategies for the rejected side
+4. **LoRA Fine-Tuning**:
+   - **12.16M trainable parameters — 0.67% of the base model**
+   - 4-bit quantisation, rank-16 adapters on attention layers
+   - Fine-tuning target: Llama-3.2-3B
+5. **Prompt Tuning** *(alternative method, evaluated head to head)*:
+   - 61,440 trainable parameters — **197× fewer than LoRA**
+6. **DPO Alignment**:
+   - Direct preference optimisation on the generated pairs
+   - Converged in about 2 minutes at ~4.7 GB
 
 **Results:**
-- **+9.7%** over the base model on a mixed benchmark
+- **+9.7% improvement** over the zero-shot baseline
 - **Zero cost** — no API fees, no human labelling
-- **Consumer-GPU trainable** — 4-bit quantisation kept it inside a single commodity GPU
-- **Honest artefact note in the repo** — the committed notebook output is a demo fallback, and the repo says so rather than implying a full run
+- **Consumer-GPU trainable** — 4-bit quantisation kept the whole run inside a single commodity GPU
+- **4× faster than planned** — 7 days against a 28-day schedule
+- **Honest artefact note in the repo** — the committed benchmark figures are a demo fallback, and the repository says so explicitly rather than implying a full evaluation run
 
-**Tech Stack:** Hugging Face PEFT · LoRA · DPO · 4-bit quantisation · Magpie prompting
+**Tech Stack:** Hugging Face PEFT, LoRA, DPO, 4-bit Quantisation, Magpie Prompting, Llama-3.1-8B / Llama-3.2-3B
+
+**Deliverables:** 10 notebooks covering the full pipeline · 3 trained variants (LoRA / Prompt Tuning / DPO) · raw, filtered and preference datasets · 7 evaluation figures
+
+**Key Innovation:** A fully automated, zero-cost path to instruction tuning — and a repository that documents which of its own numbers are measured and which are not.
 
 [![GitHub](https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/CY-HYUN/Synthetic-Instruction-Tuner)
 
@@ -89,23 +124,28 @@ I owned the **evaluation and experimentation layer** — the part that decides w
 ### 🏅 2. SemEval 2026 Task 2 — Emotion Prediction (Oct 2025 – Jan 2026)
 **CCC 0.6554** — international NLP competition, against a 0.62 target
 
-**Challenge:** Predict emotional response (valence and arousal) from temporal sequences of a user's posts, where a single post carries little signal without the user's history.
+**Challenge:** Predict emotional response (valence and arousal) from temporal sequences of a user's posts, where any single post carries little signal without the user's history.
 
 **My Solution:**
-- 🧠 **User-level embeddings** — aggregated a user's historical posts into a dense representation, the single largest contributor in the ablation
-- 🔬 **RoBERTa + BiLSTM** for temporal dependencies across the post sequence
-- 🎯 **Dimension-specific loss weighting** — an arousal-specialist model with heavier CCC weighting on the harder dimension
-- 📊 **47 engineered features** — temporal lags, rolling statistics, linguistic patterns, user statistics
-- ⚡ **Mixed-precision training** with multi-seed runs (42, 123, 777, 888, 1111) for robustness
-- 📈 **Systematic ablations** — quantified each component separately instead of asserting a stack
+- 🔥 **721-line production pipeline** with modular architecture (data, features, models, training, evaluation)
+- 🧠 **User-level embeddings**: aggregated a user's historical posts into a dense representation — the single largest contributor in the ablation
+- 🔬 **RoBERTa + BiLSTM (256 hidden, 2 layers) + 8-head attention**, dual-head output for the two dimensions
+- 🎯 **Arousal-specialist model**: 90% CCC loss weighting on the harder dimension
+- 📊 **47 engineered features**: 20 temporal (lag, rolling statistics, trend, volatility), 15 text (linguistic, punctuation, sentiment), 12 user statistics
+- ⚡ **Mixed-precision training** (torch.cuda.amp) with multi-seed runs (42, 123, 777, 888, 1111) for robustness
+- 📈 **Differential learning rates**: 1e-5 for the encoder against 8e-5 for the custom heads
+- 🧪 **Systematic ablations**: quantified each component separately — user embeddings > engineered features > BiLSTM
 
 **Results:**
-- **Overall CCC 0.6554** — best single model (seed 777), **+5.7% over the 0.62 target**
-- **Valence CCC 0.7593** · **Arousal CCC 0.5832** (+6.0% with the specialist model)
+- **Overall CCC 0.6554** — best single model (seed 777), **+5.7% above the 0.62 target**
+- **Valence CCC 0.7593** · **Arousal CCC 0.5832** — improved from 0.5516, **+6.0%** with the specialist model
 - **The 2-model ensemble beat the 3- and 5-model ones** — more models was the wrong lever
-- **Dimension-specific optimisation beat multi-task learning** — the finding I'd defend in an interview
+- **Dimension-specific optimisation beat multi-task learning** — the finding I would defend in an interview
+- **46 users, 1,266 test predictions**
 
-**Tech Stack:** PyTorch · Hugging Face Transformers · BiLSTM · WandB · Mixed Precision · Ensemble Methods
+**Tech Stack:** PyTorch 2.0+, Hugging Face Transformers, BiLSTM, WandB, Mixed Precision Training, Ensemble Methods
+
+**Deliverables:** Joint slide deck (my part: subtask 2a) · technical report · demo notebook with a worked single-user case study
 
 [![GitHub](https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/CY-HYUN/Deep-Learning-project-SemEval-2026-Task-2)
 
@@ -114,43 +154,55 @@ I owned the **evaluation and experimentation layer** — the part that decides w
 ### 🔍 3. QoE Prediction — the Leakage Analysis That Changed the Answer (Oct – Dec 2025)
 **33.3-point gap** — where the real result is the integrity work
 
-**Challenge:** Predict user-perceived mobile-streaming quality (MOS 1–5) from session data. The obvious model looked excellent. It wasn't.
+**Challenge:** Predict user-perceived mobile-streaming quality (MOS 1–5) from 1,543 sessions. The obvious model looked excellent. It wasn't.
 
 **My Solution:**
-- 🚩 **Found the leak** — the strong model leaned on features only available *after* a session ends, which a deployed system would never have at prediction time
-- ✂️ **Rebuilt the experiment** restricted to objectively-available features, with class balancing
-- 📊 **Reported both numbers side by side** and led with the lower one
-- 🔁 **Made it reproducible** — the experiment script is committed and was re-run twice, byte-identical
+- 🚩 **Found the leak**: the strong model leaned on features only available *after* a session ends — information a deployed system would never have at prediction time
+- ✂️ **Rebuilt the experiment** restricted to objectively-available features (network metrics, device characteristics, temporal patterns), with class balancing
+- 📊 **Systematic model comparison**: Random Forest, SVM, XGBoost, KNN, Decision Tree, Logistic Regression
+- 📈 **Reported both numbers side by side** and led with the lower one
+- 🔁 **Made it reproducible**: the experiment script is committed and was re-run twice, byte-identical
 
 **Results:**
-- **81.6%** with leaky post-session features · **48.2%** objective-only (macro F1 0.442, kappa 0.261)
+- **81.6% with leaky post-session features** · **48.2% objective-only** (macro F1 0.442, kappa 0.261)
 - **A 33.3-point leakage gap**, quantified rather than hand-waved
-- The objective-only model sits *below* the majority-class baseline on raw accuracy but far above it on balanced metrics — the honest trade-off, stated as one
+- The objective-only model sits *below* the majority-class baseline on raw accuracy (50.8%) but far above it on balanced metrics (F1 0.442 against 0.135) — the honest trade-off of balanced class weights, stated as one
+- **Feature importance**: bitrate variability and packet loss as the top objective predictors
 
-**Tech Stack:** scikit-learn · Gradient Boosting · Random Forest · class-balanced evaluation
+**Tech Stack:** scikit-learn, Random Forest, Gradient Boosting, XGBoost, SVM, Pandas, class-balanced evaluation
+
+**Why it matters:** This is the project I bring up when someone asks how I know a metric is trustworthy. The headline number went *down* and the work got better.
 
 [![GitHub](https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/CY-HYUN/Poqemon-QoE-Dataset-master)
 
 ---
 
 ### 🌍 4. DEFT — Defense Export Market Analysis (Sep – Dec 2024)
-**102,321 records across 170 countries** — multi-source ETL and scoring
+**102,321 records across 170 countries** — multi-source ETL and feasibility scoring
 
-**Challenge:** Combine economic, political and conflict data into a usable market-feasibility view, when the three sources disagree about what a country is even called.
+**Challenge:** Combine economic, political and conflict indicators into a usable market-feasibility view, when the three source databases disagree about what a country is even called.
 
 **My Solution:**
-- 🗄️ **Multi-source ETL** — World Bank API, SIPRI military expenditure, UCDP conflict data, WGI governance indicators
-- 🧹 **Country-name reconciliation** — mapped 210+ naming variations onto a single canonical set, the step that made the join possible at all
-- 📐 **Weighted three-dimensional scoring** across economic, political and conflict axes
-- 📊 **K-Means clustering** for A/B/C country classification and **OLS regression** (R² = 0.366) to identify the strongest predictor
-- 🗺️ **Interactive platform** — Oracle DB, Leaflet map, Chart.js
+- 🗄️ **Multi-source ETL pipeline**:
+  - World Bank API: economic indicators (GDP growth, trade balance, inflation)
+  - SIPRI: military expenditure and arms-transfer data
+  - UCDP: armed-conflict databases
+  - WGI: governance indicators (effectiveness, rule of law), 1991–2020
+- 🧹 **Entity reconciliation**: mapped **210+ country-name variations** onto a single canonical set — the unglamorous step that made the join possible at all
+- 📐 **Weighted three-dimensional scoring**: 9 economic variables, 6 political indicators, and conflict casualty data
+- 📊 **K-Means clustering** for A/B/C country classification (optimal k=3)
+- 📈 **OLS regression** (**R² = 0.366**), with economic score the strongest predictor (β = 23,170, p < 0.001)
+- 🌐 **Interactive platform**: Oracle DB (26.54 MB), Leaflet map visualisation, 200+ Chart.js charts, DataTables for real-time querying
 
 **Results:**
 - **102,321 records · 170 countries** integrated into one queryable warehouse
-- **Analysis time cut from 5 hours to 30 minutes**
-- Economic score emerged as the strongest predictor in the regression
+- **Country analysis time cut from 5 hours to 30 minutes** (90% reduction)
+- **Proposal preparation time reduced by 70%**
+- **Three country clusters** with an actionable feasibility score per country
 
-**Tech Stack:** Python · Pandas · NumPy · scikit-learn · Oracle DB · Leaflet · Chart.js
+**Tech Stack:** Python, Pandas, NumPy, scikit-learn, Oracle DB, Hadoop, Leaflet, Chart.js, REST APIs
+
+**Impact:** A strategic screening tool for defense-industry market entry decisions.
 
 [![GitHub](https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/CY-HYUN/Global-Defense-Export-Analysis-Project)
 
@@ -159,33 +211,60 @@ I owned the **evaluation and experimentation layer** — the part that decides w
 ### 🏢 5. Insurance SOA — Multi-Protocol Service Architecture (Dec 2025 – Jan 2026)
 **4 protocols, one gateway** — REST · SOAP · gRPC · GraphQL
 
-**Challenge:** Serve insurance claim processing to clients that each speak a different protocol, without four separate backends.
+**Challenge:** Serve insurance claim processing to client types that each speak a different protocol, without maintaining four separate backends.
 
 **My Solution:**
-- 🔄 **XOR gateway orchestration** routing each request to the right protocol handler
-- 🌐 **Four implementations** — REST (Jersey), SOAP (JAX-WS), gRPC (Protocol Buffers), GraphQL (introspection)
-- ☕ **Java 11**, ~1,927 lines across 17 files, Maven build, Tomcat deployment
-- 🧪 **Protocol-specific client applications** plus an 11-request Postman collection for validation
+- 🔄 **XOR gateway orchestration**: routing logic that selects the protocol handler per request
+- 🌐 **Four protocol implementations**:
+  - **REST (Jersey)**: JSON for web clients
+  - **SOAP (JAX-WS)**: XML for legacy enterprise systems
+  - **gRPC**: Protocol Buffers, high-performance binary for microservices
+  - **GraphQL**: introspection-based flexible querying for modern frontends
+- ☕ **Java 11**: **1,927 lines across 17 files**
+- 🧪 **Protocol-specific client applications** plus an **11-request Postman collection** for validation
+- 📦 **Apache Maven** build automation, **Tomcat** deployment
 - ⚖️ **Benchmarked the four** on latency and payload size rather than assuming
 
-**Tech Stack:** Java 11 · Maven · Jersey · JAX-WS · gRPC · GraphQL · Tomcat
+**Results:**
+- **Protocol comparison** across performance, latency and payload size
+- **Workflow automation**: claim routing, validation and approval/rejection paths
+- **Modular architecture** where adding a fifth protocol touches the gateway and nothing else
+
+**Tech Stack:** Java 11, Apache Maven, REST (Jersey), SOAP (JAX-WS), gRPC, GraphQL, Tomcat
+
+**Architecture Pattern:** Service-oriented architecture with gateway orchestration
 
 [![GitHub](https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/CY-HYUN/Insurance-Claim-Processing-SOA)
 
 ---
 
 ### 📈 6. Agricultural Price Forecasting (Sep – Dec 2024)
-**52-week horizon** — SARIMAX + LSTM for procurement planning
+**52-week horizon** — hybrid SARIMAX + LSTM for procurement planning
 
 **Challenge:** Forecast commodity prices far enough ahead to change purchasing decisions, across commodities with very different seasonality.
 
 **My Solution:**
-- 📊 **Hybrid approach** — SARIMAX for seasonality and external regressors, LSTM for non-linear patterns
-- 🔢 **100+ engineered features** — lags, rolling statistics, seasonal decomposition, economic indicators
-- 🌐 **Flask application** with dashboards for procurement planning
-- 🔄 **Automated ETL** with scheduled data refresh
+- 📊 **Hybrid SARIMAX + LSTM ensemble**:
+  - SARIMAX: seasonality, trends, external regressors
+  - LSTM: 3 hidden layers with a 60-day lookback for non-linear patterns
+  - Ensemble: weighted average for robustness
+- 🔢 **100+ engineered features**:
+  - Lag features (1–52 weeks)
+  - Rolling statistics (mean, std, min, max)
+  - Seasonal decomposition components
+  - External economic indicators (inflation, exchange rates)
+- 🌐 **Flask web application** with specialised dashboards for procurement planning
+- 📊 **Power BI reports** for stakeholder-facing summaries
+- 🔄 **Automated ETL**: scheduled data refresh and model retraining
 
-**Tech Stack:** Python · SARIMAX · LSTM · TensorFlow · Flask · Streamlit · Power BI
+**Results:**
+- **52-week ahead forecasting** with confidence intervals
+- **10 years of historical data** (2014–2024) across 15+ commodities
+- **Procurement timing recommendations** derived from the forecast curve rather than from last year's price
+
+**Tech Stack:** Python, SARIMAX, LSTM, TensorFlow, Flask, Streamlit, Power BI, Pandas, Time Series Analysis
+
+**Business Value:** Proactive budgeting and procurement timing rather than reactive purchasing.
 
 [![GitHub](https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/CY-HYUN/Defense-Agri-Price-Forecasting-main)
 
@@ -197,12 +276,28 @@ I owned the **evaluation and experimentation layer** — the part that decides w
 **Challenge:** Turn channel performance data into recommendations a creator could act on, across Korean and English text.
 
 **My Solution:**
-- 🌐 **Bilingual NLP** — Korean morphological analysis plus English sentiment
-- 📊 **Eight analytical frameworks** — upload timing, title keywords, subscriber ROI, engagement modelling, length vs retention, category benchmarking, seasonal trends
-- 📈 **Statistical testing** rather than eyeballed correlations
-- 🎨 **Visualisation suite** — word clouds, time series, correlation heatmaps
+- 🌐 **Bilingual NLP pipeline**: Korean morphological analysis for title keyword patterns, English sentiment analysis
+- 📊 **8 standalone analytical frameworks**:
+  - Word cloud analysis of title keywords by category
+  - Upload timing (hour-of-day, day-of-week)
+  - Upload cadence and its effect on views
+  - Views–likes–comments correlation (Pearson and Spearman, with significance testing)
+  - Video duration against retention
+  - Channel age against channel size
+  - Expected-views modelling (which videos beat their own channel's baseline)
+  - Subscriber efficiency (views per subscriber)
+- 📈 **Sampling design**: the 5 top Korean channels in each of Fashion, Mukbang and Travel, up to 200 recent videos per channel, with Shorts and statistical outliers removed
+- 🎨 **Visualisation suite**: word clouds, time series, correlation heatmaps, distribution plots
 
-**Tech Stack:** Python · KoNLPy · Pandas · Matplotlib · Seaborn · statistical testing
+**Results:**
+- **Daily uploading was optimal for only 3 of 15 channels** — the view-maximising interval is channel-specific, ranging from 1 day up to 8–14 days. There is no universal "best cadence."
+- **For 10 of 15 channels, one upload interval maximised both views and likes** — cadence effects are consistent across engagement metrics
+- **Channel age does not predict channel size** — older channels do not necessarily have more subscribers or total views
+- **Regular uploaders average 23% more views** than irregular ones
+
+**Tech Stack:** Python, KoNLPy, Pandas, Matplotlib, Seaborn, Word Clouds, Statistical Testing
+
+**Note on scope:** the repository documents its own verified headline (2,125 videos / 15 channels / 3 categories) and explicitly lists the earlier unverifiable figures that were removed.
 
 [![GitHub](https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/CY-HYUN/Youtube-Channel-Anaylsis-Project)
 
@@ -211,25 +306,44 @@ I owned the **evaluation and experimentation layer** — the part that decides w
 ### 🏡 8. Korean Real Estate — Market Analysis (Jul – Sep 2024)
 **Geospatial price modelling** across Korean regions
 
-**Challenge:** Explain regional price differences with something better than "location matters".
+**Challenge:** Explain regional price differences with something more rigorous than "location matters".
 
 **My Solution:**
-- 🏠 **Multi-feature regression** — location, property characteristics, market indicators, temporal trends
-- 🗺️ **Geospatial analysis** — choropleth maps, Folium interactive clustering, GeoPandas spatial statistics
-- 📊 **Temporal trend analysis** across regions and years
+- 🏠 **Multi-feature regression**:
+  - Location features (district, proximity to subway and schools)
+  - Property characteristics (size, age, floor level, parking)
+  - Market indicators (transaction volume, interest rates)
+  - Temporal trends (seasonal patterns, year-over-year change)
+- 🗺️ **Geospatial analysis**:
+  - Choropleth maps for regional price heatmaps
+  - Folium interactive maps with cluster analysis
+  - GeoPandas spatial statistics
+- 📊 **Temporal trend analysis**: price trajectories by region, correlation against infrastructure development
+- 💼 **Investment framing**: growth-potential scoring by district
 
-**Tech Stack:** Python · scikit-learn · GeoPandas · Folium · regression analysis
+**Tech Stack:** Python, scikit-learn, GeoPandas, Folium, Regression Analysis, Spatial Statistics
+
+**Application:** Market intelligence for regional investment screening.
 
 [![GitHub](https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/CY-HYUN/Korean-Real-Estate-Project)
 
 ---
 
 ### 🎬 9. Movie Trip — Full-Stack Travel Platform (Dec 2025)
-**Next.js 14 + TypeScript** — film locations, routes and reviews
+**Next.js 14 + TypeScript** — film locations, route planning and reviews
 
-Full-stack application for discovering Korean filming locations: JWT authentication, Prisma ORM, Recoil state management, interactive maps and a leaderboard. 82 locations and 160 places modelled across 15 data models.
+**Challenge:** Build a complete product, not a notebook — authentication, persistence, state management and maps, deployed as one application.
 
-**Tech Stack:** Next.js 14 · TypeScript · Prisma · PostgreSQL · Recoil
+**My Solution:**
+- 🔐 **JWT authentication** with protected routes
+- 🗄️ **Prisma ORM over PostgreSQL** — **15 data models**
+- 🗺️ **Interactive maps** covering **82 locations and 160 places**, with a 10-metre proximity threshold for location matching
+- ⚛️ **Recoil state management** across **14 handlers in 9 files**
+- 🏆 **Leaderboard and review system** for user contributions
+
+**Tech Stack:** Next.js 14, TypeScript, Prisma, PostgreSQL, Recoil, JWT
+
+**Why it's here:** it is the project that proves I can ship a working system end to end, not only analyse data.
 
 [![GitHub](https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/CY-HYUN/Movie-Trip)
 
@@ -238,19 +352,44 @@ Full-stack application for discovering Korean filming locations: JWT authenticat
 ## 🛠️ Technical Skills
 
 ### 🔬 LLM Evaluation & Experimentation *(my differentiator)*
-- **Evaluation design** — rubric construction, sample selection, expert-built ground truth, scorers that run with no model call
-- **Experiment discipline** — one variable at a time, pre-registered acceptance criteria, shuffled controls, negative results published
-- **Adversarial verification** — refuting my own claims before they ship
-- **Observability** — MLflow (run tracking, model registry), Arize Phoenix (tracing), span-level trace analysis
+**Evaluation design** *(MECAGENT internship)*
+- Rubric construction, sample selection, expert-built ground truth
+- Machine-derived reference labels — after my hand-written key turned out to be the thing that was wrong
+- Scorers that reproduce every number from saved artefacts with zero model calls
+
+**Experiment discipline** *(MECAGENT internship, QoE project)*
+- One variable at a time; acceptance criteria registered before the run
+- Shuffled controls that can kill my own hypothesis
+- Data-leakage detection and quantification
+- Negative results published at the same length as positive ones
+
+**Observability** *(MECAGENT internship)*
+- MLflow — run tracking, model registry, experiment comparison
+- Arize Phoenix — distributed tracing, span-level agent behaviour analysis
+- Trace forensics across multi-hour agent sessions
 
 ![MLflow](https://img.shields.io/badge/MLflow-0194E2?style=flat&logo=mlflow&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
 
-### 🤖 LLM & NLP
-- **Fine-tuning** — LoRA, DPO, PEFT, 4-bit quantisation, synthetic data generation (Magpie)
-- **Transformers** — RoBERTa/BERT fine-tuning, BiLSTM ensembles, mixed-precision training
-- **Agentic systems** — LangChain, LangGraph, orchestrator/sub-agent architectures, MCP
-- **Applied NLP** — emotion prediction, sentiment analysis, bilingual Korean/English processing
+### 🤖 LLM & NLP (Production Experience)
+**LLM Fine-tuning** *(Synthetic-Instruction-Tuner)*
+- LoRA, DPO, PEFT — 12.16M trainable parameters (0.67% of base)
+- 4-bit quantisation for consumer-GPU training
+- Magpie prompting — 1,500 synthetic samples at an 83.9% quality pass rate
+- Synthetic data generation — zero-cost automated pipeline
+
+**Transformers** *(SemEval 2026 — 721-line pipeline)*
+- RoBERTa fine-tuning — CCC 0.6554 against a 0.62 target
+- BiLSTM ensembles, multi-head attention, dual-head output
+- Mixed-precision training (fp16), multi-seed experiments for robustness
+
+**Agentic Systems** *(MECAGENT internship)*
+- LangChain, LangGraph — orchestrator/sub-agent architectures
+- Model Context Protocol (MCP) tool integration
+- Agents executing generated code against a live external application
+
+**NLP** *(across projects)*
+- Emotion prediction, sentiment analysis, bilingual Korean/English processing
 
 ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat&logo=pytorch&logoColor=white)
 ![Transformers](https://img.shields.io/badge/🤗_Transformers-FFD43B?style=flat&logoColor=black)
@@ -258,28 +397,84 @@ Full-stack application for discovering Korean filming locations: JWT authenticat
 ![WandB](https://img.shields.io/badge/WandB-FFBE00?style=flat&logo=weightsandbiases&logoColor=black)
 
 ### 📊 Machine Learning & Data Science
-- **Algorithms** — Random Forest, SVM, XGBoost, Gradient Boosting, K-Means, OLS regression
-- **Time series** — SARIMAX, LSTM, GRU, seasonal decomposition
-- **Data engineering** — multi-source ETL, REST API integration, feature engineering, entity reconciliation
-- **Evaluation** — class-balanced metrics, leakage detection, ablation studies
+**ML Algorithms** *(QoE Prediction — 6-model comparison)*
+- Random Forest, SVM, XGBoost, KNN, Gradient Boosting, Logistic Regression
+- Ensemble methods — weighted averaging, stacking
+- Class-balanced evaluation, macro F1 and kappa over raw accuracy
+
+**Time Series** *(Agri Forecasting — 52-week horizon)*
+- SARIMAX, LSTM, GRU — hybrid ensemble approach
+- Seasonal decomposition, lag and rolling-window feature construction
+
+**Data Engineering** *(DEFT — 102,321 records)*
+- ETL pipelines, REST API integration (World Bank, SIPRI, UCDP, WGI)
+- Entity reconciliation across disagreeing sources
+- K-Means clustering, OLS regression across 170 countries
 
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=flat&logo=scikitlearn&logoColor=white)
 ![Pandas](https://img.shields.io/badge/Pandas-150458?style=flat&logo=pandas&logoColor=white)
 ![NumPy](https://img.shields.io/badge/NumPy-013243?style=flat&logo=numpy&logoColor=white)
 ![TensorFlow](https://img.shields.io/badge/TensorFlow-FF6F00?style=flat&logo=tensorflow&logoColor=white)
 
-### 💻 Programming & Infrastructure
-- **Python** (advanced) · **SQL** (SQLD certified) · **C#** · **Java** · **TypeScript** · **R**
-- **Databases** — PostgreSQL, Oracle DB, Prisma ORM
-- **Web** — Next.js, React, Flask, FastAPI, Streamlit
-- **Tooling** — Git, pytest, Docker, Linux, AWS Bedrock / GCP Vertex
+### 💻 Programming & Databases
+**Primary Languages**
+- **Python** (advanced) — 9 projects, 721-line modular pipeline
+- **C#** — SolidWorks API automation, helper libraries with live self-checks
+- **SQL** (advanced) — SQLD certified, Oracle DB, PostgreSQL
+- **Java 11** — Insurance SOA, 1,927 lines across 17 files
+- **TypeScript / JavaScript** — Movie Trip full-stack
+- **R** — statistical analysis and visualisation
 
+**Web Development**
+- Next.js 14, React, Prisma ORM, Recoil
+- Flask, FastAPI, Streamlit for model serving and dashboards
+
+**Databases**
+- PostgreSQL, Oracle DB, Hadoop
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
 ![C#](https://img.shields.io/badge/C%23-239120?style=flat&logo=csharp&logoColor=white)
 ![Java](https://img.shields.io/badge/Java-ED8B00?style=flat&logo=openjdk&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
+![SQL](https://img.shields.io/badge/SQL-4479A1?style=flat&logo=mysql&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat&logo=postgresql&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat&logo=next.js&logoColor=white)
+![Oracle](https://img.shields.io/badge/Oracle-F80000?style=flat&logo=oracle&logoColor=white)
+
+### 🚀 MLOps & Production
+**Experiment Tracking**
+- MLflow — run tracking and model registry on long-horizon agent pipelines
+- WandB — multi-seed experiments, ablation studies
+- Git / GitHub — 9 public repositories
+
+**Cloud & Serving**
+- AWS Bedrock, GCP Vertex — frontier model access in production pipelines
+- Docker, Linux — containerised environments
+- Flask, FastAPI, Streamlit — API serving and interactive dashboards
+
+**Testing**
+- pytest — fixture tests, strict xfail for documented gaps
+- Self-checks demonstrated firing in both directions before being claimed as protection
+
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white)
+![AWS](https://img.shields.io/badge/AWS-FF9900?style=flat&logo=amazonaws&logoColor=white)
+![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat&logo=linux&logoColor=black)
 ![Git](https://img.shields.io/badge/Git-F05032?style=flat&logo=git&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat&logo=fastapi&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=flat&logo=streamlit&logoColor=white)
+
+### 📊 Visualisation & BI
+**Business Intelligence** *(Hanwha Aerospace)*
+- Power BI — defense analytics dashboards
+- Tableau — interactive business reports
+
+**Python Visualisation** *(all projects)*
+- Matplotlib, Seaborn — statistical plots
+- Folium, GeoPandas — geospatial mapping
+- Chart.js, Leaflet — web-facing interactive charts
+
+![Power BI](https://img.shields.io/badge/Power_BI-F2C811?style=flat&logo=powerbi&logoColor=black)
+![Tableau](https://img.shields.io/badge/Tableau-E97627?style=flat&logo=tableau&logoColor=white)
 
 ---
 
@@ -287,44 +482,71 @@ Full-stack application for discovering Korean filming locations: JWT authenticat
 
 ### MSc, Data Science & Network Intelligence
 **Télécom SudParis — Institut Polytechnique de Paris**, France · 2025–2026
-*Large language models · NLP · deep learning · data engineering*
+
+**Specialisation:** Large language models, NLP, deep learning, data engineering
+
+**Relevant coursework:** Deep Learning & Neural Networks · Natural Language Processing · Big Data Analytics · Statistical Modeling & Time Series · Database Systems
 
 ### Bachelor's Degrees
-- **Tech University of Korea** — B.Eng Computer Engineering
-- **Changwon National University** — B.Eng Robot Control & Instrumentation Engineering
+
+**Tech University of Korea** — Siheung, South Korea
+- B.Eng, Computer Engineering
+
+**Changwon National University** — Changwon, South Korea
+- B.Eng, Robot Control & Instrumentation Engineering
 
 ---
 
 ## 🏆 Achievements & Certifications
 
-- 🥇 **Best Performance Award** — Hanwha Aerospace big-data internship (team project on global defense trends, 1st of all teams)
-- 🏅 **SemEval 2026 Task 2** — CCC 0.6554, above the 0.62 target
-- 📜 **SQLD** — SQL Developer certification, Korea Data Agency
-- 📜 **SMAT** — Service Management Aptitude Test
+### 🥇 Awards
+- **Best Performance Award** — Hanwha Aerospace big-data internship, team project on global defense trends, **1st of all teams**
+- **SemEval 2026 Task 2** — CCC 0.6554, above the 0.62 target
+
+### 📜 Certifications
+- **SQLD** — SQL Developer, Korea Data Agency
+- **SMAT** — Service Management Aptitude Test
+
+### 📈 Technical Highlights
+- **721-line production pipeline** — SemEval competition, modular and documented
+- **+9.7% model improvement** — LLM fine-tuning at zero API cost
+- **33.3-point leakage gap quantified** — and the lower number published
+- **90% time reduction** — DEFT country analysis, 5 hours to 30 minutes
+- **83.9% quality pass rate** — synthetic data filtering pipeline
 
 ---
 
 ## 💼 What I Bring
 
 ### ✅ I measure before I claim
-Every number in this profile names what it was measured on. When my own improvement lost to the baseline, I reported that. When my hand-written reference labels turned out to be wrong and three models were right, I rebuilt the labels from geometry and wrote it down.
+Every number in this profile names what it was measured on. When my own improvement lost to the baseline, I reported that and recommended the baseline. When my hand-written reference labels turned out to be wrong and three models were right, I rebuilt the labels from geometry and wrote up why.
 
 ### ✅ I build the instrument first
-Evaluation design is the skill I'd bring on day one: rubrics against ground truth that can't share the model's blind spots, scorers that reproduce their numbers with no model call, and controls that can kill my own hypothesis.
+On the internship system, the drawing-reading stage had no measurement at all, so I built one: a rubric anchored on ten reference parts a CAD expert built by hand, a scorer that reproduces every number from saved artefacts with zero model calls, and shuffled controls that killed four of my own proposed fixes before a reviewer had to.
 
 ### ✅ I ship inside a team's process
-Pull requests, code review, trace-referenced technical reports, and adversarial verification before anything leaves my desk.
+Pull requests, code review, trace-referenced technical reports, and adversarial verification of my own claims before they leave my desk — six months of it in a senior team at a funded startup.
 
 ### ✅ I work across the stack
-Nine shipped projects spanning LLM fine-tuning, NLP research, multi-agent systems, time series, data engineering, and full-stack web — in Python, C#, Java and TypeScript.
+Nine shipped projects spanning LLM fine-tuning, NLP research, multi-agent systems, time series, data engineering and full-stack web — in Python, C#, Java and TypeScript.
+
+### ✅ I communicate in two languages and three registers
+Korean (native), English (professional) — and the register that matters most: explaining a technical result to someone who has to make a decision with it.
 
 ---
 
 ## 📫 Let's Connect
 
-**Graduating October 2026. Open to LLM Engineer / ML Engineer / AI Engineer roles in Paris and Europe** — work-authorised through the French post-graduation permit, and open to hybrid or remote.
+**Graduating October 2026. Open to LLM Engineer / ML Engineer / AI Engineer roles in Paris and Europe** — work-authorised through the French post-graduation permit, open to hybrid or remote.
 
-**What I'm looking for:** LLM evaluation and instrumentation · agentic and multi-agent systems · fine-tuning and alignment · applied NLP — ideally somewhere the output is verifiably right or wrong.
+### 🎯 What I'm Looking For
+
+- LLM evaluation, instrumentation and benchmarking
+- Agentic and multi-agent system engineering
+- Fine-tuning and alignment (LoRA, DPO, PEFT)
+- Applied NLP — ideally where the output is verifiably right or wrong
+
+### 📧 Contact
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/changyong-hyun)
 [![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:xhangyong.hyun@gmail.com)
