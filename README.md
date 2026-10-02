@@ -17,9 +17,9 @@
 
 ## 🎯 About Me
 
-**Graduating October 2026 · Open to LLM / ML Engineer roles in Paris and Europe · Work-authorised via the French post-graduation permit**
+**Graduating October 2026 · Open to LLM / ML Engineer roles in Paris and Europe**
 
-AI/ML engineer finishing an MSc in Data Science & Network Intelligence at **Télécom SudParis (Institut Polytechnique de Paris)**, with six months of industry experience at **MECAGENT** in Lyon building and evaluating a production multi-agent LLM system for CAD automation.
+AI/ML engineer finishing an MSc in Data Science & Network Intelligence at **Télécom SudParis (Institut Polytechnique de Paris)**, with six months of industry experience at **MECAGENT** in Paris building and evaluating a production multi-agent LLM system for CAD automation.
 
 I build LLM and multi-agent systems, and I specialise in the part most teams skip: **deciding whether the thing actually works.** The hard problem is rarely generation — it's that the metric you grade outputs with is usually blind to some of the ways they can be wrong. On the system I worked on, a part built mirrored scored about the same as the correct one. So most of my work became evaluation design: build the instrument first, then let it decide what to change.
 
@@ -33,7 +33,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 **Key Achievements:**
 - 🏅 **SemEval 2026 Task 2** — CCC **0.6554** against a 0.62 target (+5.7%), measured on the best single model
 - 🔍 **A leakage analysis that changed the answer** — quantified a **33.3-point** gap and published the lower number
-- 🧰 **Instruments that outlive the code** — my scorers still reproduce every number from saved artefacts after the pipeline around them was rebuilt twice
+- 🧰 **Instruments that outlive the code** — my scorers still reproduce every number from saved artefacts after the pipeline around them was rebuilt
 - ⚡ **Zero-cost fine-tuning pipeline** — synthetic data generation through DPO alignment with no API fees and no human labelling
 - 🎖️ **Best Performance Award** — Hanwha Aerospace big-data internship (1st of all teams)
 
@@ -51,7 +51,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 ## 💼 Industry Experience
 
-### 🔧 AI Engineer Intern — MECAGENT, Lyon, France (May – Oct 2026)
+### 🔧 AI Engineer Intern — MECAGENT, Paris, France (May – Oct 2026)
 
 **MECAGENT builds an AI copilot for SolidWorks**, the most widely used mechanical CAD software. The product takes a natural-language request and generates C# macro code that executes inside the user's live SolidWorks session.
 
@@ -59,15 +59,15 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 **My ownership:** the evaluation and experimentation layer — the part that decides whether any change was actually an improvement.
 
-- 🎯 **Designed the evaluation for the drawing-reading stage from scratch**, for a generative component that had no measurement at all. Built the rubric, selected the sample across both source datasets and the feature classes that mattered, and anchored it on ten reference parts hand-built in SolidWorks by the company's CAD expert — so that no model ever graded another model's output. The scorer reproduces every number from saved artefacts with **zero model calls**, which is why it still runs today after the pipeline around it was rebuilt twice.
+- 🎯 **Designed the evaluation for the drawing-reading stage from scratch**, for a generative component that had no measurement at all. Built the rubric, selected the sample across both source datasets and the feature classes that mattered, and anchored it on ten reference parts hand-built in SolidWorks by the company's CAD expert — so that no model ever graded another model's output. The scorer reproduces every number from saved artefacts with **zero model calls**, which is why it still runs today after the pipeline around it was rebuilt.
 - 🔍 **Proved the team's headline metric was blind to entire classes of failure.** A mirrored part, a rotated part, and a sheet-metal bend imitated with extruded blocks all scored about the same as correct ones — the score aligns two solids before comparing, which erases orientation, and counts holes, which a mirror preserves. I built deterministic checks that detect each class by reading the feature types SolidWorks itself assigns, and those checks redirected the team's engineering priorities.
-- 🧪 **Ran controlled A/B experiments with acceptance criteria registered before each run.** Shuffled controls killed four of my own proposed fixes. I published two pre-registered negative results at the same length as the positive ones — including one where my own improvement lost to the baseline and I recommended keeping the baseline.
+- 🧪 **Ran controlled A/B experiments with acceptance criteria registered before each run.** Shuffled controls killed several of my own proposed fixes. I published a pre-registered negative result at the same length as the positive ones, where my own improvement lost to the baseline and I recommended keeping the baseline.
 - 🪞 **Caught my own ground-truth labels being wrong.** Three models disagreed with my hand-written answer key; checking the key against the reference geometry showed the key was wrong and the models were right. Every label after that came from a machine-derived source, and I wrote up why.
 - 📊 **Instrumented long-horizon agent runs end to end** — MLflow for run tracking and model registry, Arize Phoenix for distributed tracing, reading span-by-span what an agent actually did across multi-hour sessions instead of trusting a summary of it.
 - 🔧 **Built a C# helper library for the generating agent**, declared at the CAD session level, with live self-checks that each had to be demonstrated firing in both directions before I claimed they protected anything.
 - 🤝 **Shipped inside a senior team's process** — pull requests, code review, trace-referenced technical reports adopted as a team template, and adversarial verification of my own claims before they left my desk.
 
-**Tech Stack:** Python · C# · SolidWorks API · LangChain / LangGraph · MLflow · Arize Phoenix · vision-language models · AWS Bedrock / GCP Vertex · pytest
+**Tech Stack:** Python · C# · SolidWorks API · LangChain / LangGraph · MLflow · Arize Phoenix · vision-language models · AWS Bedrock · pytest
 
 > *The company's internal results are covered by a confidentiality agreement, so this describes method and ownership rather than internal figures. Happy to go deeper on the engineering in conversation.*
 
@@ -128,9 +128,9 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 **My Solution:**
 - 🔥 **Modular pipeline** with training, prediction, evaluation and demo stages separated into their own modules
 - 🧠 **User-level embeddings**: aggregated a user's historical posts into a dense representation — the single largest contributor in the ablation
-- 🔬 **RoBERTa + BiLSTM (256 hidden, 2 layers) + 8-head attention**, dual-head output for the two dimensions
+- 🔬 **RoBERTa + BiLSTM (256 hidden, 2 layers) + 4-head attention**, dual-head output for the two dimensions
 - 🎯 **Arousal-specialist model**: 90% CCC loss weighting on the harder dimension
-- 📊 **47 engineered features**: 20 temporal (lag, rolling statistics, trend, volatility), 15 text (linguistic, punctuation, sentiment), 12 user statistics
+- 📊 **31 engineered features feed the best model**: 17 temporal (lags, rolling statistics), 4 per-user baselines, 10 text statistics
 - ⚡ **Mixed-precision training** (torch.cuda.amp) with multi-seed runs (42, 123, 777, 888, 1111) for robustness
 - 📈 **Differential learning rates**: 1e-5 for the encoder against 8e-5 for the custom heads
 - 🧪 **Systematic ablations**: quantified each component separately — user embeddings > engineered features > BiLSTM
@@ -189,7 +189,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 ---
 
 ### 🌍 4. DEFT — Defense Export Market Analysis (Sep – Dec 2024)
-**102,321 records across 170 countries** — multi-source ETL and feasibility scoring
+**102,321 records, 170 countries scored** — multi-source ETL and feasibility scoring
 
 **Challenge:** Combine economic, political and conflict indicators into a usable market-feasibility view, when the three source databases disagree about what a country is even called.
 
@@ -206,7 +206,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 - 🌐 **Interactive static platform**: Leaflet world map with a generated page per country, 200+ Chart.js charts, DataTables for real-time querying, ~54 MB of committed JSON
 
 **Results:**
-- **102,321 records · 170 countries** integrated into one queryable dataset (13 committed JSON files, 1991–2020)
+- **102,321 records** integrated into one queryable dataset (13 committed JSON files, 1991–2020); **170 countries** scored after standardisation
 - **Economic capacity was the only strong predictor of arms imports** — economic score **+23,170 TIV per standard deviation, p < 0.001**. Governance scored **p = 0.791: no measurable effect**, and conflict intensity was marginal (p = 0.093). That negative result mattered more than the positive one, because governance indicators were the axis the model was expected to lean on.
 - **R² = 0.366 means ~63% of import variation sits outside these indicators** — alliances, political decisions, offset deals — which is the honest bound on how far indicator-only screening can go
 - **South Korea's import mix**, mapped onto the US ITAR/USML 22-category taxonomy across 509 import entries (1991–2020): missiles 34.8%, aircraft 20.6%, military electronics 11.0%
@@ -280,12 +280,12 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 ---
 
 ### 📺 7. YouTube Analytics — Korean Content Strategy (Jul – Sep 2024)
-**2,125 videos** — bilingual NLP across 15 channels and 3 categories
+**2,125 videos** — statistical analysis across 15 channels and 3 categories
 
-**Challenge:** Turn channel performance data into recommendations a creator could act on, across Korean and English text.
+**Challenge:** Turn channel performance data into recommendations a creator could act on.
 
 **My Solution:**
-- 🌐 **Bilingual NLP pipeline**: Korean morphological analysis for title keyword patterns, English sentiment analysis
+- ☁️ **Title-keyword word clouds** per channel and category (Korean title words only)
 - 📊 **8 standalone analytical frameworks**:
   - Word cloud analysis of title keywords by category
   - Upload timing (hour-of-day, day-of-week)
@@ -302,9 +302,8 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 - **Daily uploading was optimal for only 3 of 15 channels** — the view-maximising interval is channel-specific, ranging from 1 day up to 8–14 days. There is no universal "best cadence."
 - **For 10 of 15 channels, one upload interval maximised both views and likes** — cadence effects are consistent across engagement metrics
 - **Channel age does not predict channel size** — older channels do not necessarily have more subscribers or total views
-- **Regular uploaders average 23% more views** than irregular ones
 
-**Tech Stack:** Python, KoNLPy, Pandas, Matplotlib, Seaborn, Word Clouds, Statistical Testing
+**Tech Stack:** Python, Pandas, Matplotlib, Seaborn, Word Clouds, Statistical Testing
 
 **Note on scope:** the repository documents its own verified headline (2,125 videos / 15 channels / 3 categories) and explicitly lists the earlier unverifiable figures that were removed.
 
@@ -381,7 +380,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 ### 🤖 LLM & NLP (Production Experience)
 **LLM Fine-tuning** *(Synthetic-Instruction-Tuner)*
 - LoRA, DPO, PEFT — 12.16M trainable parameters (0.67% of base)
-- 4-bit quantisation for consumer-GPU training
+- 4-bit quantisation; Colab T4 (free tier) for generation, A100 for training
 - Magpie prompting — 1,500 synthetic samples at an 83.9% quality pass rate
 - Synthetic data generation — zero-cost automated pipeline
 
@@ -396,7 +395,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 - Agents executing generated code against a live external application
 
 **NLP** *(across projects)*
-- Emotion prediction, sentiment analysis, bilingual Korean/English processing
+- Emotion prediction with lexicon sentiment features (SemEval)
 
 ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat&logo=pytorch&logoColor=white)
 ![Transformers](https://img.shields.io/badge/🤗_Transformers-FFD43B?style=flat&logoColor=black)
@@ -417,7 +416,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 **Data Engineering** *(DEFT — 102,321 records)*
 - ETL pipelines, REST API integration (World Bank, SIPRI, UCDP, WGI)
 - Entity reconciliation across disagreeing sources
-- K-Means clustering, OLS regression across 170 countries
+- K-Means grading of the 170 scored countries, OLS regression on the training split
 
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=flat&logo=scikitlearn&logoColor=white)
 ![Pandas](https://img.shields.io/badge/Pandas-150458?style=flat&logo=pandas&logoColor=white)
@@ -428,7 +427,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 **Primary Languages**
 - **Python** (advanced) — 9 shipped projects, from notebook analysis to modular training pipelines
 - **C#** — SolidWorks API automation, helper libraries with live self-checks
-- **SQL** (advanced) — SQLD certified; PostgreSQL, and SQL against the company's CAD dataset for test-set selection
+- **SQL** (advanced) — SQLD certified; PostgreSQL
 - **Java 11** — Insurance SOA, 1,927 lines across 17 files
 - **TypeScript / JavaScript** — Movie Trip full-stack
 - **R** — statistical analysis and visualisation
@@ -456,7 +455,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 - Git / GitHub — 9 public repositories
 
 **Cloud & Serving**
-- AWS Bedrock, GCP Vertex — frontier model access in production pipelines
+- AWS Bedrock — frontier model access in production pipelines
 - Docker, Linux — containerised environments
 - Flask, FastAPI, Streamlit — API serving and interactive dashboards
 
@@ -495,13 +494,13 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 **Relevant coursework:** Deep Learning & Neural Networks · Natural Language Processing · Big Data Analytics · Statistical Modeling & Time Series · Database Systems
 
-### Bachelor's Degrees
+### Undergraduate
 
 **Tech University of Korea** — Siheung, South Korea
 - B.Eng, Computer Engineering
 
 **Changwon National University** — Changwon, South Korea
-- B.Eng, Robot Control & Instrumentation Engineering
+- Robot Control & Measurement Engineering (studies only, transferred to Tech University of Korea)
 
 ---
 
@@ -530,7 +529,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 Every number in this profile names what it was measured on. When my own improvement lost to the baseline, I reported that and recommended the baseline. When my hand-written reference labels turned out to be wrong and three models were right, I rebuilt the labels from geometry and wrote up why.
 
 ### ✅ I build the instrument first
-On the internship system, the drawing-reading stage had no measurement at all, so I built one: a rubric anchored on ten reference parts a CAD expert built by hand, a scorer that reproduces every number from saved artefacts with zero model calls, and shuffled controls that killed four of my own proposed fixes before a reviewer had to.
+On the internship system, the drawing-reading stage had no measurement at all, so I built one: a rubric anchored on ten reference parts a CAD expert built by hand, a scorer that reproduces every number from saved artefacts with zero model calls, and shuffled controls that killed my own proposed fixes before a reviewer had to.
 
 ### ✅ I ship inside a team's process
 Pull requests, code review, trace-referenced technical reports, and adversarial verification of my own claims before they leave my desk — six months of it in a senior team at a funded startup.
@@ -545,7 +544,7 @@ Korean (native), English (professional) — and the register that matters most: 
 
 ## 📫 Let's Connect
 
-**Graduating October 2026. Open to LLM Engineer / ML Engineer / AI Engineer roles in Paris and Europe** — work-authorised through the French post-graduation permit, open to hybrid or remote.
+**Graduating October 2026. Open to LLM Engineer / ML Engineer / AI Engineer roles in Paris and Europe** — open to hybrid or remote.
 
 ### 🎯 What I'm Looking For
 
