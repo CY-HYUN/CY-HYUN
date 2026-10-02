@@ -1,7 +1,7 @@
 <div align="center">
 
 # 👋 Hi, I'm Changyong Hyun
-<!-- GitHub Profile README - Last updated 2026-09-16 -->
+<!-- GitHub Profile README - Last updated 2026-10-02 -->
 
 ### 🚀 AI/ML Engineer | LLM Evaluation & Agentic Systems | MSc @ Télécom SudParis (IP Paris)
 
@@ -355,6 +355,30 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 ---
 
+### 📡 10. Paper Radar — Weekly Literature Tracker (public since Oct 2026)
+**Matches new arXiv papers and Semantic Scholar citations to a ledger of open problems** — on a schedule, with no LLM in the weekly job
+
+**Challenge:** Follow new research for a short list of open problems every week without reading the whole feed, and without any problem text leaving the machine.
+
+**My Solution:**
+- 📒 **A ledger of at most 10 open problems**, each with its metric, the command that produced it, and what was tried
+- 🗓️ **A scheduled GitHub Actions job** matches the week's arXiv papers and Semantic Scholar citations to each problem; no LLM runs in the weekly job
+- 🔒 **No free text leaves the machine**: the query is matched locally against the week's arXiv papers, and the only outbound requests are arXiv category-and-date windows and paper ids (for citation lookups and recommendations), enforced by a URL allow-list that refuses free text and a forbidden-terms check on every request
+- ⏳ **Stale problems are skipped**: a row not re-verified for more than **14 days** is flagged and left out of the weekly fetch
+- 🔌 **MCP server** on the official Python SDK with **6 tools** (list the problems, show one, this week's candidates, pending ledger updates, change one cell under the ledger's checks, start a paper card); CI calls all 6 over a real MCP connection
+
+**What broke along the way:**
+- arXiv refused the laptop's scheduled run (HTTP 406 for that Python build), so the job moved to a GitHub Actions runner on Python 3.11
+- A new seed paper brings every paper that ever cited it (**1,002** for one demo problem on a first run), so each seed now lists only its **10 newest unseen citers** per run and records the rest
+
+**Tech Stack:** Python, GitHub Actions, MCP (official Python SDK), arXiv, Semantic Scholar
+
+**Scope, stated honestly:** I built it for my team's open problems; the public repository runs on a demo ledger of public questions.
+
+[![GitHub](https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/CY-HYUN/paper-radar)
+
+---
+
 ## 🛠️ Technical Skills
 
 ### 🔬 LLM Evaluation & Experimentation *(my differentiator)*
@@ -425,7 +449,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 ### 💻 Programming & Databases
 **Primary Languages**
-- **Python** (advanced) — 9 shipped projects, from notebook analysis to modular training pipelines
+- **Python** (advanced) — most of the projects above, from notebook analysis to modular training pipelines
 - **C#** — SolidWorks API automation, helper libraries with live self-checks
 - **SQL** (advanced) — SQLD certified; PostgreSQL
 - **Java 11** — Insurance SOA, 1,927 lines across 17 files
@@ -452,7 +476,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 **Experiment Tracking**
 - MLflow — run tracking and model registry on long-horizon agent pipelines
 - WandB — multi-seed experiments, ablation studies
-- Git / GitHub — 9 public repositories
+- Git / GitHub — every featured project above is a public repository
 
 **Cloud & Serving**
 - AWS Bedrock — frontier model access in production pipelines
@@ -535,7 +559,7 @@ On the internship system, the drawing-reading stage had no measurement at all, s
 Pull requests, code review, trace-referenced technical reports, and adversarial verification of my own claims before they leave my desk — six months of it in a senior team at a funded startup.
 
 ### ✅ I work across the stack
-Nine shipped projects spanning LLM fine-tuning, NLP research, multi-agent systems, time series, data engineering and full-stack web — in Python, C#, Java and TypeScript.
+Shipped projects spanning LLM fine-tuning, NLP research, multi-agent systems, time series, data engineering and full-stack web — in Python, C#, Java and TypeScript.
 
 ### ✅ I communicate in two languages and three registers
 Korean (native), English (professional) — and the register that matters most: explaining a technical result to someone who has to make a decision with it.
@@ -572,4 +596,4 @@ Korean (native), English (professional) — and the register that matters most: 
 
 </div>
 
-<!-- Profile README — optimised for LLM / ML engineer roles — last updated 2026-09-16 -->
+<!-- Profile README — optimised for LLM / ML engineer roles — last updated 2026-10-02 -->
