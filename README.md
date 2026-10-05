@@ -17,7 +17,7 @@
 
 ## 🎯 About Me
 
-**Graduating October 2026 · Open to LLM / ML Engineer roles in Paris and Europe**
+**MSc Data Science, Télécom SudParis (2026) · Open to LLM / ML Engineer roles in Paris and Europe**
 
 AI/ML engineer finishing an MSc in Data Science & Network Intelligence at **Télécom SudParis (Institut Polytechnique de Paris)**, with six months of industry experience at **MECAGENT** in Paris building and evaluating a production multi-agent LLM system for CAD automation.
 
@@ -568,7 +568,7 @@ Korean (native), English (professional) — and the register that matters most: 
 
 ## 📫 Let's Connect
 
-**Graduating October 2026. Open to LLM Engineer / ML Engineer / AI Engineer roles in Paris and Europe** — open to hybrid or remote.
+**MSc Data Science, Télécom SudParis (2026). Open to LLM Engineer / ML Engineer / AI Engineer roles in Paris and Europe** — open to hybrid or remote.
 
 ### 🎯 What I'm Looking For
 
