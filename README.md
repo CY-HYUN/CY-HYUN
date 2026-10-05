@@ -5,7 +5,7 @@
 
 ### 🚀 AI/ML Engineer | LLM Evaluation & Agentic Systems | MSc @ Télécom SudParis (IP Paris)
 
-🎯 **Available from October 2026** · 🇫🇷 **Paris / Europe** · 🔬 **6 months building a production multi-agent LLM system** · ⚡ **PyTorch · LangGraph · MLflow**
+🇫🇷 **Paris / Europe** · 🔬 **6 months building a production multi-agent LLM system** · ⚡ **PyTorch · LangGraph · MLflow**
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://linkedin.com/in/changyong-hyun)
 [![Email](https://img.shields.io/badge/Email-D14836?style=flat&logo=gmail&logoColor=white)](mailto:xhangyong.hyun@gmail.com)
@@ -592,7 +592,7 @@ Korean (native), English (professional) — and the register that matters most: 
 
 **⚡ "Build the measurement first."**
 
-*Available from October 2026 · Paris / Europe · Remote-friendly*
+*Paris / Europe · Remote-friendly*
 
 </div>
 
