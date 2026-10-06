@@ -356,16 +356,17 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 ---
 
 ### 📡 10. Paper Radar — Weekly Literature Tracker (public since Oct 2026)
-**Matches new arXiv papers and Semantic Scholar citations to a ledger of open problems** — on a schedule, with no LLM in the weekly job
+**Matches new arXiv papers and Semantic Scholar citations to a ledger of open problems** on a schedule; by default no LLM runs in the weekly job
 
 **Challenge:** Follow new research for a short list of open problems every week without reading the whole feed, and without any problem text leaving the machine.
 
 **My Solution:**
 - 📒 **A ledger of at most 10 open problems**, each with its metric, the command that produced it, and what was tried
-- 🗓️ **A scheduled GitHub Actions job** matches the week's arXiv papers and Semantic Scholar citations to each problem; no LLM runs in the weekly job
+- 🗓️ **A scheduled GitHub Actions job** matches the week's arXiv papers and Semantic Scholar citations to each problem; by default no LLM runs in the weekly job
 - 🔒 **No free text leaves the machine**: the query is matched locally against the week's arXiv papers, and the only outbound requests are arXiv category-and-date windows and paper ids (for citation lookups and recommendations), enforced by a URL allow-list that refuses free text and a forbidden-terms check on every request
 - ⏳ **Stale problems are skipped**: a row not re-verified for more than **14 days** is flagged and left out of the weekly fetch
 - 🔌 **MCP server** on the official Python SDK with **6 tools** (list the problems, show one, this week's candidates, pending ledger updates, change one cell under the ledger's checks, start a paper card); CI calls all 6 over a real MCP connection
+- 🧭 **Optional: current problems from commit history**: Claude reads the last **28 days** of a repository's commits and proposes up to **5** problems being worked on now; a problem is kept only if it cites at least **2 commits that really exist**, and its search words pass the same forbidden-terms check (off in the public demo)
 
 **What broke along the way:**
 - arXiv refused the laptop's scheduled run (HTTP 406 for that Python build), so the job moved to a GitHub Actions runner on Python 3.11
