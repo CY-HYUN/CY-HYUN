@@ -120,7 +120,32 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 ---
 
-### 🏅 2. SemEval 2026 Task 2 — Emotion Prediction (Oct 2025 – Jan 2026)
+### 📡 2. Paper Radar — Weekly Literature Tracker (public since Oct 2026)
+**Matches new arXiv papers and Semantic Scholar citations to a ledger of open problems** on a schedule; by default no LLM runs in the weekly job
+
+**Challenge:** Follow new research for a short list of open problems every week without reading the whole feed, and without any problem text leaving the machine.
+
+**My Solution:**
+- 📒 **A ledger of at most 10 open problems**, each with its metric, the command that produced it, and what was tried
+- 🗓️ **A scheduled GitHub Actions job** matches the week's arXiv papers and Semantic Scholar citations to each problem; by default no LLM runs in the weekly job
+- 🔒 **No free text leaves the machine**: the query is matched locally against the week's arXiv papers, and the only outbound requests are arXiv category-and-date windows and paper ids (for citation lookups and recommendations), enforced by a URL allow-list that refuses free text and a forbidden-terms check on every request
+- ⏳ **Stale problems are skipped**: a row not re-verified for more than **14 days** is flagged and left out of the weekly fetch
+- 🔌 **MCP server** on the official Python SDK with **6 tools** (list the problems, show one, this week's candidates, pending ledger updates, change one cell under the ledger's checks, start a paper card); CI calls all 6 over a real MCP connection
+- 🧭 **Optional: current problems from commit history**: Claude reads the last **28 days** of a repository's commits and proposes up to **5** problems being worked on now; a problem is kept only if it cites at least **2 commits that really exist**, and its search words pass the same forbidden-terms check (off in the public demo)
+
+**What broke along the way:**
+- arXiv refused the laptop's scheduled run (HTTP 406 for that Python build), so the job moved to a GitHub Actions runner on Python 3.11
+- A new seed paper brings every paper that ever cited it (**1,002** for one demo problem on a first run), so each seed now lists only its **10 newest unseen citers** per run and records the rest
+
+**Tech Stack:** Python, GitHub Actions, MCP (official Python SDK), arXiv, Semantic Scholar
+
+**Scope, stated honestly:** I built it for my team's open problems; the public repository runs on a demo ledger of public questions.
+
+[![GitHub](https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/CY-HYUN/paper-radar)
+
+---
+
+### 🏅 3. SemEval 2026 Task 2 — Emotion Prediction (Oct 2025 – Jan 2026)
 **Validation mean Pearson r 0.6554** — international NLP competition; the competition metric (CCC) was not measured
 
 **Challenge:** Predict emotional response (valence and arousal) from temporal sequences of a user's posts, where any single post carries little signal without the user's history.
@@ -158,7 +183,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 ---
 
-### 🔍 3. QoE Prediction — the Leakage Analysis That Changed the Answer (Oct – Dec 2025)
+### 🔍 4. QoE Prediction — the Leakage Analysis That Changed the Answer (Oct – Dec 2025)
 **33.3-point gap** — where the real result is the integrity work
 *Télécom SudParis (IP Paris) MSc coursework · supervised project*
 
@@ -188,7 +213,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 ---
 
-### 🌍 4. DEFT — Defense Export Market Analysis (Sep – Dec 2024)
+### 🌍 5. DEFT — Defense Export Market Analysis (Sep – Dec 2024)
 **102,321 records, 170 countries scored** — multi-source ETL and feasibility scoring
 
 **Challenge:** Combine economic, political and conflict indicators into a usable market-feasibility view, when the three source databases disagree about what a country is even called.
@@ -217,37 +242,6 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 **Impact:** A strategic screening tool for defense-industry market entry — and a quantified statement of where indicator-based screening stops working.
 
 [![GitHub](https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/CY-HYUN/Global-Defense-Export-Analysis-Project)
-
----
-
-### 🏢 5. Insurance SOA — Multi-Protocol Service Architecture (Dec 2025 – Jan 2026)
-**4 protocols, one gateway** — REST · SOAP · gRPC · GraphQL
-*Télécom SudParis (IP Paris) MSc coursework · service-oriented architecture module*
-
-**Challenge:** Serve insurance claim processing to client types that each speak a different protocol, without maintaining four separate backends.
-
-**My Solution:**
-- 🔄 **XOR gateway orchestration**: routing logic that selects the protocol handler per request
-- 🌐 **Four protocol implementations**:
-  - **REST (Jersey)**: JSON for web clients
-  - **SOAP (JAX-WS)**: XML for legacy enterprise systems
-  - **gRPC**: Protocol Buffers, high-performance binary for microservices
-  - **GraphQL**: introspection-based flexible querying for modern frontends
-- ☕ **Java 11**: **1,927 lines across 17 files**
-- 🧪 **Protocol-specific client applications** plus an **11-request Postman collection** for validation
-- 📦 **Apache Maven** build automation, **Tomcat** deployment
-- ⚖️ **Benchmarked the four** on latency and payload size rather than assuming
-
-**Results:**
-- **Protocol comparison** across performance, latency and payload size
-- **Workflow automation**: claim routing, validation and approval/rejection paths
-- **Modular architecture** where adding a fifth protocol touches the gateway and nothing else
-
-**Tech Stack:** Java 11, Apache Maven, REST (Jersey), SOAP (JAX-WS), gRPC, GraphQL, Tomcat
-
-**Architecture Pattern:** Service-oriented architecture with gateway orchestration
-
-[![GitHub](https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/CY-HYUN/Insurance-Claim-Processing-SOA)
 
 ---
 
@@ -355,28 +349,34 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 ---
 
-### 📡 10. Paper Radar — Weekly Literature Tracker (public since Oct 2026)
-**Matches new arXiv papers and Semantic Scholar citations to a ledger of open problems** on a schedule; by default no LLM runs in the weekly job
+### 🏢 10. Insurance SOA — Multi-Protocol Service Architecture (Dec 2025 – Jan 2026)
+**4 protocols, one gateway** — REST · SOAP · gRPC · GraphQL
+*Télécom SudParis (IP Paris) MSc coursework · service-oriented architecture module*
 
-**Challenge:** Follow new research for a short list of open problems every week without reading the whole feed, and without any problem text leaving the machine.
+**Challenge:** Serve insurance claim processing to client types that each speak a different protocol, without maintaining four separate backends.
 
 **My Solution:**
-- 📒 **A ledger of at most 10 open problems**, each with its metric, the command that produced it, and what was tried
-- 🗓️ **A scheduled GitHub Actions job** matches the week's arXiv papers and Semantic Scholar citations to each problem; by default no LLM runs in the weekly job
-- 🔒 **No free text leaves the machine**: the query is matched locally against the week's arXiv papers, and the only outbound requests are arXiv category-and-date windows and paper ids (for citation lookups and recommendations), enforced by a URL allow-list that refuses free text and a forbidden-terms check on every request
-- ⏳ **Stale problems are skipped**: a row not re-verified for more than **14 days** is flagged and left out of the weekly fetch
-- 🔌 **MCP server** on the official Python SDK with **6 tools** (list the problems, show one, this week's candidates, pending ledger updates, change one cell under the ledger's checks, start a paper card); CI calls all 6 over a real MCP connection
-- 🧭 **Optional: current problems from commit history**: Claude reads the last **28 days** of a repository's commits and proposes up to **5** problems being worked on now; a problem is kept only if it cites at least **2 commits that really exist**, and its search words pass the same forbidden-terms check (off in the public demo)
+- 🔄 **XOR gateway orchestration**: routing logic that selects the protocol handler per request
+- 🌐 **Four protocol implementations**:
+  - **REST (Jersey)**: JSON for web clients
+  - **SOAP (JAX-WS)**: XML for legacy enterprise systems
+  - **gRPC**: Protocol Buffers, high-performance binary for microservices
+  - **GraphQL**: introspection-based flexible querying for modern frontends
+- ☕ **Java 11**: **1,927 lines across 17 files**
+- 🧪 **Protocol-specific client applications** plus an **11-request Postman collection** for validation
+- 📦 **Apache Maven** build automation, **Tomcat** deployment
+- ⚖️ **Benchmarked the four** on latency and payload size rather than assuming
 
-**What broke along the way:**
-- arXiv refused the laptop's scheduled run (HTTP 406 for that Python build), so the job moved to a GitHub Actions runner on Python 3.11
-- A new seed paper brings every paper that ever cited it (**1,002** for one demo problem on a first run), so each seed now lists only its **10 newest unseen citers** per run and records the rest
+**Results:**
+- **Protocol comparison** across performance, latency and payload size
+- **Workflow automation**: claim routing, validation and approval/rejection paths
+- **Modular architecture** where adding a fifth protocol touches the gateway and nothing else
 
-**Tech Stack:** Python, GitHub Actions, MCP (official Python SDK), arXiv, Semantic Scholar
+**Tech Stack:** Java 11, Apache Maven, REST (Jersey), SOAP (JAX-WS), gRPC, GraphQL, Tomcat
 
-**Scope, stated honestly:** I built it for my team's open problems; the public repository runs on a demo ledger of public questions.
+**Architecture Pattern:** Service-oriented architecture with gateway orchestration
 
-[![GitHub](https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/CY-HYUN/paper-radar)
+[![GitHub](https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/CY-HYUN/Insurance-Claim-Processing-SOA)
 
 ---
 
