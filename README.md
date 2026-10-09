@@ -1,7 +1,7 @@
 <div align="center">
 
 # 👋 Hi, I'm Changyong Hyun
-<!-- GitHub Profile README - Last updated 2026-10-02 -->
+<!-- GitHub Profile README - Last updated 2026-10-10 -->
 
 ### 🚀 AI/ML Engineer | LLM Evaluation & Agentic Systems | MSc @ Télécom SudParis (IP Paris)
 
@@ -31,7 +31,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 - 🧪 **Controlled experiments** — one variable at a time, negative results reported at the same length as positive ones
 
 **Key Achievements:**
-- 🏅 **SemEval 2026 Task 2** — CCC **0.6554** against a 0.62 target (+5.7%), measured on the best single model
+- 🏅 **SemEval 2026 Task 2** — validation mean Pearson r **0.6554** on the best single model, with the metric's naming error found and corrected in my own repo
 - 🔍 **A leakage analysis that changed the answer** — quantified a **33.3-point** gap and published the lower number
 - 🧰 **Instruments that outlive the code** — my scorers still reproduce every number from saved artefacts after the pipeline around them was rebuilt
 - ⚡ **Zero-cost fine-tuning pipeline** — synthetic data generation through DPO alignment with no API fees and no human labelling
@@ -121,7 +121,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 ---
 
 ### 🏅 2. SemEval 2026 Task 2 — Emotion Prediction (Oct 2025 – Jan 2026)
-**CCC 0.6554** — international NLP competition, against a 0.62 target
+**Validation mean Pearson r 0.6554** — international NLP competition; the competition metric (CCC) was not measured
 
 **Challenge:** Predict emotional response (valence and arousal) from temporal sequences of a user's posts, where any single post carries little signal without the user's history.
 
@@ -129,7 +129,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 - 🔥 **Modular pipeline** with training, prediction, evaluation and demo stages separated into their own modules
 - 🧠 **User-level embeddings**: aggregated a user's historical posts into a dense representation — the single largest contributor in the ablation
 - 🔬 **RoBERTa + BiLSTM (256 hidden, 2 layers) + 4-head attention**, dual-head output for the two dimensions
-- 🎯 **Arousal-specialist model**: 90% CCC loss weighting on the harder dimension
+- 🎯 **Arousal-specialist model**: 90% CCC-loss weighting on the harder dimension (its arousal score is not quoted: one input feature contains the target)
 - 📊 **31 engineered features feed the best model**: 17 temporal (lags, rolling statistics), 4 per-user baselines, 10 text statistics
 - ⚡ **Mixed-precision training** (torch.cuda.amp) with multi-seed runs (42, 123, 777, 888, 1111) for robustness
 - 📈 **Differential learning rates**: 1e-5 for the encoder against 8e-5 for the custom heads
@@ -137,18 +137,18 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 **Results — measured on the validation split:**
 
-| Model | CCC | Valence | Arousal | |
+| Model | Mean Pearson r | Valence r | Arousal r | |
 |---|---|---|---|---|
 | **seed777** | **0.6554** | 0.7593 | 0.5516 | Best single model |
-| arousal_specialist (seed 1111) | 0.6512 | 0.7192 | **0.5832** | Dimension-specialised |
+| arousal_specialist (seed 1111) | 0.6512 | 0.7192 | not quoted | An arousal input contains the target |
 | seed42 | 0.5053 | 0.6532 | 0.3574 | Dropped from the pool |
 
-- **Best single-model CCC 0.6554** (seed 777), **+5.7% above the 0.62 target**
-- **Arousal was the bottleneck, and specialisation paid for itself**: arousal CCC ranged 0.357–0.552 across seeds while valence reached 0.759. Weighting the loss 90% toward arousal lifted arousal CCC **0.5516 → 0.5832 (+0.0316)** while trading only **−0.0042 overall CCC**, and trained in ~24 minutes against ~2 hours for a full run. Naming what a gain costs is the part I would defend in an interview.
-- **Seed variance turned out to be the bigger story**: the same architecture scored **CCC 0.5053–0.6554** across random seeds. Any single-run comparison on this task is mostly measuring the seed, which is why I report the best single model and its spread rather than one number.
+- **Best single-model validation score 0.6554** (seed 777), a mean Pearson r on a random 15% within-user split. The training code logged it as "CCC"; I found that `validate()` computes Pearson r and corrected the name everywhere. True CCC is at most this value and was not measured.
+- **Arousal was the bottleneck**: arousal r ranged 0.357–0.552 across seeds while valence reached 0.759. The arousal-specialist model logged a higher arousal r, but one of its extra features (`arousal_change`) contains the target, so I do not quote that gain.
+- **Seed variance turned out to be the bigger story**: the same architecture scored **0.5053–0.6554** across random seeds. Any single-run comparison on this task is mostly measuring the seed, which is why I report the best single model and its spread rather than one number.
 - **46 users, 1,266 test predictions**
 
-**On the submitted ensemble — stated precisely:** the final submission weighted the two best models by validation CCC (seed777 50.16% + arousal_specialist 49.84%). Its combined score was a **projection** — the CCC-weighted average of the two measured models plus an assumed ensemble boost — and was **never re-scored on held-out data**. So the number I quote is the measured 0.6554, not the projected ensemble figure. Being able to tell those two apart is the point.
+**On the submitted ensemble — stated precisely:** the final submission weighted the two best models by their validation score (seed777 50.16% + arousal_specialist 49.84%). Its combined score was a **projection** — the weighted average of the two measured models plus an assumed ensemble boost — and was **never re-scored on held-out data**. So the number I quote is the measured 0.6554, not the projected ensemble figure. Being able to tell those two apart is the point.
 
 **Tech Stack:** PyTorch 2.0+, Hugging Face Transformers, RoBERTa, BiLSTM, WandB, Mixed Precision Training
 
@@ -380,6 +380,17 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 ---
 
+### 🧰 More public tools (Oct 2026)
+
+| Project | What it does | Tests |
+|---|---|---|
+| [**text2cad-verifier**](https://github.com/CY-HYUN/text2cad-verifier) | Measures how often an LLM writes CadQuery code that runs and comes out the right size on the public Text2CAD-Bench preview, and whether one round of verifier feedback fixes it. [Demo page](https://cy-hyun.github.io/text2cad-verifier/demo/) with every part in 3D | 3 service tests |
+| [**claim-gate**](https://github.com/CY-HYUN/claim-gate) | A Claude Code Stop hook that blocks a reply claiming "done", a count, an absence or "all/every" without the evidence behind it | 17 tests |
+| [**job-posting-checker**](https://github.com/CY-HYUN/job-posting-checker) | Reads a job posting and answers, with the sentence behind each answer, whether French is required, whether the role is open to someone in France, the contract, the salary against a floor and the years asked; plus a careers-API fetcher | 445 labelled cases |
+| [**korean-ai-tell**](https://github.com/CY-HYUN/korean-ai-tell) | Flags "AI tells" in Korean (and English) text with a rule id and a fix hint; CLI, library, pre-commit hook and a Claude Code skill | 13 tests |
+
+---
+
 ## 🛠️ Technical Skills
 
 ### 🔬 LLM Evaluation & Experimentation *(my differentiator)*
@@ -410,7 +421,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 - Synthetic data generation — zero-cost automated pipeline
 
 **Transformers** *(SemEval 2026 — modular training/prediction pipeline)*
-- RoBERTa fine-tuning — CCC 0.6554 against a 0.62 target
+- RoBERTa fine-tuning — validation mean Pearson r 0.6554 (SemEval 2026 Task 2)
 - BiLSTM ensembles, multi-head attention, dual-head output
 - Mixed-precision training (fp16), multi-seed experiments for robustness
 
@@ -533,14 +544,14 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 ### 🥇 Awards
 - **Best Performance Award** — Hanwha Aerospace big-data internship, team project on global defense trends, **1st of all teams**
-- **SemEval 2026 Task 2** — CCC 0.6554, above the 0.62 target
+- **SemEval 2026 Task 2** — validation mean Pearson r 0.6554, and the metric's naming error found and corrected
 
 ### 📜 Certifications
 - **SQLD** — SQL Developer, Korea Data Agency
 - **SMAT** — Service Management Aptitude Test
 
 ### 📈 Technical Highlights
-- **Seed variance quantified** — the same SemEval architecture scored CCC 0.5053–0.6554 across seeds, which bounds what any single run proves
+- **Seed variance quantified** — the same SemEval architecture scored 0.5053–0.6554 (mean Pearson r) across seeds, which bounds what any single run proves
 - **5.5× lower validation loss than the control** — LoRA against prompt tuning on identical data, at zero API cost
 - **33.3-point leakage gap quantified** — and the lower number published
 - **210+ country-name variants reconciled** — DEFT, the step that made a four-source join possible
