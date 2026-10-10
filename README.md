@@ -10,6 +10,7 @@
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://linkedin.com/in/changyong-hyun)
 [![Email](https://img.shields.io/badge/Email-D14836?style=flat&logo=gmail&logoColor=white)](mailto:xhangyong.hyun@gmail.com)
 [![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white)](https://github.com/CY-HYUN)
+[![Website](https://img.shields.io/badge/Website-cy--hyun.github.io-0D1117?style=flat&logo=githubpages&logoColor=white)](https://cy-hyun.github.io)
 
 </div>
 
@@ -146,6 +147,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 - **Timeouts were the machine, not the model**: 66 programs timed out while another job held the CPU; 64 ran fine when re-run alone with a 180 s limit, and the table uses the re-run results
 - **What the repair numbers do not show, stated**: the size feedback quoted the expected box, so a size match after repair is measured by the same check that guided it; a run failure fixed after repair is the stronger signal
 - **Cost:** 7 batches, about $5 at Batch API prices; `t2c.py report` reproduces the table from the committed results without any API call
+- **Other generators, same protocol (2026-10-10):** Sonnet 5.5 failed to run 8 and 10 times on procedure prompts over two runs (Opus: 4 and 6), with size mismatches inside or below the Opus range; Haiku 4.5 failed on 83 of 151, mostly with CadQuery calls that do not exist, and one repair round fixed about a quarter
 
 **Tech Stack:** Python, CadQuery (OpenCascade), Anthropic Message Batches API, FastAPI, pytest, GitHub Pages
 
@@ -153,7 +155,38 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 ---
 
-### 📡 3. Paper Radar — Weekly Literature Tracker (public since Oct 2026)
+### 🔎 3. rag-golden-eval — RAG Built Eval-First (Oct 2026)
+**A frozen 140-question golden set before the pipeline** — BM25 reached GAA 0.721 (mean of three identical runs, noise band 0.014); adding a cross-encoder reranker dropped it to 0.593
+
+**Challenge:** When the retriever changes, did the answers get better, and by more than run-to-run noise? Most RAG demos never measure this.
+
+**My Solution:**
+- 📚 **Corpus the model cannot have memorised**: 150 CC BY 4.0 arXiv papers (cs.CL / cs.LG) first submitted after the generator's knowledge cutoff, split into dev and eval slices before anything else
+- 🧾 **Golden set v1** (140 questions: factoid, multi-hop, negation, list, unanswerable), each with paper id, character span and verbatim quote; a draft was kept only if the quote exists, a passages-only answer matched the gold, and unanswerables stayed unanswered against BM25 and dense top-8
+- 🪜 **A retrieval ladder measured with one harness**: closed-book R0, BM25, dense, hybrid (reciprocal rank fusion), hybrid + cross-encoder rerank; same prompt, k and models
+- 📏 **Metrics**: recall@k, MRR, nDCG, faithfulness, correctness, abstention accuracy, and GAA (grounded answer accuracy: an answerable question answered correctly and faithfully, or an unanswerable one declined)
+- 🎲 **Noise floor first**: R1 run three times on identical input; any gap under 0.014 GAA is reported as within noise
+
+**Results (judge `claude-opus-5-5`, rubric v1, N = 140):**
+
+| Rung | recall@5 | GAA | vs BM25 mean |
+|---|---|---|---|
+| R0 closed book | - | 0.150 | -0.571 |
+| R1 BM25 (3 runs) | 0.765 | 0.714 / 0.721 / 0.729 | |
+| R2 dense | 0.689 | 0.679 | -0.043 |
+| R3 hybrid | 0.731 | 0.721 | +0.000 (within noise) |
+| R4 hybrid + rerank | 0.588 | 0.593 | -0.129 |
+
+- **The reranker hypothesis failed on this set**, and the README says so: recall@5 fell from 0.731 to 0.588
+- **Judge checked from three sides, not yet by a person**: Sonnet 5.5 and Haiku 4.5 re-judged all 560 answers and kept the same order R1 > R3 > R2 > R4; a blind second pass on a 30-item stratified sample agreed on correctness 30 of 30. A human calibration is the stated next step
+
+**Tech Stack:** Python, bm25s, sentence-transformers, Qdrant (local mode), bge-small-en-v1.5, ms-marco MiniLM cross-encoder, Anthropic Message Batches API, pymupdf
+
+[![GitHub](https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/CY-HYUN/rag-golden-eval)
+
+---
+
+### 📡 4. Paper Radar — Weekly Literature Tracker (public since Oct 2026)
 **Matches new arXiv papers and Semantic Scholar citations to a ledger of open problems** on a schedule; by default no LLM runs in the weekly job
 
 **Challenge:** Follow new research for a short list of open problems every week without reading the whole feed, and without any problem text leaving the machine.
@@ -178,7 +211,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 ---
 
-### 🏅 4. SemEval 2026 Task 2 — Emotion Prediction (Oct 2025 – Jan 2026)
+### 🏅 5. SemEval 2026 Task 2 — Emotion Prediction (Oct 2025 – Jan 2026)
 **Validation mean Pearson r 0.6554** — international NLP competition; the competition metric (CCC) was not measured
 
 **Challenge:** Predict emotional response (valence and arousal) from temporal sequences of a user's posts, where any single post carries little signal without the user's history.
@@ -216,7 +249,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 ---
 
-### 🔍 5. QoE Prediction — the Leakage Analysis That Changed the Answer (Oct – Dec 2025)
+### 🔍 6. QoE Prediction — the Leakage Analysis That Changed the Answer (Oct – Dec 2025)
 **33.3-point gap** — where the real result is the integrity work
 *Télécom SudParis (IP Paris) MSc coursework · supervised project*
 
@@ -246,7 +279,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 ---
 
-### 🌍 6. DEFT — Defense Export Market Analysis (Sep – Dec 2024)
+### 🌍 7. DEFT — Defense Export Market Analysis (Sep – Dec 2024)
 **102,321 records, 170 countries scored** — multi-source ETL and feasibility scoring
 
 **Challenge:** Combine economic, political and conflict indicators into a usable market-feasibility view, when the three source databases disagree about what a country is even called.
@@ -278,7 +311,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 ---
 
-### 📈 7. Agricultural Price Forecasting (Nov – Dec 2024)
+### 📈 8. Agricultural Price Forecasting (Nov – Dec 2024)
 **65,120 daily price rows · 17 commodities · 52-week horizon** — price forecasting for military food procurement
 
 **Challenge:** Forecast Korean agricultural retail prices far enough ahead to change purchasing decisions, across commodities whose seasonality has almost nothing in common. 7-person team, 8 weeks.
@@ -306,7 +339,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 ---
 
-### 📺 8. YouTube Analytics — Korean Content Strategy (Jul – Sep 2024)
+### 📺 9. YouTube Analytics — Korean Content Strategy (Jul – Sep 2024)
 **2,125 videos** — statistical analysis across 15 channels and 3 categories
 
 **Challenge:** Turn channel performance data into recommendations a creator could act on.
@@ -338,7 +371,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 ---
 
-### 🏡 9. Korean Real Estate — Market Analysis (Jul – Sep 2024)
+### 🏡 10. Korean Real Estate — Market Analysis (Jul – Sep 2024)
 **Geospatial price modelling** across Korean regions
 
 **Challenge:** Assemble a picture of the Seoul market that holds together — listings, macro indicators and city open data all come from different places, in different shapes, with Korean column names that don't match across sources.
@@ -362,7 +395,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 ---
 
-### 🎬 10. Movie Trip — Full-Stack Travel Platform (Dec 2025)
+### 🎬 11. Movie Trip — Full-Stack Travel Platform (Dec 2025)
 **Next.js 14 + TypeScript** — film locations, route planning and reviews
 
 **Challenge:** Build a complete product, not a notebook — authentication, persistence, state management and maps, deployed as one application.
@@ -382,7 +415,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 ---
 
-### 🏢 11. Insurance SOA — Multi-Protocol Service Architecture (Dec 2025 – Jan 2026)
+### 🏢 12. Insurance SOA — Multi-Protocol Service Architecture (Dec 2025 – Jan 2026)
 **4 protocols, one gateway** — REST · SOAP · gRPC · GraphQL
 *Télécom SudParis (IP Paris) MSc coursework · service-oriented architecture module*
 
@@ -419,7 +452,8 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 |---|---|---|
 | [**claim-gate**](https://github.com/CY-HYUN/claim-gate) | A Claude Code Stop hook that blocks a reply claiming "done", a count, an absence or "all/every" without the evidence behind it | 17 tests |
 | [**job-posting-checker**](https://github.com/CY-HYUN/job-posting-checker) | Reads a job posting and answers, with the sentence behind each answer, whether French is required, whether the role is open to someone in France, the contract, the salary against a floor and the years asked; plus a careers-API fetcher | 445 labelled cases |
-| [**korean-ai-tell**](https://github.com/CY-HYUN/korean-ai-tell) | Flags "AI tells" in Korean (and English) text with a rule id and a fix hint; CLI, library, pre-commit hook and a Claude Code skill | 13 tests |
+| [**korean-ai-tell**](https://github.com/CY-HYUN/korean-ai-tell) | Flags "AI tells" in Korean (and English) text with a rule id and a fix hint; CLI, library, pre-commit hook and a Claude Code skill. On PyPI: `pip install korean-ai-tell` | 13 tests |
+| [**kmmlu-lighteval**](https://github.com/CY-HYUN/kmmlu-lighteval) | Adds the Korean benchmark KMMLU to Hugging Face lighteval and checks it question by question against lm-evaluation-harness: 700 of 700 same prompt, tokens and prediction. Proposed upstream as [lighteval#1424](https://github.com/huggingface/lighteval/issues/1424) | parity table + 3 tests |
 
 ---
 
