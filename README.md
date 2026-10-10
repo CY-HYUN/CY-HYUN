@@ -350,7 +350,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
   - Word cloud analysis of title keywords by category
   - Upload timing (hour-of-day, day-of-week)
   - Upload cadence and its effect on views
-  - Views–likes–comments correlation (Pearson and Spearman, with significance testing)
+  - Views–likes–comments correlation (scatterplots from the real run; the Pearson script computes coefficients when a dataset is supplied)
   - Video duration against retention
   - Channel age against channel size
   - Expected-views modelling (which videos beat their own channel's baseline)
@@ -363,7 +363,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 - **For 10 of 15 channels, one upload interval maximised both views and likes** — cadence effects are consistent across engagement metrics
 - **Channel age does not predict channel size** — older channels do not necessarily have more subscribers or total views
 
-**Tech Stack:** Python, Pandas, Matplotlib, Seaborn, Word Clouds, Statistical Testing
+**Tech Stack:** Python, Pandas, Matplotlib, Seaborn, Word Clouds, descriptive statistics
 
 **Note on scope:** the repository documents its own verified headline (2,125 videos / 15 channels / 3 categories) and explicitly lists the earlier unverifiable figures that were removed.
 
