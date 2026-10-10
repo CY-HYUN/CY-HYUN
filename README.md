@@ -19,7 +19,7 @@
 
 **MSc Data Science, Télécom SudParis (2026) · Open to LLM / ML Engineer roles in Paris and Europe**
 
-AI/ML engineer finishing an MSc in Data Science & Network Intelligence at **Télécom SudParis (Institut Polytechnique de Paris)**, with six months of industry experience at **MECAGENT** in Paris building and evaluating a production multi-agent LLM system for CAD automation.
+AI/ML engineer with an MSc in Data Science & Network Intelligence from **Télécom SudParis (Institut Polytechnique de Paris)**, graduated October 2026, with six months of industry experience at **MECAGENT** in Paris building and evaluating a production multi-agent LLM system for CAD automation.
 
 I build LLM and multi-agent systems, and I specialise in the part most teams skip: **deciding whether the thing actually works.** The hard problem is rarely generation — it's that the metric you grade outputs with is usually blind to some of the ways they can be wrong. On the system I worked on, a part built mirrored scored about the same as the correct one. So most of my work became evaluation design: build the instrument first, then let it decide what to change.
 
@@ -120,7 +120,40 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 ---
 
-### 📡 2. Paper Radar — Weekly Literature Tracker (public since Oct 2026)
+### 📐 2. text2cad-verifier — Does LLM-Written CAD Code Run, and Is the Part the Right Size? (Oct 2026)
+**151 Text2CAD-Bench prompts, two verifiers, one repair round** — failures went from 7 to 1 (procedure prompts) and 11 to 1 (geometric prompts), against a repeat-run noise of 2 run failures and 1 size mismatch
+
+**Challenge:** The benchmark's ground-truth geometry is not public, so there is nothing to compare a generated part against — and "the code ran" says nothing about whether the part is right.
+
+**My Solution:**
+- ▶️ **Execution verifier**: each program runs in a separate process with a 60 s limit, imports only `cadquery` and `math` (an AST allow-list checked before running), and must leave a solid that passes OpenCascade's `BRepCheck` with a positive volume
+- 📏 **Size verifier with no ground truth**: the model reads each part's bounding box, in mm, separately from the two descriptions the dataset gives for every part; a part gets an expected size only when the two readings agree within 2% or 0.5 mm per axis (**120 of 151** did), and the generated solid's box is compared with it, axes sorted
+- 🔁 **One repair round**: each failure goes back once with the verifier's message — the run error, or "the bounding box is X mm while the description implies Y mm"
+- 🎲 **Noise floor measured first**: the same 151 prompts generated twice differ by 2 run failures and 1 size mismatch, so a change inside that band is not a result
+- 🌐 **Verifiers served as an API** (FastAPI, Pydantic, OpenAPI docs, 3 tests, Dockerfile), and a [demo page](https://cy-hyun.github.io/text2cad-verifier/demo/) with every part, its program, both verdicts and a 3D view
+
+**Results (model `claude-opus-5-5`, 151 prompts per run, 2026-10-08):**
+
+| Run | Programs that fail to run or give no valid solid | Size mismatches (of parts with an agreed size that ran) |
+|---|---|---|
+| Generation, procedure prompts | 4 | 3 of 117 |
+| Same prompts again (noise) | 6 | 2 of 114 |
+| Generation, geometric prompts | 3 | 8 of 117 |
+| After one repair round, procedure | 1 | 0 of 119 |
+| After one repair round, geometric | 1 | 0 of 119 |
+
+- **L1 (60 simple parts) almost never fails; what fails is L2 and L3** — sweeps, lofts, patterns
+- **Timeouts were the machine, not the model**: 66 programs timed out while another job held the CPU; 64 ran fine when re-run alone with a 180 s limit, and the table uses the re-run results
+- **What the repair numbers do not show, stated**: the size feedback quoted the expected box, so a size match after repair is measured by the same check that guided it; a run failure fixed after repair is the stronger signal
+- **Cost:** 7 batches, about $5 at Batch API prices; `t2c.py report` reproduces the table from the committed results without any API call
+
+**Tech Stack:** Python, CadQuery (OpenCascade), Anthropic Message Batches API, FastAPI, pytest, GitHub Pages
+
+[![GitHub](https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/CY-HYUN/text2cad-verifier)
+
+---
+
+### 📡 3. Paper Radar — Weekly Literature Tracker (public since Oct 2026)
 **Matches new arXiv papers and Semantic Scholar citations to a ledger of open problems** on a schedule; by default no LLM runs in the weekly job
 
 **Challenge:** Follow new research for a short list of open problems every week without reading the whole feed, and without any problem text leaving the machine.
@@ -139,13 +172,13 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 **Tech Stack:** Python, GitHub Actions, MCP (official Python SDK), arXiv, Semantic Scholar
 
-**Scope, stated honestly:** I built it for my team's open problems; the public repository runs on a demo ledger of public questions.
+**Scope, stated honestly:** I built it to track the open problems I work on; the public repository runs on a demo ledger of public questions.
 
 [![GitHub](https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/CY-HYUN/paper-radar)
 
 ---
 
-### 🏅 3. SemEval 2026 Task 2 — Emotion Prediction (Oct 2025 – Jan 2026)
+### 🏅 4. SemEval 2026 Task 2 — Emotion Prediction (Oct 2025 – Jan 2026)
 **Validation mean Pearson r 0.6554** — international NLP competition; the competition metric (CCC) was not measured
 
 **Challenge:** Predict emotional response (valence and arousal) from temporal sequences of a user's posts, where any single post carries little signal without the user's history.
@@ -183,7 +216,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 ---
 
-### 🔍 4. QoE Prediction — the Leakage Analysis That Changed the Answer (Oct – Dec 2025)
+### 🔍 5. QoE Prediction — the Leakage Analysis That Changed the Answer (Oct – Dec 2025)
 **33.3-point gap** — where the real result is the integrity work
 *Télécom SudParis (IP Paris) MSc coursework · supervised project*
 
@@ -213,7 +246,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 ---
 
-### 🌍 5. DEFT — Defense Export Market Analysis (Sep – Dec 2024)
+### 🌍 6. DEFT — Defense Export Market Analysis (Sep – Dec 2024)
 **102,321 records, 170 countries scored** — multi-source ETL and feasibility scoring
 
 **Challenge:** Combine economic, political and conflict indicators into a usable market-feasibility view, when the three source databases disagree about what a country is even called.
@@ -245,7 +278,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 ---
 
-### 📈 6. Agricultural Price Forecasting (Nov – Dec 2024)
+### 📈 7. Agricultural Price Forecasting (Nov – Dec 2024)
 **65,120 daily price rows · 17 commodities · 52-week horizon** — price forecasting for military food procurement
 
 **Challenge:** Forecast Korean agricultural retail prices far enough ahead to change purchasing decisions, across commodities whose seasonality has almost nothing in common. 7-person team, 8 weeks.
@@ -254,14 +287,14 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 - 📊 **Per-commodity LSTM** (Keras/TensorFlow), univariate price series:
   - **6 stacked LSTM layers** (200-100-50-50-100-200 units, tanh), dropout 0.2 and L2(0.01) on every layer, Dense(1) output
   - Adam with a per-commodity tuned learning rate (0.0005–0.0029), custom RMSE loss, EarlyStopping (patience 10, best-weights restore), seed 42
-  - **One model per commodity** — 17 in total, because a single pooled model washes out the seasonality that makes each crop different
+  - **One model per commodity** — 16 in total (a 17th notebook block is labelled cabbage but loads the potato series, so it is not counted), because a single pooled model washes out the seasonality that makes each crop different
 - 📉 **Seasonal ARIMA** (statsmodels `SARIMAX`, order (5,1,0), seasonal (1,1,1,52)) for the long horizon — **52-week-ahead weekly forecasts per commodity**
 - 🗄️ **Data integration**: daily Garak Market retail prices merged with weather (KMA stations), GDP, fuel, and minimum-wage series; cleaning, gap handling and weekly resampling
 - 🌐 **Flask dashboard** — 6 pages, all verified serving HTTP 200 — with embedded Power BI reports for stakeholders
 
 **Results:**
 - **65,120 daily retail-price rows across 17 commodities**, 2014-01-02 → 2024-12-05 (11 years)
-- **17 per-commodity LSTM models**, best-epoch validation **MAE 0.022–0.094 on min-max-scaled prices** (median 0.044) — roughly **2–9% of each commodity's 11-year price range**
+- **16 per-commodity LSTM models**, best-epoch validation **MAE 0.022–0.094 on min-max-scaled prices** (median 0.044) — roughly **2–9% of each commodity's 11-year price range**
 - **52-week-ahead forecasts** saved per commodity (napa cabbage, cabbage, carrot, cucumber, radish, garlic, onion, pepper, potato, rice, spinach, green onion)
 - **Procurement timing recommendations** derived from the forecast curve rather than from last year's price
 
@@ -273,7 +306,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 ---
 
-### 📺 7. YouTube Analytics — Korean Content Strategy (Jul – Sep 2024)
+### 📺 8. YouTube Analytics — Korean Content Strategy (Jul – Sep 2024)
 **2,125 videos** — statistical analysis across 15 channels and 3 categories
 
 **Challenge:** Turn channel performance data into recommendations a creator could act on.
@@ -305,7 +338,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 ---
 
-### 🏡 8. Korean Real Estate — Market Analysis (Jul – Sep 2024)
+### 🏡 9. Korean Real Estate — Market Analysis (Jul – Sep 2024)
 **Geospatial price modelling** across Korean regions
 
 **Challenge:** Assemble a picture of the Seoul market that holds together — listings, macro indicators and city open data all come from different places, in different shapes, with Korean column names that don't match across sources.
@@ -329,7 +362,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 ---
 
-### 🎬 9. Movie Trip — Full-Stack Travel Platform (Dec 2025)
+### 🎬 10. Movie Trip — Full-Stack Travel Platform (Dec 2025)
 **Next.js 14 + TypeScript** — film locations, route planning and reviews
 
 **Challenge:** Build a complete product, not a notebook — authentication, persistence, state management and maps, deployed as one application.
@@ -349,7 +382,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 ---
 
-### 🏢 10. Insurance SOA — Multi-Protocol Service Architecture (Dec 2025 – Jan 2026)
+### 🏢 11. Insurance SOA — Multi-Protocol Service Architecture (Dec 2025 – Jan 2026)
 **4 protocols, one gateway** — REST · SOAP · gRPC · GraphQL
 *Télécom SudParis (IP Paris) MSc coursework · service-oriented architecture module*
 
@@ -384,7 +417,6 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 | Project | What it does | Tests |
 |---|---|---|
-| [**text2cad-verifier**](https://github.com/CY-HYUN/text2cad-verifier) | Measures how often an LLM writes CadQuery code that runs and comes out the right size on the public Text2CAD-Bench preview, and whether one round of verifier feedback fixes it. [Demo page](https://cy-hyun.github.io/text2cad-verifier/demo/) with every part in 3D | 3 service tests |
 | [**claim-gate**](https://github.com/CY-HYUN/claim-gate) | A Claude Code Stop hook that blocks a reply claiming "done", a count, an absence or "all/every" without the evidence behind it | 17 tests |
 | [**job-posting-checker**](https://github.com/CY-HYUN/job-posting-checker) | Reads a job posting and answers, with the sentence behind each answer, whether French is required, whether the role is open to someone in France, the contract, the salary against a floor and the years asked; plus a careers-API fetcher | 445 labelled cases |
 | [**korean-ai-tell**](https://github.com/CY-HYUN/korean-ai-tell) | Flags "AI tells" in Korean (and English) text with a rule id and a fix hint; CLI, library, pre-commit hook and a Claude Code skill | 13 tests |
@@ -444,7 +476,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 - Class-balanced evaluation: macro F1 and Cohen's kappa over raw accuracy, stratified splitting
 - Also used elsewhere: SVM, XGBoost, K-Means clustering (DEFT country grading)
 
-**Time Series** *(Agri Forecasting — 17 per-commodity models)*
+**Time Series** *(Agri Forecasting — 16 per-commodity models)*
 - Seasonal ARIMA (statsmodels SARIMAX) for the 52-week horizon; stacked LSTM (Keras) per commodity
 - Per-series tuning, EarlyStopping with best-weight restore, custom RMSE loss
 - Seasonal decomposition, lag and rolling-window feature construction
@@ -608,4 +640,4 @@ Korean (native), English (professional) — and the register that matters most: 
 
 </div>
 
-<!-- Profile README — optimised for LLM / ML engineer roles — last updated 2026-10-02 -->
+<!-- Profile README — optimised for LLM / ML engineer roles — last updated 2026-10-10 -->
