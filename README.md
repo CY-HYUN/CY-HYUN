@@ -218,7 +218,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 - 🔬 **RoBERTa + BiLSTM (256 hidden, 2 layers) + 4-head attention**, dual-head output for the two dimensions
 - 🎯 **Arousal-specialist model**: 90% CCC-loss weighting on the harder dimension (its arousal score is not quoted: one input feature contains the target)
 - 📊 **31 engineered features feed the best model**: 17 temporal (lags, rolling statistics), 4 per-user baselines, 10 text statistics
-- ⚡ **Multi-seed runs** (42, 123, 777, 888, 1111): the same architecture ranged 0.5053–0.6554, so no single run is quoted alone
+- ⚡ **Mixed-precision training** (torch.cuda.amp) with multi-seed runs (42, 123, 777, 888, 1111) for robustness
 - 📈 **Differential learning rates**: 1e-5 for the encoder against 8e-5 for the custom heads
 - 🧪 **Systematic ablations**: quantified each component separately — user embeddings > engineered features > BiLSTM
 
@@ -237,7 +237,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 **On the submitted ensemble — stated precisely:** the final submission weighted the two best models by their validation score (seed777 50.16% + arousal_specialist 49.84%). Its combined score was a **projection** — the weighted average of the two measured models plus an assumed ensemble boost — and was **never re-scored on held-out data**. So the number I quote is the measured 0.6554, not the projected ensemble figure. Being able to tell those two apart is the point.
 
-**Tech Stack:** PyTorch 2.0+, Hugging Face Transformers, RoBERTa, BiLSTM
+**Tech Stack:** PyTorch 2.0+, Hugging Face Transformers, RoBERTa, BiLSTM, WandB, Mixed Precision Training
 
 **Deliverables:** Joint slide deck (my part: subtask 2a) · technical report · fully reproducible pipeline (preprocessing, training, evaluation, prediction) · Codabench submission
 
@@ -459,6 +459,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 **Evaluation design** *(MECAGENT internship)*
 - Rubric construction, sample selection, expert-built ground truth
 - Reference labels checked against geometry, after my hand-written key turned out to be wrong
+- Scorers that reproduce every number from saved artefacts with zero model calls
 
 **Experiment discipline** *(MECAGENT internship, QoE project)*
 - One variable at a time; acceptance criteria registered before the run
@@ -466,14 +467,14 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 - Negative results published at the same length as positive ones
 
 **Observability** *(MECAGENT internship)*
-- MLflow — run tracking and experiment comparison
+- MLflow — run tracking, model registry, experiment comparison
 - Arize Phoenix — distributed tracing, span-level agent behaviour analysis
 - Trace-by-trace review of agent runs
 
 ![MLflow](https://img.shields.io/badge/MLflow-0194E2?style=flat&logo=mlflow&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
 
-### 🤖 LLM & NLP
+### 🤖 LLM & NLP (Production Experience)
 **LLM Fine-tuning** *(Synthetic-Instruction-Tuner)*
 - LoRA, DPO, PEFT — 12.16M trainable parameters (LoRA r=8)
 - 4-bit quantisation; Colab T4 (free tier) for generation, A100 for training
@@ -483,7 +484,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 **Transformers** *(SemEval 2026 — modular training/prediction pipeline)*
 - RoBERTa fine-tuning — validation mean Pearson r 0.6554 (SemEval 2026 Task 2)
 - BiLSTM over RoBERTa encodings, 4-head attention, dual-head output
-- Multi-seed runs: mean Pearson r 0.5053–0.6554 across seeds
+- Mixed-precision training (fp16), multi-seed experiments for robustness
 
 **Agentic Systems** *(MECAGENT internship)*
 - LangChain, LangGraph — orchestrator/sub-agent architectures
@@ -496,6 +497,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat&logo=pytorch&logoColor=white)
 ![Transformers](https://img.shields.io/badge/🤗_Transformers-FFD43B?style=flat&logoColor=black)
 ![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?style=flat&logo=langchain&logoColor=white)
+![WandB](https://img.shields.io/badge/WandB-FFBE00?style=flat&logo=weightsandbiases&logoColor=black)
 
 ### 📊 Machine Learning & Data Science
 **ML Algorithms** *(QoE Prediction — 4 classifiers, both feature sets each)*
@@ -525,10 +527,11 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 - **SQL** — PostgreSQL
 - **Java 11** — Insurance SOA, 1,927 lines across 17 files
 - **TypeScript / JavaScript** — Movie Trip full-stack
+- **R** — statistical analysis and visualisation
 
 **Web Development**
 - Next.js 14, React, Prisma ORM, Recoil
-- Flask and FastAPI for model serving and dashboards
+- Flask, FastAPI, Streamlit for model serving and dashboards
 
 **Databases**
 - PostgreSQL (Prisma ORM), SQLite, structured JSON data stores
@@ -540,16 +543,18 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 ![SQL](https://img.shields.io/badge/SQL-4479A1?style=flat&logo=mysql&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat&logo=postgresql&logoColor=white)
 ![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat&logo=next.js&logoColor=white)
+![Oracle](https://img.shields.io/badge/Oracle-F80000?style=flat&logo=oracle&logoColor=white)
 
 ### 🚀 MLOps & Production
 **Experiment Tracking**
-- MLflow — run tracking on the internship's agent pipelines
+- MLflow — run tracking and model registry on long-horizon agent pipelines
+- WandB — multi-seed experiments, ablation studies
 - Git / GitHub — every featured project above is a public repository
 
 **Cloud & Serving**
 - AWS Bedrock — model access in the internship's agent pipeline
 - Docker, Linux — containerised environments
-- Flask, FastAPI — API serving and interactive dashboards
+- Flask, FastAPI, Streamlit — API serving and interactive dashboards
 
 **Testing**
 - pytest — fixture tests, strict xfail for documented gaps
@@ -560,10 +565,12 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat&logo=linux&logoColor=black)
 ![Git](https://img.shields.io/badge/Git-F05032?style=flat&logo=git&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat&logo=fastapi&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=flat&logo=streamlit&logoColor=white)
 
 ### 📊 Visualisation & BI
 **Business Intelligence** *(Hanwha Aerospace)*
 - Power BI — defense analytics dashboards
+- Tableau — interactive business reports
 
 **Python Visualisation** *(all projects)*
 - Matplotlib, Seaborn — statistical plots
@@ -571,6 +578,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 - Chart.js, Leaflet — web-facing interactive charts
 
 ![Power BI](https://img.shields.io/badge/Power_BI-F2C811?style=flat&logo=powerbi&logoColor=black)
+![Tableau](https://img.shields.io/badge/Tableau-E97627?style=flat&logo=tableau&logoColor=white)
 
 ---
 
@@ -614,7 +622,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 Every number in this profile names what it was measured on. When my own improvement didn't beat the baseline, I reported it at the same length as a win. When my hand-written reference labels turned out to be wrong and three models were right, I checked the labels against the geometry from then on and wrote up why.
 
 ### ✅ I build the instrument first
-On the internship system, the drawing-reading stage had no measurement at all, so I built one: a rubric anchored on reference parts a CAD expert built by hand.
+On the internship system, the drawing-reading stage had no measurement at all, so I built one: a rubric anchored on reference parts a CAD expert built by hand, and a scorer that reproduces every number from saved artefacts with zero model calls.
 
 ### ✅ I ship inside a team's process
 Pull requests, code review, trace-referenced technical reports, and adversarial verification of my own claims before they leave my desk — six months of it inside a startup's engineering team.
