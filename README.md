@@ -280,7 +280,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 ---
 
 ### 🌍 7. DEFT — Defense Export Market Analysis (Sep – Dec 2024)
-**102,321 records, 170 countries scored** — multi-source ETL and feasibility scoring
+**102,188 records, 170 countries scored** — multi-source ETL and feasibility scoring
 
 **Challenge:** Combine economic, political and conflict indicators into a usable market-feasibility view, when the three source databases disagree about what a country is even called.
 
@@ -297,7 +297,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 - 🌐 **Interactive static platform**: Leaflet world map with a generated page per country, 200+ Chart.js charts, DataTables for real-time querying, ~54 MB of committed JSON
 
 **Results:**
-- **102,321 records** integrated into one queryable dataset (13 committed JSON files, 1991–2020); **170 countries** scored after standardisation
+- **102,188 records** integrated into one queryable dataset (13 committed JSON files, 1991–2020); **170 countries** scored after standardisation
 - **Economic capacity was the only strong predictor of arms imports** — economic score **+23,170 TIV per standard deviation, p < 0.001**. Governance scored **p = 0.791: no measurable effect**, and conflict intensity was marginal (p = 0.093). That negative result mattered more than the positive one, because governance indicators were the axis the model was expected to lean on.
 - **R² = 0.366 means ~63% of import variation sits outside these indicators** — alliances, political decisions, offset deals — which is the honest bound on how far indicator-only screening can go
 - **South Korea's import mix**, mapped onto the US ITAR/USML 22-category taxonomy across 509 import entries (1991–2020): missiles 34.8%, aircraft 20.6%, military electronics 11.0%
@@ -515,7 +515,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 - Per-series tuning, EarlyStopping with best-weight restore, custom RMSE loss
 - Seasonal decomposition, lag and rolling-window feature construction
 
-**Data Engineering** *(DEFT — 102,321 records)*
+**Data Engineering** *(DEFT — 102,188 records)*
 - ETL pipelines, REST API integration (World Bank, SIPRI, UCDP, WGI)
 - Entity reconciliation across disagreeing sources
 - K-Means grading of the 170 scored countries, OLS regression on the training split
