@@ -453,7 +453,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 | [**claim-gate**](https://github.com/CY-HYUN/claim-gate) | A Claude Code Stop hook that blocks a reply claiming "done", a count, an absence or "all/every" without the evidence behind it | 17 tests |
 | [**job-posting-checker**](https://github.com/CY-HYUN/job-posting-checker) | Reads a job posting and answers, with the sentence behind each answer, whether French is required, whether the role is open to someone in France, the contract, the salary against a floor and the years asked; plus a careers-API fetcher | 445 labelled cases |
 | [**korean-ai-tell**](https://github.com/CY-HYUN/korean-ai-tell) | Flags "AI tells" in Korean (and English) text with a rule id and a fix hint; CLI, library, pre-commit hook and a Claude Code skill. On PyPI: `pip install korean-ai-tell` | 13 tests |
-| [**kmmlu-lighteval**](https://github.com/CY-HYUN/kmmlu-lighteval) | Adds the Korean benchmark KMMLU to Hugging Face lighteval and checks it question by question against lm-evaluation-harness: 700 of 700 same prompt, tokens and prediction. Proposed upstream as [lighteval#1424](https://github.com/huggingface/lighteval/issues/1424) | parity table + 3 tests |
+| [**kmmlu-lighteval**](https://github.com/CY-HYUN/kmmlu-lighteval) | Adds the Korean benchmark KMMLU to Hugging Face lighteval and checks it question by question against lm-evaluation-harness: on 5 of 45 subjects with one small model on CPU, 700 of 700 same prompt, tokens and prediction. Proposed upstream as [lighteval#1424](https://github.com/huggingface/lighteval/issues/1424), then opened as [pull request #1425](https://github.com/huggingface/lighteval/pull/1425) (open) | parity table + 3 tests |
 
 ---
 
