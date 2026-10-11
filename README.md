@@ -178,7 +178,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 | R4 hybrid + rerank | 0.588 | 0.593 | -0.129 |
 
 - **The reranker hypothesis failed on this set**, and the README says so: recall@5 fell from 0.731 to 0.588
-- **Judge checked from three sides, not yet by a person**: Sonnet 5.5 and Haiku 4.5 re-judged all 560 answers and kept the same order R1 > R3 > R2 > R4; a blind second pass on a 30-item stratified sample agreed on correctness 30 of 30. A human calibration is the stated next step
+- **Judge checked from four sides, one of them a person**: Sonnet 5.5 and Haiku 4.5 re-judged all 560 answers and kept the same order R1 > R3 > R2 > R4; on a 30-item stratified sample, a blind human check of correctness agreed with the judge on 29 of 30 (kappa 0.91), and the one miss was a hedged list answer both LLM passes let through. Faithfulness is not human-checked yet
 
 **Tech Stack:** Python, bm25s, sentence-transformers, Qdrant (local mode), bge-small-en-v1.5, ms-marco MiniLM cross-encoder, Anthropic Message Batches API, pymupdf
 
