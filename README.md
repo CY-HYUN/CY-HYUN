@@ -1,11 +1,11 @@
 <div align="center">
 
 # 👋 Hi, I'm Changyong Hyun
-<!-- GitHub Profile README - Last updated 2026-10-10 -->
+<!-- GitHub Profile README - Last updated 2026-10-11 -->
 
 ### 🚀 AI/ML Engineer | LLM Evaluation & Agentic Systems | MSc @ Télécom SudParis (IP Paris)
 
-🇫🇷 **Paris / Europe** · 🔬 **6 months building a production multi-agent LLM system** · ⚡ **PyTorch · LangGraph · MLflow**
+🇫🇷 **Paris / Europe** · 🔬 **6 months evaluating LLM agents for CAD** · ⚡ **PyTorch · LangGraph · MLflow**
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://linkedin.com/in/changyong-hyun)
 [![Email](https://img.shields.io/badge/Email-D14836?style=flat&logo=gmail&logoColor=white)](mailto:xhangyong.hyun@gmail.com)
@@ -20,21 +20,20 @@
 
 **MSc Data Science, Télécom SudParis (2026) · Open to LLM / ML Engineer roles in Paris and Europe**
 
-AI/ML engineer with an MSc in Data Science & Network Intelligence from **Télécom SudParis (Institut Polytechnique de Paris)**, graduated October 2026, with six months of industry experience at **MECAGENT** in Paris building and evaluating a production multi-agent LLM system for CAD automation.
+AI/ML engineer with an MSc in Data Science & Network Intelligence from **Télécom SudParis (Institut Polytechnique de Paris)**, graduated October 2026, with six months of industry experience at **MECAGENT** in Paris, evaluating LLM agents that turn engineering drawings into 3D CAD models.
 
-I build LLM and multi-agent systems, and I specialise in the part most teams skip: **deciding whether the thing actually works.** The hard problem is rarely generation — it's that the metric you grade outputs with is usually blind to some of the ways they can be wrong. On the system I worked on, a part built mirrored scored about the same as the correct one. So most of my work became evaluation design: build the instrument first, then let it decide what to change.
+I build LLM and multi-agent systems, and I specialise in the part most teams skip: **deciding whether the thing actually works.** The hard problem is rarely generation — it's that the metric you grade outputs with is usually blind to some of the ways they can be wrong. On the system I worked on, the headline 3D-similarity score passed rotated parts and imitated sheet-metal folds as if they were correct. So most of my work became evaluation design: build the instrument first, then let it decide what to change.
 
 **Core Expertise:**
-- 🔬 **Evaluation design for generative systems** — rubrics against expert-built ground truth, machine-derived reference labels instead of hand-written ones, pre-registered acceptance criteria, shuffled controls
+- 🔬 **Evaluation design for generative systems** — rubrics against expert-built ground truth, reference labels checked against geometry, pre-registered acceptance criteria, an LLM judge checked against my own blind labels
 - 🤖 **LLM fine-tuning** — LoRA, DPO, PEFT (12.16M trainable parameters, 5.5× lower validation loss than the prompt-tuning control, zero API cost)
 - 🕸️ **Agentic & multi-agent systems** — LangChain, LangGraph, orchestrator/sub-agent architectures executing against a live external application
-- 📈 **Observability** — MLflow run tracking, Arize Phoenix tracing, span-level analysis of multi-hour agent sessions
+- 📈 **Observability** — MLflow run tracking, Arize Phoenix tracing, span-level reading of agent traces
 - 🧪 **Controlled experiments** — one variable at a time, negative results reported at the same length as positive ones
 
 **Key Achievements:**
 - 🏅 **SemEval 2026 Task 2** — validation mean Pearson r **0.6554** on the best single model, with the metric's naming error found and corrected in my own repo
 - 🔍 **A leakage analysis that changed the answer** — quantified a **33.3-point** gap and published the lower number
-- 🧰 **Instruments that outlive the code** — my scorers still reproduce every number from saved artefacts after the pipeline around them was rebuilt
 - ⚡ **Zero-cost fine-tuning pipeline** — synthetic data generation through DPO alignment with no API fees and no human labelling
 - 🎖️ **Best Performance Award** — Hanwha Aerospace big-data internship (1st of all teams)
 
@@ -54,19 +53,16 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 ### 🔧 AI Engineer Intern — MECAGENT, Paris, France (May – Oct 2026)
 
-**MECAGENT builds an AI copilot for SolidWorks**, the most widely used mechanical CAD software. The product takes a natural-language request and generates C# macro code that executes inside the user's live SolidWorks session.
+**The work:** LLM agents that turn 2D engineering drawings into 3D CAD models. **My part:** evaluation of the drawing-reading stage and of the agents' outputs, plus a C# toolkit the agent could call.
 
-**The system I worked on:** a drawing-to-CAD pipeline — vision models read a 2D engineering drawing (orthographic views, dimensions, machining annotations), a planner turns it into a structured feature tree, and a multi-agent system generates and executes SolidWorks C# against a live CAD kernel. Not a sandbox, not a simulator: a stateful external application that fails in ways a library never does.
-
-**My ownership:** the evaluation and experimentation layer — the part that decides whether any change was actually an improvement.
-
-- 🎯 **Designed the evaluation for the drawing-reading stage from scratch**, for a generative component that had no measurement at all. Built the rubric, selected the sample across both source datasets and the feature classes that mattered, and anchored it on ten reference parts hand-built in SolidWorks by the company's CAD expert — so that no model ever graded another model's output. The scorer reproduces every number from saved artefacts with **zero model calls**, which is why it still runs today after the pipeline around it was rebuilt.
-- 🔍 **Proved the team's headline metric was blind to entire classes of failure.** A mirrored part, a rotated part, and a sheet-metal bend imitated with extruded blocks all scored about the same as correct ones — the score aligns two solids before comparing, which erases orientation, and counts holes, which a mirror preserves. I built deterministic checks that detect each class by reading the feature types SolidWorks itself assigns, and those checks redirected the team's engineering priorities.
-- 🧪 **Ran controlled A/B experiments with acceptance criteria registered before each run.** Shuffled controls killed several of my own proposed fixes. I published a pre-registered negative result at the same length as the positive ones, where my own improvement lost to the baseline and I recommended keeping the baseline.
-- 🪞 **Caught my own ground-truth labels being wrong.** Three models disagreed with my hand-written answer key; checking the key against the reference geometry showed the key was wrong and the models were right. Every label after that came from a machine-derived source, and I wrote up why.
-- 📊 **Instrumented long-horizon agent runs end to end** — MLflow for run tracking and model registry, Arize Phoenix for distributed tracing, reading span-by-span what an agent actually did across multi-hour sessions instead of trusting a summary of it.
-- 🔧 **Built a C# helper library for the generating agent**, declared at the CAD session level, with live self-checks that each had to be demonstrated firing in both directions before I claimed they protected anything.
-- 🤝 **Shipped inside a senior team's process** — pull requests, code review, trace-referenced technical reports adopted as a team template, and adversarial verification of my own claims before they left my desk.
+- 🎯 **Designed the evaluation for the agent's drawing-reading stage** against reference parts built by the company's CAD expert, not model opinions.
+- 🔍 **Showed the headline 3D-similarity metric scores rotated parts and imitated sheet-metal folds like correct ones.**
+- 🧪 **Verified LLM-written trace analyses (MLflow, Arize Phoenix) against computed facts**; a reject-by-default re-check separated real hallucinations from false alarms.
+- 👁️ **Designed vision-LLM reading stages** that took geometry tagging from absent to most features on reference parts.
+- 🧭 **Traced the agent's invented-API errors:** its documentation retrieval (RAG) was failing on every call, and restoring it barely moved the errors, so the cause lay elsewhere.
+- 🔧 **Wrote a self-tested C# SolidWorks API toolkit, merged into the team's codebase**; in a controlled A/B run, the agent completed every planned bend with it and fell short without it.
+- 📏 **Reported a pre-registered negative result** at the same length as a positive one, and caught my own hand labels being wrong when three models disagreed with them; from then on the labels in that work were checked against the geometry.
+- 🤝 **Worked inside the team's process:** pull requests, code review and trace-referenced technical reports.
 
 **Tech Stack:** Python · C# · SolidWorks API · LangChain / LangGraph · MLflow · Arize Phoenix · vision-language models · AWS Bedrock · pytest
 
@@ -222,7 +218,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 - 🔬 **RoBERTa + BiLSTM (256 hidden, 2 layers) + 4-head attention**, dual-head output for the two dimensions
 - 🎯 **Arousal-specialist model**: 90% CCC-loss weighting on the harder dimension (its arousal score is not quoted: one input feature contains the target)
 - 📊 **31 engineered features feed the best model**: 17 temporal (lags, rolling statistics), 4 per-user baselines, 10 text statistics
-- ⚡ **Mixed-precision training** (torch.cuda.amp) with multi-seed runs (42, 123, 777, 888, 1111) for robustness
+- ⚡ **Multi-seed runs** (42, 123, 777, 888, 1111): the same architecture ranged 0.5053–0.6554, so no single run is quoted alone
 - 📈 **Differential learning rates**: 1e-5 for the encoder against 8e-5 for the custom heads
 - 🧪 **Systematic ablations**: quantified each component separately — user embeddings > engineered features > BiLSTM
 
@@ -241,7 +237,7 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 **On the submitted ensemble — stated precisely:** the final submission weighted the two best models by their validation score (seed777 50.16% + arousal_specialist 49.84%). Its combined score was a **projection** — the weighted average of the two measured models plus an assumed ensemble boost — and was **never re-scored on held-out data**. So the number I quote is the measured 0.6554, not the projected ensemble figure. Being able to tell those two apart is the point.
 
-**Tech Stack:** PyTorch 2.0+, Hugging Face Transformers, RoBERTa, BiLSTM, WandB, Mixed Precision Training
+**Tech Stack:** PyTorch 2.0+, Hugging Face Transformers, RoBERTa, BiLSTM
 
 **Deliverables:** Joint slide deck (my part: subtask 2a) · technical report · fully reproducible pipeline (preprocessing, training, evaluation, prediction) · Codabench submission
 
@@ -462,34 +458,32 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 ### 🔬 LLM Evaluation & Experimentation *(my differentiator)*
 **Evaluation design** *(MECAGENT internship)*
 - Rubric construction, sample selection, expert-built ground truth
-- Machine-derived reference labels — after my hand-written key turned out to be the thing that was wrong
-- Scorers that reproduce every number from saved artefacts with zero model calls
+- Reference labels checked against geometry, after my hand-written key turned out to be wrong
 
 **Experiment discipline** *(MECAGENT internship, QoE project)*
 - One variable at a time; acceptance criteria registered before the run
-- Shuffled controls that can kill my own hypothesis
 - Data-leakage detection and quantification
 - Negative results published at the same length as positive ones
 
 **Observability** *(MECAGENT internship)*
-- MLflow — run tracking, model registry, experiment comparison
+- MLflow — run tracking and experiment comparison
 - Arize Phoenix — distributed tracing, span-level agent behaviour analysis
-- Trace forensics across multi-hour agent sessions
+- Trace-by-trace review of agent runs
 
 ![MLflow](https://img.shields.io/badge/MLflow-0194E2?style=flat&logo=mlflow&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
 
-### 🤖 LLM & NLP (Production Experience)
+### 🤖 LLM & NLP
 **LLM Fine-tuning** *(Synthetic-Instruction-Tuner)*
-- LoRA, DPO, PEFT — 12.16M trainable parameters (0.67% of base)
+- LoRA, DPO, PEFT — 12.16M trainable parameters (LoRA r=8)
 - 4-bit quantisation; Colab T4 (free tier) for generation, A100 for training
 - Magpie prompting — 1,500 synthetic samples at an 83.9% quality pass rate
 - Synthetic data generation — zero-cost automated pipeline
 
 **Transformers** *(SemEval 2026 — modular training/prediction pipeline)*
 - RoBERTa fine-tuning — validation mean Pearson r 0.6554 (SemEval 2026 Task 2)
-- BiLSTM ensembles, multi-head attention, dual-head output
-- Mixed-precision training (fp16), multi-seed experiments for robustness
+- BiLSTM over RoBERTa encodings, 4-head attention, dual-head output
+- Multi-seed runs: mean Pearson r 0.5053–0.6554 across seeds
 
 **Agentic Systems** *(MECAGENT internship)*
 - LangChain, LangGraph — orchestrator/sub-agent architectures
@@ -502,7 +496,6 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat&logo=pytorch&logoColor=white)
 ![Transformers](https://img.shields.io/badge/🤗_Transformers-FFD43B?style=flat&logoColor=black)
 ![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?style=flat&logo=langchain&logoColor=white)
-![WandB](https://img.shields.io/badge/WandB-FFBE00?style=flat&logo=weightsandbiases&logoColor=black)
 
 ### 📊 Machine Learning & Data Science
 **ML Algorithms** *(QoE Prediction — 4 classifiers, both feature sets each)*
@@ -529,14 +522,13 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 **Primary Languages**
 - **Python** (advanced) — most of the projects above, from notebook analysis to modular training pipelines
 - **C#** — SolidWorks API automation, helper libraries with live self-checks
-- **SQL** (advanced) — SQLD certified; PostgreSQL
+- **SQL** — PostgreSQL
 - **Java 11** — Insurance SOA, 1,927 lines across 17 files
 - **TypeScript / JavaScript** — Movie Trip full-stack
-- **R** — statistical analysis and visualisation
 
 **Web Development**
 - Next.js 14, React, Prisma ORM, Recoil
-- Flask, FastAPI, Streamlit for model serving and dashboards
+- Flask and FastAPI for model serving and dashboards
 
 **Databases**
 - PostgreSQL (Prisma ORM), SQLite, structured JSON data stores
@@ -548,18 +540,16 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 ![SQL](https://img.shields.io/badge/SQL-4479A1?style=flat&logo=mysql&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat&logo=postgresql&logoColor=white)
 ![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat&logo=next.js&logoColor=white)
-![Oracle](https://img.shields.io/badge/Oracle-F80000?style=flat&logo=oracle&logoColor=white)
 
 ### 🚀 MLOps & Production
 **Experiment Tracking**
-- MLflow — run tracking and model registry on long-horizon agent pipelines
-- WandB — multi-seed experiments, ablation studies
+- MLflow — run tracking on the internship's agent pipelines
 - Git / GitHub — every featured project above is a public repository
 
 **Cloud & Serving**
-- AWS Bedrock — frontier model access in production pipelines
+- AWS Bedrock — model access in the internship's agent pipeline
 - Docker, Linux — containerised environments
-- Flask, FastAPI, Streamlit — API serving and interactive dashboards
+- Flask, FastAPI — API serving and interactive dashboards
 
 **Testing**
 - pytest — fixture tests, strict xfail for documented gaps
@@ -570,12 +560,10 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat&logo=linux&logoColor=black)
 ![Git](https://img.shields.io/badge/Git-F05032?style=flat&logo=git&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat&logo=fastapi&logoColor=white)
-![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=flat&logo=streamlit&logoColor=white)
 
 ### 📊 Visualisation & BI
 **Business Intelligence** *(Hanwha Aerospace)*
 - Power BI — defense analytics dashboards
-- Tableau — interactive business reports
 
 **Python Visualisation** *(all projects)*
 - Matplotlib, Seaborn — statistical plots
@@ -583,7 +571,6 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 - Chart.js, Leaflet — web-facing interactive charts
 
 ![Power BI](https://img.shields.io/badge/Power_BI-F2C811?style=flat&logo=powerbi&logoColor=black)
-![Tableau](https://img.shields.io/badge/Tableau-E97627?style=flat&logo=tableau&logoColor=white)
 
 ---
 
@@ -606,15 +593,11 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 
 ---
 
-## 🏆 Achievements & Certifications
+## 🏆 Achievements
 
 ### 🥇 Awards
 - **Best Performance Award** — Hanwha Aerospace big-data internship, team project on global defense trends, **1st of all teams**
 - **SemEval 2026 Task 2** — validation mean Pearson r 0.6554, and the metric's naming error found and corrected
-
-### 📜 Certifications
-- **SQLD** — SQL Developer, Korea Data Agency
-- **SMAT** — Service Management Aptitude Test
 
 ### 📈 Technical Highlights
 - **Seed variance quantified** — the same SemEval architecture scored 0.5053–0.6554 (mean Pearson r) across seeds, which bounds what any single run proves
@@ -628,19 +611,19 @@ I build LLM and multi-agent systems, and I specialise in the part most teams ski
 ## 💼 What I Bring
 
 ### ✅ I measure before I claim
-Every number in this profile names what it was measured on. When my own improvement lost to the baseline, I reported that and recommended the baseline. When my hand-written reference labels turned out to be wrong and three models were right, I rebuilt the labels from geometry and wrote up why.
+Every number in this profile names what it was measured on. When my own improvement didn't beat the baseline, I reported it at the same length as a win. When my hand-written reference labels turned out to be wrong and three models were right, I checked the labels against the geometry from then on and wrote up why.
 
 ### ✅ I build the instrument first
-On the internship system, the drawing-reading stage had no measurement at all, so I built one: a rubric anchored on ten reference parts a CAD expert built by hand, a scorer that reproduces every number from saved artefacts with zero model calls, and shuffled controls that killed my own proposed fixes before a reviewer had to.
+On the internship system, the drawing-reading stage had no measurement at all, so I built one: a rubric anchored on reference parts a CAD expert built by hand.
 
 ### ✅ I ship inside a team's process
-Pull requests, code review, trace-referenced technical reports, and adversarial verification of my own claims before they leave my desk — six months of it in a senior team at a funded startup.
+Pull requests, code review, trace-referenced technical reports, and adversarial verification of my own claims before they leave my desk — six months of it inside a startup's engineering team.
 
 ### ✅ I work across the stack
 Shipped projects spanning LLM fine-tuning, NLP research, multi-agent systems, time series, data engineering and full-stack web — in Python, C#, Java and TypeScript.
 
 ### ✅ I communicate in two languages and three registers
-Korean (native), English (professional) — and the register that matters most: explaining a technical result to someone who has to make a decision with it.
+Korean (native), English (C1), learning French (A2) — and the register that matters most: explaining a technical result to someone who has to make a decision with it.
 
 ---
 
@@ -674,4 +657,4 @@ Korean (native), English (professional) — and the register that matters most: 
 
 </div>
 
-<!-- Profile README — optimised for LLM / ML engineer roles — last updated 2026-10-10 -->
+<!-- Profile README — optimised for LLM / ML engineer roles — last updated 2026-10-11 -->
